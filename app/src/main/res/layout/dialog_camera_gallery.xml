@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="320dp"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@xml/dialog_bg"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/take_photo"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:drawableStart="@drawable/ic_camera_48"
+        android:drawableTint="@color/colorPrimary"
+        android:background="#0000"
+        android:text="@string/take_photo" />
+    <View android:background="@android:color/darker_gray"
+        android:layout_width = "match_parent"
+        android:layout_margin="5dp"
+        android:layout_height="1dp"/>
+    <Button
+        android:id="@+id/from_gallery"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:drawableStart="@drawable/ic_gallery_48"
+        android:drawableTint="@color/colorPrimary"
+        android:background="#0000"
+        android:text="@string/upload_from_photo_library" />
+</LinearLayout>

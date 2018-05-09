@@ -1,0 +1,49 @@
+<resources>
+    <string name="app_name">Car Inspection</string>
+
+    <!-- Navigation -->
+    <string name="Home">בית</string>
+    <string name="Inspection">בדיקה</string>
+    <string name="Camera">טפסים</string>
+    <string name="Notes">Notes</string>
+    <string name="Setting">הגדרות</string>
+
+    <!-- Home Navigation -->
+    <string name="driver_details">נהג</string>
+    <string name="vehicle_details">רכב</string>
+    <string name="trailer_details">גרור</string>
+    <string name="vehicle_info">מידע</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="user_input">מספר רכב</string>
+    <string name="inspect_month">חודש בדיקה</string>
+    <string name="inspect_date">תאריך בדיקה</string>
+    <string name="vehicle_type">סוג רכב</string>
+    <string name="vehicle_subtype">תת סוג רכב</string>
+    <string name="vehicle_details_text">פרטים</string>
+    <string name="current_odometer">Current Odometer</string>
+    <string name="inspection_location">מיקום בדיקה</string>
+    <string name="inspector">קצין בטיחות</string>
+    <string name="submit">שלח נתונים</string>
+    <string name="v_driver">נהג</string>
+    <string name="driver_license_number">מספר רשיון</string>
+    <string name="address">כתובת</string>
+    <string name="v_trailer">נגרר</string>
+    <string name="v_type">סוג נגרר</string>
+    <string name="v_subtype">תת סוג נגרר</string>
+    <string name="sub_title">Sub Title</string>
+    <string name="remarks">הערות</string>
+    <string name="title">כותרת</string>
+    <string name="section">Section</string>
+    <string name="configuration">הגדרות</string>
+    <string name="logs_and_submission">לוגים והגדרות</string>
+    <string name="email">\@אימייל</string>
+    <string name="erase">מחק</string>
+    <string name="submission">Submission</string>
+    <string name="log_file">Log File</string>
+    <string name="v_plate">מספר רכב</string>
+    <string name="enter_your_v_plate">הזן מספר רכב</string>
+    <string name="add_new_date_and_picture">הוסף תמונה ותאריך</string>
+    <string name="done">סיום</string>
+</resources>

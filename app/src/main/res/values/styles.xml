@@ -1,0 +1,36 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <!--<item name="preferenceTheme">@style/PreferenceThemeOverlay</item>-->
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
+
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+
+    <style name="PreferenceTheme" parent="PreferenceThemeOverlay">
+        <item name="numberPickerPreferenceStyle">
+            @style/Preference.DialogPreference.NumberPickerPreference
+        </item>
+        <item name="timePickerPreferenceStyle">
+            @style/Preference.DialogPreference.TimePickerPreference
+        </item>
+    </style>
+
+    <style name="Preference.DialogPreference.NumberPickerPreference">
+        <item name="dialogLayout">@layout/preference_dialog_numberpicker</item>
+        <item name="android:layout">@layout/preference_material</item>
+    </style>
+
+    <style name="Preference.DialogPreference.TimePickerPreference" />
+
+</resources>

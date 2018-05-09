@@ -1,0 +1,61 @@
+<resources>
+    <string name="app_name">Car Inspection</string>
+
+    <!-- Navigation -->
+    <string name="Home">Home</string>
+    <string name="Inspection">Inspection</string>
+    <string name="Camera">Camera</string>
+    <string name="Notes">Notes</string>
+    <string name="Setting">Setting</string>
+
+    <!-- Home Navigation -->
+    <string name="driver_details">Driver</string>
+    <string name="vehicle_details">Vehicle</string>
+    <string name="trailer_details">Trailer</string>
+    <string name="vehicle_info">Info</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="user_input">User Input</string>
+    <string name="inspect_month">Inspect Month</string>
+    <string name="inspect_date">Inspect Date</string>
+    <string name="vehicle_type">Vehicle Type</string>
+    <string name="vehicle_subtype">Vehicle Subtype</string>
+    <string name="vehicle_details_text">Vehicle Details</string>
+    <string name="current_odometer">Current Odometer</string>
+    <string name="inspection_location">Inspection Location</string>
+    <string name="inspector">Inspector</string>
+    <string name="submit">Submit</string>
+    <string name="v_driver">V Driver</string>
+    <string name="driver_license_number">Driver Licence Number</string>
+    <string name="address">Address</string>
+    <string name="v_trailer">V Trailer</string>
+    <string name="v_type">V Type</string>
+    <string name="v_subtype">V Subtype</string>
+    <string name="sub_title">Sub Title</string>
+    <string name="remarks">Remarks</string>
+    <string name="title">Title</string>
+    <string name="section">Section</string>
+    <string name="configuration">Config</string>
+    <string name="logs_and_submission">Logs and Submission</string>
+    <string name="email">\@Email</string>
+    <string name="erase">Erase</string>
+    <string name="submission">Submission</string>
+    <string name="log_file">Log File</string>
+    <string name="v_plate">V Plate</string>
+    <string name="enter_your_v_plate">Enter your V Plate</string>
+    <string name="add_new_date_and_picture">Add new Date and Picture</string>
+    <string name="done">Done</string>
+    <string name="take_photo">Take Photo</string>
+    <string name="upload_from_photo_library">Upload from Photo Library</string>
+    <string name="other_info">Other Info</string>
+    <string name="search">Search...</string>
+    <string name="driver_signature">Driver Signature</string>
+    <string name="driver_name">Driver Name</string>
+    <string name="inspector_signature">Inspector Signature</string>
+    <string name="inspector_name">Inspector Name</string>
+    <string name="logs">Logs</string>
+    <string name="submissions">Submissions</string>
+    <string name="enter_your_phone_number">Enter your phone number</string>
+    <string name="phone_number">Phone Number</string>
+</resources>

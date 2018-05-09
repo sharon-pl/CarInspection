@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <PreferenceCategory
+        android:title="App Configuration"
+        android:key="category_app">
+        <com.coretal.carinspection.preferences.NumberPickerPreference
+            android:defaultValue="30"
+            android:key="CONF_APP_DAYS_DUE"
+            android:title="CONF_APP_DAYS_DUE"
+            app:maxValue="100"
+            app:minValue="1"
+            app:valueAsSummary="true"
+            style="@style/Preference.DialogPreference.NumberPickerPreference"/>
+        <ListPreference
+            android:key="CONF_APP_NOTES_LAYOUT"
+            android:title="CONF_APP_NOTES_LAYOUT"
+            android:summary="%s"
+            android:entries="@array/conf_app_notes_layouts"
+            android:entryValues="@array/conf_app_notes_layouts"
+            android:defaultValue="BOTH"/>
+        <ListPreference
+            android:key="CONF_APP_IMAGE_SOURCE"
+            android:title="CONF_APP_IMAGE_SOURCE"
+            android:summary="%s"
+            android:entries="@array/conf_app_image_sources"
+            android:entryValues="@array/conf_app_image_sources"
+            android:defaultValue="BOTH"/>
+        <CheckBoxPreference
+            android:key="CONF_CHEK_BOX_SUBMIT"
+            android:title="CONF_CHEK_BOX_SUBMIT"
+            android:summaryOff = "False"
+            android:summaryOn = "check"
+            android:defaultValue="true" />
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:title="Web service"
+        android:key="category_inspector">
+        <com.coretal.carinspection.preferences.MyEditTextPreference
+            android:key="WS_CONFIG_URL"
+            android:title="WS_CONFIG_URL"
+            android:summary="%s"/>
+        <CheckBoxPreference
+            android:key="WS_CONFIG_ALLOW_OFFLINE"
+            android:title="WS_CONFIG_ALLOW_OFFLINE"
+            android:summaryOff = "False"
+            android:summaryOn = "true"
+            android:defaultValue="true" />
+        <com.coretal.carinspection.preferences.NumberPickerPreference
+            android:defaultValue="20"
+            android:key="WS_CONFIG_CONN_CHECK"
+            android:title="WS_CONFIG_CONN_CHECK"
+            app:maxValue="60"
+            app:minValue="1"
+            app:valueAsSummary="true"
+            style="@style/Preference.DialogPreference.NumberPickerPreference"/>
+        <com.coretal.carinspection.preferences.NumberPickerPreference
+            android:defaultValue="10"
+            android:key="WS_CONFIG_CONN_CHECK_DELAY"
+            android:title="WS_CONFIG_CONN_CHECK_DELAY"
+            app:maxValue="60"
+            app:minValue="1"
+            app:valueAsSummary="true"
+            style="@style/Preference.DialogPreference.NumberPickerPreference"/>
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:title="Inspector"
+        android:key="category_inspector">
+        <com.coretal.carinspection.preferences.MyEditTextPreference
+            android:key="CONF_INSPECTOR_ID"
+            android:title="CONF_INSPECTOR_ID"
+            android:summary="%s"/>
+        <com.coretal.carinspection.preferences.MyEditTextPreference
+            android:key="CONF_INSPECTOR_NAME"
+            android:title="CONF_INSPECTOR_NAME"
+            android:summary="%s"/>
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:title="Source email address"
+        android:key="category_email">
+        <com.coretal.carinspection.preferences.MyEditTextPreference
+            android:key="CONF_EMAIL_USER"
+            android:title="CONF_EMAIL_USER"
+            android:summary="%s"/>
+        <com.coretal.carinspection.preferences.MyEditTextPreference
+            android:key="CONF_EMAIL_PASSWORD"
+            android:title="CONF_EMAIL_PASSWORD"
+            android:summary="%s"
+            android:inputType="textPassword"/>
+        <com.coretal.carinspection.preferences.MyEditTextPreference
+            android:key="CONF_EMAIL_SUBJECT"
+            android:title="CONF_EMAIL_SUBJECT"
+            android:summary="%s"/>
+        <com.coretal.carinspection.preferences.MyEditTextPreference
+            android:key="CONF_EMAIL_TARGET_EMAIL"
+            android:title="CONF_EMAIL_TARGET_EMAIL"
+            android:summary="%s"/>
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:title="Service configuration"
+        android:key="category_service">
+        <com.coretal.carinspection.preferences.NumberPickerPreference
+            android:defaultValue="10"
+            android:key="CONF_SERVICE_SLEEP"
+            android:title="CONF_SERVICE_SLEEP"
+            app:maxValue="500"
+            app:minValue="1"
+            app:valueAsSummary="true"
+            style="@style/Preference.DialogPreference.NumberPickerPreference"/>
+        <com.coretal.carinspection.preferences.NumberPickerPreference
+            android:defaultValue="10"
+            android:key="CONF_SERVICE_MAX_RETRY"
+            android:title="CONF_SERVICE_MAX_RETRY"
+            app:maxValue="60"
+            app:minValue="1"
+            app:valueAsSummary="true"
+            style="@style/Preference.DialogPreference.NumberPickerPreference"/>
+    </PreferenceCategory>
+</PreferenceScreen>

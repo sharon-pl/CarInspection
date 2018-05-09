@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <string-array name="months">
+        <item>Jan</item>
+        <item>Feb</item>
+        <item>Mar</item>
+        <item>Apr</item>
+        <item>May</item>
+        <item>Jun</item>
+        <item>Jul</item>
+        <item>Aug</item>
+        <item>Sep</item>
+        <item>Oct</item>
+        <item>Nov</item>
+        <item>Dec</item>
+    </string-array>
+    <string-array name="config_actions">
+        <item>Save</item>
+        <item>Revert</item>
+        <item>Email</item>
+        <item>Reset</item>
+        <item>Override</item>
+    </string-array>
+    <string-array name="conf_app_notes_layouts">
+        <item>TEXT</item>
+        <item>SCRIBBLE</item>
+        <item>BOTH</item>
+    </string-array>
+    <string-array name="conf_app_image_sources">
+        <item>CAMERA</item>
+        <item>GALERY</item>
+        <item>BOTH</item>
+    </string-array>
+</resources>

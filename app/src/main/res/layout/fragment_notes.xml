@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:textDirection="locale"
+    android:padding="8dp"
+    android:background="@color/white"
+    tools:context="com.coretal.carinspection.fragments.NotesFragment">
+
+    <FrameLayout
+        android:id="@+id/signature_wrapper"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@xml/shadow_radius_bg"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/notes_edit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:padding="8dp">
+        <com.github.gcacace.signaturepad.views.SignaturePad
+            android:id="@+id/signature_pad"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:penColor="@android:color/black" />
+    </FrameLayout>
+    <EditText
+        android:id="@+id/notes_edit"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:background="@xml/shadow_radius_bg"
+        android:hint="@string/Notes"
+        android:gravity="top"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signature_wrapper" />
+
+    <ImageButton
+        android:id="@+id/clearButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:layout_marginEnd="4dp"
+        android:background="@null"
+        android:src="@drawable/clear"
+        app:layout_constraintBottom_toBottomOf="@+id/signature_wrapper"
+        app:layout_constraintEnd_toEndOf="@+id/signature_wrapper" />
+
+</android.support.constraint.ConstraintLayout>
