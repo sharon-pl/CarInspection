@@ -14,6 +14,7 @@ import android.widget.EditText;
 import com.coretal.carinspection.R;
 import com.coretal.carinspection.db.DBHelper;
 import com.coretal.carinspection.models.Submission;
+import com.coretal.carinspection.utils.AlertHelper;
 import com.coretal.carinspection.utils.MyHelper;
 
 /**
@@ -61,6 +62,10 @@ public class VPlateDialog extends DialogFragment {
             public void onClick(View v) {
                 String vPlate = vPlateEdit.getText().toString();
                 if (vPlate.isEmpty()) return;
+                if (dbHelper.checkUnsubmittedSubmission(vPlate)){
+                    AlertHelper.message(getContext(), "Warning", "There is a submission for the vehicle number to do submit\nPlease enter another one.");
+                    return;
+                }
                 MyHelper.hideKeyBoard(getActivity(), vPlateEdit);
                 alertDialog.dismiss();
                 callback.onSubmitVPlateDialog(vPlateEdit.getText().toString());

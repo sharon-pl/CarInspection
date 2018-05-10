@@ -107,6 +107,22 @@ public class DBHelper extends SQLiteOpenHelper {
         return db.insert(TABLE_SUBMISSION, null, initialValues);
     }
 
+    public boolean checkUnsubmittedSubmission(String vehicleNumber){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String strGetAll = String.format("select * from %s where %s=%s and (%s='%s' or %s='%s')",
+                                        TABLE_SUBMISSION,
+                                        TABLE_SUBMISSION_VEHICLE_PLATE, vehicleNumber,
+                                        TABLE_SUBMISSION_STATUS, Submission.STATUS_READY_TO_SUBMIT,
+                                        TABLE_SUBMISSION_STATUS, Submission.STATUS_FAILED);
+        Cursor cursor = db.rawQuery(strGetAll, null);
+        boolean exitst = false;
+        if(cursor.moveToFirst()){
+            exitst = true;
+        }
+        cursor.close();
+        return exitst;
+    }
+
     public Submission getDraftSubmission(){
         SQLiteDatabase db = this.getReadableDatabase();
         String strGetAll = String.format("select * from %s where %s='%s'", TABLE_SUBMISSION, TABLE_SUBMISSION_STATUS, Submission.STATUS_DRAFT);

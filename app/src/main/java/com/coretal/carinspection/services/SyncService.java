@@ -16,6 +16,7 @@ import com.coretal.carinspection.db.DBHelper;
 import com.coretal.carinspection.models.Submission;
 import com.coretal.carinspection.models.SubmissionFile;
 import com.coretal.carinspection.utils.Contents;
+import com.coretal.carinspection.utils.FileHelper;
 import com.coretal.carinspection.utils.JsonHelper;
 import com.coretal.carinspection.utils.MyPreference;
 import com.coretal.carinspection.utils.VolleyHelper;
@@ -79,6 +80,9 @@ public class SyncService extends Service {
             List<SubmissionFile> submissionFiles = dbHelper.getFilesForSubmissionId(submission.id);
 
             for(final SubmissionFile submissionFile: submissionFiles){
+                if(!FileHelper.exists(submissionFile.fileLocation)){
+                    Log.e("Kangtle", "Submission File " + submissionFile.fileLocation + " not exist");
+                }
                 SimpleMultiPartRequest multiPartRequest = new SimpleMultiPartRequest(
                     Request.Method.POST,
                     Contents.API_SUBMIT_PICTURE,
@@ -90,9 +94,9 @@ public class SyncService extends Service {
                     }, new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
-                            Log.e("Kangtle", "API_SUBMIT_PICTURE: onErrorResponse" + submissionFile.pictureId);
+                            Log.e("Kangtle", "API_SUBMIT_PICTURE: onErrorResponse " + submissionFile.pictureId);
                             submission.failedCount ++;
-                            submission.errorDetail = "API_SUBMIT_PICTURE: onErrorResponse" + submissionFile.pictureId;
+                            submission.errorDetail = "API_SUBMIT_PICTURE: onErrorResponse " + submissionFile.pictureId;
                         }
                     }
                 );
