@@ -116,11 +116,7 @@ public class ConfigFragment extends Fragment {
                                         })
                                         .send();
                                 break;
-                            case 3: //Reset
-                                Log.d("Kangtle", "Reset num try");
-                                dbHelper.resetNumtry();
-                                break;
-                            case 4: //Overide
+                            case 3: //Overide
                                 Log.d("Kangtle", "getting config file");
                                 progressDialog.setMessage("Getting config file...");
                                 progressDialog.show();

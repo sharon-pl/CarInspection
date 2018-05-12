@@ -84,6 +84,7 @@ public class NotesFragment extends Fragment {
 
     @Override
     public void onHiddenChanged(boolean hidden) {
+        if (!Contents.IS_STARTED_INSPECTION) return;
         if(!hidden){
             if (myPreference.getAppNotesLayout().equals("TEXT")){
                 signaterPadWrapper.setVisibility(View.GONE);

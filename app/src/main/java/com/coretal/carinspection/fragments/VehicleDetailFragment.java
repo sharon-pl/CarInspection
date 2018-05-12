@@ -146,24 +146,28 @@ public class VehicleDetailFragment extends Fragment implements VPlateDialog.Call
         userInputBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertHelper.question(getContext(), "Start Over", "Would you like to start over?",
-                        "OK", "Cancel",
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                removeDraftSubmission();
-                                MainActivity activity = (MainActivity)getActivity();
-                                activity.refresh();
-                                startInspection();
+                if (Contents.IS_STARTED_INSPECTION){
+                    AlertHelper.question(getContext(), "Start Over", "Would you like to start over?",
+                            "OK", "Cancel",
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    removeDraftSubmission();
+                                    MainActivity activity = (MainActivity)getActivity();
+                                    activity.refresh();
+                                    startInspection();
+                                }
+                            },
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
                             }
-                        },
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                            }
-                        }
-                );
+                    );
+                } else {
+                    startInspection();
+                }
             }
         });
 
@@ -470,6 +474,9 @@ public class VehicleDetailFragment extends Fragment implements VPlateDialog.Call
         if(!Contents.IS_STARTED_INSPECTION) return;
 
         Map<String, String> inspectors = Contents.JsonInspectors.getInspectors();
+        if(inspectors.size() == 0){
+            inspectors.put(myPreference.get_conf_inspector_id(), myPreference.get_conf_inspector_name());
+        }
         inspectorIDs = new ArrayList<>();
         Collections.addAll(inspectorIDs, inspectors.keySet().toArray(new String[inspectors.size()]));
         inspectorNames = new ArrayList<>(inspectors.values());

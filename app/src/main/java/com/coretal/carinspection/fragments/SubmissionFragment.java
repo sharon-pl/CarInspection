@@ -1,6 +1,7 @@
 package com.coretal.carinspection.fragments;
 
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.method.ScrollingMovementMethod;
@@ -8,19 +9,30 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.error.VolleyError;
+import com.android.volley.request.JsonObjectRequest;
 import com.coretal.carinspection.R;
 import com.coretal.carinspection.adapters.SubmissionTableViewAdapter;
 import com.coretal.carinspection.db.DBHelper;
 import com.coretal.carinspection.models.Submission;
+import com.coretal.carinspection.utils.AlertHelper;
 import com.coretal.carinspection.utils.Contents;
 import com.coretal.carinspection.utils.DateHelper;
+import com.coretal.carinspection.utils.FileHelper;
 import com.coretal.carinspection.utils.MyHelper;
 import com.coretal.carinspection.utils.MyPreference;
+import com.coretal.carinspection.utils.VolleyHelper;
 import com.creativityapps.gmailbackgroundlibrary.BackgroundMail;
 import com.evrencoskun.tableview.TableView;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +46,7 @@ public class SubmissionFragment extends Fragment {
     private SubmissionTableViewAdapter mTableViewAdapter;
     private DBHelper dbHelper;
     private MyPreference myPref;
+    private Spinner actionSpinner;
 
     public SubmissionFragment() {
         // Required empty public constructor
@@ -52,6 +65,11 @@ public class SubmissionFragment extends Fragment {
         mTableViewAdapter = new SubmissionTableViewAdapter(getContext());
         tableView.setAdapter(mTableViewAdapter);
 
+        actionSpinner = view.findViewById(R.id.action_spinner);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), R.layout.spinner_item, new String[]{"Reset"});
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        actionSpinner.setAdapter(adapter);
+
         dbHelper = new DBHelper(getContext());
         myPref = new MyPreference(getContext());
         List<Submission> submissions = dbHelper.getAllSubmissions();
@@ -63,6 +81,28 @@ public class SubmissionFragment extends Fragment {
         mTableViewAdapter.setRowHeaderItems(rowHeaders);
         mTableViewAdapter.setColumnHeaderItems(columnHeaders);
         mTableViewAdapter.setCellItems(cellList);
+
+        Button submitButton = view.findViewById(R.id.submit_button);
+        submitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertHelper.question(getActivity(), "Confirm", "Are you sure?", "Yes", "No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (actionSpinner.getSelectedItemPosition()){
+                            case 0: //Reset
+                                Log.d("Kangtle", "Reset num try");
+                                dbHelper.resetNumtry();
+                                mTableViewAdapter.notifyDataSetChanged();
+                                break;
+                            default:
+                                Log.d("Kangtle", "no action");
+                                break;
+                        }
+                    }
+                }, null);
+            }
+        });
 
         return view;
     }

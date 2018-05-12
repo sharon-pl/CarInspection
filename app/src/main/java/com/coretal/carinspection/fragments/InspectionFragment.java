@@ -105,6 +105,7 @@ public class InspectionFragment extends Fragment {
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
         Log.d("Kangtle", "on hidden changed Inspection fragment " + hidden);
+        if (!Contents.IS_STARTED_INSPECTION) return;
         if(!hidden){
             setValuesFromFile();
         }else{

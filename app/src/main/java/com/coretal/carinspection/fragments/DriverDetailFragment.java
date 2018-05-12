@@ -86,6 +86,7 @@ public class DriverDetailFragment extends Fragment implements AdapterView.OnItem
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
         Log.d("Kangtle", "on hidden driver detail fragment");
+        if (!Contents.IS_STARTED_INSPECTION) return;
         if(!hidden){
             setValuesFromFile();
         }else{

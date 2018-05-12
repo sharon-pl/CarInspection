@@ -45,7 +45,8 @@ public class VehicleDateAndPicturesFragment extends Fragment {
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
-        Log.d("Kangtle", "on hidden driver detail fragment");
+        Log.d("Kangtle", "on hidden VehicleDateAndPictures fragment");
+        if (!Contents.IS_STARTED_INSPECTION) return;
         if(!hidden){
             setValuesFromFile();
         }else{

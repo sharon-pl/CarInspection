@@ -32,7 +32,7 @@ public class VPlateDialog extends DialogFragment {
     public static VPlateDialog newInstance(VPlateDialog.Callback callback){
         VPlateDialog dialog = new VPlateDialog();
         dialog.callback = callback;
-        dialog.setCancelable(false);
+//        dialog.setCancelable(false);
         return dialog;
     }
 
