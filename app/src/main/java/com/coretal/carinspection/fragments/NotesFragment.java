@@ -52,19 +52,11 @@ public class NotesFragment extends Fragment {
         myPreference = new MyPreference(getContext());
         dbHelper = new DBHelper(getContext());
 
-        Submission submission = dbHelper.getDraftSubmission();
-        int submissionId = submission.id;
-        String submissionNotes = submission.notes;
-        String signatureFileName = submissionId + "_" + "inspection_notes_hand_writing.jpg";
-        signatureFilePath = Contents.EXTERNAL_PICTURES_DIR_PATH + "/" + signatureFileName;
-
         View view = inflater.inflate(R.layout.fragment_notes, container, false);
         signaterPadWrapper = view.findViewById(R.id.signature_wrapper);
         pad = view.findViewById(R.id.signature_pad);
         notesEdit = view.findViewById(R.id.notes_edit);
         clearButton = view.findViewById(R.id.clearButton);
-
-        notesEdit.setText(submissionNotes);
 
         clearButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,6 +77,13 @@ public class NotesFragment extends Fragment {
     @Override
     public void onHiddenChanged(boolean hidden) {
         if (!Contents.IS_STARTED_INSPECTION) return;
+
+        Submission submission = dbHelper.getDraftSubmission();
+        int submissionId = submission.id;
+        String submissionNotes = submission.notes;
+        String signatureFileName = submissionId + "_" + "inspection_notes_hand_writing.jpg";
+        signatureFilePath = Contents.EXTERNAL_PICTURES_DIR_PATH + "/" + signatureFileName;
+
         if(!hidden){
             if (myPreference.getAppNotesLayout().equals("TEXT")){
                 signaterPadWrapper.setVisibility(View.GONE);
@@ -96,7 +95,7 @@ public class NotesFragment extends Fragment {
                 signaterPadWrapper.setVisibility(View.VISIBLE);
                 notesEdit.setVisibility(View.VISIBLE);
             }
-
+            notesEdit.setText(submissionNotes);
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {

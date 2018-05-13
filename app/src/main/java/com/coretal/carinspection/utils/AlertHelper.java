@@ -16,6 +16,7 @@ public class AlertHelper {
                                String btnPositive, String btnNegative,
                                DialogInterface.OnClickListener positiveClickListener, DialogInterface.OnClickListener negativeClickListener){
         AlertDialog alertDialog = new AlertDialog.Builder(context).create();
+        alertDialog.setCancelable(false);
         alertDialog.setTitle(tittle);
         alertDialog.setMessage(question);
         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, btnPositive, positiveClickListener);
@@ -25,6 +26,7 @@ public class AlertHelper {
 
     public static void message(Context context, String tittle, String message){
         final AlertDialog alertDialog = new AlertDialog.Builder(context).create();
+        alertDialog.setCancelable(false);
         alertDialog.setTitle(tittle);
         alertDialog.setMessage(message);
         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK", new DialogInterface.OnClickListener() {
@@ -38,6 +40,7 @@ public class AlertHelper {
 
     public static void message(Context context, String tittle, String message, DialogInterface.OnClickListener onClickListener){
         final AlertDialog alertDialog = new AlertDialog.Builder(context).create();
+        alertDialog.setCancelable(false);
         alertDialog.setTitle(tittle);
         alertDialog.setMessage(message);
         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK", onClickListener);

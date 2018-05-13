@@ -144,7 +144,7 @@ public class MyHelper {
 
         }
         String logStr = log.toString();
-        String regex = "\\d{2}-\\d{2}\\s\\d{2}:\\d{2}:\\d{2}.\\d{3}\\s{1,3}\\d{3,5}\\s{1,3}\\d{3,5}\\s.\\s\\w{1,30}(\\s:|:)\\s";
+        String regex = "\\d{2}-\\d{2}\\s\\d{2}:\\d{2}:\\d{2}.\\d{3}\\s{1,3}\\d{3,5}\\s{1,3}\\d{3,5}\\s.\\s\\w{1,30}\\s{0,10}:\\s{0,10}";
         String replacedStr = logStr.replaceAll(regex, "");
         return replacedStr;
     }

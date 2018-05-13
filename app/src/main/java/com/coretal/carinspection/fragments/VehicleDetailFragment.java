@@ -174,12 +174,16 @@ public class VehicleDetailFragment extends Fragment implements VPlateDialog.Call
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (checkFields()) {
-                    saveValuesToFile();
-                    SignatureDialog fragment = SignatureDialog.newInstance(VehicleDetailFragment.this);
-                    fragment.setDriverName(driverName);
-                    fragment.setInspectorName(myPreference.get_conf_inspector_name());
-                    fragment.show(getFragmentManager(), "dialog_signature");
+                if(Contents.IS_STARTED_INSPECTION) {
+                    if (checkFields()) {
+                        saveValuesToFile();
+                        SignatureDialog fragment = SignatureDialog.newInstance(VehicleDetailFragment.this);
+                        fragment.setDriverName(driverName);
+                        fragment.setInspectorName(myPreference.get_conf_inspector_name());
+                        fragment.show(getFragmentManager(), "dialog_signature");
+                    }
+                }else{
+                    AlertHelper.message(getContext(), "Warning", "Inspection not started yet");
                 }
             }
         });
@@ -546,6 +550,7 @@ public class VehicleDetailFragment extends Fragment implements VPlateDialog.Call
 
     @Override
     public void onSubmitSignatures() {
+        Contents.IS_STARTED_INSPECTION = false;
         dbHelper.setStatusForDraftSubmission(Submission.STATUS_READY_TO_SUBMIT);
         AlertHelper.message(getContext(),
                 "Ready to Submit",
