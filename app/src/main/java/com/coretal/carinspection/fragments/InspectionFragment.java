@@ -84,6 +84,7 @@ public class InspectionFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (!Contents.IS_STARTED_INSPECTION) return;
                 searchedSectionHeaders.clear();
                 if (s == "") {
                     searchedSectionHeaders.addAll(sectionHeaders);

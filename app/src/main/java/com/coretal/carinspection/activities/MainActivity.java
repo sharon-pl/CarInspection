@@ -312,6 +312,12 @@ public class MainActivity extends AppCompatActivity implements PhoneNumberDialog
         volleyHelper.add(getRequest);
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        progressDialog.dismiss();
+    }
+
     private class ConnectivityReceiver extends BroadcastReceiver {
 
         @Override

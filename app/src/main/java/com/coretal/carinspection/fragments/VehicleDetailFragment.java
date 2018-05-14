@@ -152,6 +152,7 @@ public class VehicleDetailFragment extends Fragment implements VPlateDialog.Call
                             new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
+                                    Contents.IS_STARTED_INSPECTION = false;
                                     removeDraftSubmission();
                                     MainActivity activity = (MainActivity)getActivity();
                                     activity.refresh();
