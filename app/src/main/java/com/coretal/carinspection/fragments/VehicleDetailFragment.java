@@ -44,6 +44,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -116,8 +117,8 @@ public class VehicleDetailFragment extends Fragment implements VPlateDialog.Call
         inspectionDateEdit = view.findViewById(R.id.edit_inspect_date);
         submitButton = view.findViewById(R.id.btn_submit);
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),
-                R.array.months, R.layout.spinner_item);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), R.layout.spinner_item, myPreference.get_conf_months());;
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         monthSpinner.setAdapter(adapter);
         monthSpinner.post(new Runnable() {

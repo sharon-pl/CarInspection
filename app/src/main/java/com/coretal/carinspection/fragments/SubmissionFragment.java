@@ -111,7 +111,7 @@ public class SubmissionFragment extends Fragment {
         List<List<SubmissionTableViewAdapter.Cell>> list = new ArrayList<>();
 
         for (Submission submission : submissions) {
-            String[] monthList = getResources().getStringArray(R.array.months);
+            String[] monthList = myPref.get_conf_months();
             String selectedMonth = "No selected";
             if (submission.month >= 0) selectedMonth = monthList[submission.month];
 

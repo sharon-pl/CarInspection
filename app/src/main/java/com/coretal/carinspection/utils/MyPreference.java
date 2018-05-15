@@ -102,6 +102,11 @@ public class MyPreference {
         return configSP.getInt(Contents.Config.CONF_SERVICE_MAX_RETRY, 20);
     }
 
+    public String[] get_conf_months(){
+        String[] months = {"ינואר","פברואר","מרץ","אפריל","מאי","יוני","יולי","אוגוסט","ספטמבר","אוקטובר","נובמבר","דצמבר"};
+        return months;
+    }
+
     private Map<String, ?> getAllConfigs(){
         return configSP.getAll();
     }
