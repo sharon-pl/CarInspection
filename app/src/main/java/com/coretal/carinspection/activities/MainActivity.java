@@ -10,6 +10,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.content.res.ColorStateList;
 import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -161,9 +162,17 @@ public class MainActivity extends AppCompatActivity implements PhoneNumberDialog
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        myPreference = new MyPreference(this);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setStatusBarColor(myPreference.getColorButton());
+        }
+
         navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         navigation.enableShiftingMode(false);
+        navigation.setItemIconTintList(ColorStateList.valueOf(myPreference.getColorButton()));
+        navigation.setItemTextColor(ColorStateList.valueOf(myPreference.getColorButton()));
 
         Menu menu = navigation.getMenu();
         selectFragment(menu.getItem(0));
@@ -173,7 +182,6 @@ public class MainActivity extends AppCompatActivity implements PhoneNumberDialog
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(false);
-        myPreference = new MyPreference(this);
 
         new Handler().postDelayed(checkRunnable, 200);
 

@@ -1,62 +1,65 @@
 {
-  "categories":{
+  "categories": {
     "VEHICLE": [
-      {"KEY": "LICENCE","VALUE": "רשיון רכב"},
-      {"KEY": "BITUAH","VALUE": "ביטוח"},
-      {"KEY": "BITUAH_MAKIF","VALUE": "ביטוח מקיף"},
-      {"KEY": "MISMACH_TIKUN","VALUE": "מסמך תיקון"},
-      {"KEY": "HESBONIT_TIKUN","VALUE": "חשבונית תיקון"},
-      {"KEY": "ISUR_MOSACH","VALUE": "אישור מוסך"},
-      {"KEY": "TACHO","VALUE": "טכוגרף"},
-      {"KEY": "RISHOIMOVIL","VALUE": "רישוי מוביל"},
-      {"KEY": "HOMAS","VALUE": "אישור חומרים מסוכנים"},
-      {"KEY": "MANOF","VALUE": "אישור מנוף"},
-      {"KEY": "ISHURHOREF","VALUE": "אישור חורף"},
-      {"KEY": "ISHURMACONTKANIM","VALUE": "אישור מכון תקנים"},
-      {"KEY": "DELETHIDROULIT","VALUE": "אישור דלת הידראולית"},
-      {"KEY": "ISHURMITKAN","VALUE": "אישור מיתקן"},
-      {"KEY": "ISHURBODEKMUSMACH","VALUE": "אישור בודק מוסמך"},
-      {"KEY": "ISHURKIBUL","VALUE": "אישור קיבול תאי מיכלית"},
-      {"KEY": "ISHUR_BDIKA_SHNATIT","VALUE": "אישור בדיקה שנתית"},
-      {"KEY": "BLAMIM","VALUE": "אישור בלמים"},
-      {"KEY": "GENERAL","VALUE": "כללי"},
-      {"KEY": "NISPACH","VALUE": "נספח"}
+      {"KEY":"LICENCE","VALUE":"רשיון רכב"},
+      {"KEY":"BITUAH","VALUE":"ביטוח"},
+      {"KEY":"BITUAH_MAKIF","VALUE":"ביטוח מקיף"},
+      {"KEY":"MISMACH_TIKUN","VALUE":"מסמך תיקון"},
+      {"KEY":"HESBONIT_TIKUN","VALUE":"חשבונית תיקון"},
+      {"KEY":"ISUR_MOSACH","VALUE":"אישור מוסך"},
+      {"KEY":"TACHO","VALUE":"טכוגרף"},
+      {"KEY":"RISHOIMOVIL","VALUE":"רישוי מוביל"},
+      {"KEY":"HOMAS","VALUE":"אישור חומרים מסוכנים"},
+      {"KEY":"MANOF","VALUE":"אישור מנוף"},
+      {"KEY":"ISHURHOREF","VALUE":"אישור חורף"},
+      {"KEY":"ISHURMACONTKANIM","VALUE":"אישור מכון תקנים"},
+      {"KEY":"DELETHIDROULIT","VALUE":"אישור דלת הידראולית"},
+      {"KEY":"ISHURMITKAN","VALUE":"אישור מיתקן"},
+      {"KEY":"ISHURBODEKMUSMACH","VALUE":"אישור בודק מוסמך"},
+      {"KEY":"ISHURKIBUL","VALUE":"אישור קיבול תאי מיכלית"},
+      {"KEY":"ISHUR_BDIKA_SHNATIT","VALUE":"אישור בדיקה שנתית"},
+      {"KEY":"DOCH_KTZIN_BETICUT","VALUE":"דוח קצין בטיחות"},
+      {"KEY":"BLAMIM","VALUE":"אישור בלמים"},
+      {"KEY":"GENERAL","VALUE":"כללי"},
+      {"KEY":"NISPACH","VALUE":"נספח"}
+
     ],
     "DRIVER": [
-      {"KEY": "DRIVER_LICENCE","VALUE": "רישיון נהיגה"},
-      {"KEY": "DRIVER_HOMAS","VALUE": " אישור חומס"},
-      {"KEY": "DRIVER_MANOF","VALUE": "אישור מנוף"},
-      {"KEY": "DRIVER_HATZHARA","VALUE": "הצהרת נהג"},
-      {"KEY": "DRIVER_GENERAL","VALUE": "כללי"}
+      {"KEY":"DRIVER_LICENCE","VALUE":"רישיון נהיגה"},
+      {"KEY":"DRIVER_HOMAS","VALUE":" אישור חומס"},
+      {"KEY":"DRIVER_MANOF","VALUE":"אישור מנוף"},
+      {"KEY":"DRIVER_HATZHARA","VALUE":"הצהרת נהג"},
+      {"KEY":"DRIVER_GENERAL","VALUE":"כללי"}
+
     ],
     "TRAILER": [
-      {"KEY": "LICENCE","VALUE": "רשיון רכב"},
-      {"KEY": "BITUAH","VALUE": "ביטוח"},
-      {"KEY": "BITUAH_MAKIF","VALUE": "ביטוח מקיף"},
-      {"KEY": "MISMACH_TIKUN","VALUE": "מסמך תיקון"},
-      {"KEY": "HESBONIT_TIKUN","VALUE": "חשבונית תיקון"},
-      {"KEY": "ISUR_MOSACH","VALUE": "אישור מוסך"},
-      {"KEY": "TACHO","VALUE": "טכוגרף"},
-      {"KEY": "RISHOIMOVIL","VALUE": "רישוי מוביל"},
-      {"KEY": "HOMAS","VALUE": "אישור חומרים מסוכנים"},
-      {"KEY": "MANOF","VALUE": "אישור מנוף"},
-      {"KEY": "ISHURHOREF","VALUE": "אישור חורף"},
-      {"KEY": "ISHURMACONTKANIM","VALUE": "אישור מכון תקנים"},
-      {"KEY": "DELETHIDROULIT","VALUE": "אישור דלת הידראולית"},
-      {"KEY": "ISHURMITKAN","VALUE": "אישור מיתקן"},
-      {"KEY": "ISHURBODEKMUSMACH","VALUE": "אישור בודק מוסמך"},
-      {"KEY": "ISHURKIBUL","VALUE": "אישור קיבול תאי מיכלית"},
-      {"KEY": "ISHUR_BDIKA_SHNATIT","VALUE": "אישור בדיקה שנתית"},
-      {"KEY": "BLAMIM","VALUE": "אישור בלמים"},
-      {"KEY": "GENERAL","VALUE": "כללי"},
-      {"KEY": "NISPACH","VALUE": "נספח"}
+      {"KEY":"LICENCE","VALUE":"רשיון רכב"},
+      {"KEY":"BITUAH","VALUE":"ביטוח"},
+      {"KEY":"BITUAH_MAKIF","VALUE":"ביטוח מקיף"},
+      {"KEY":"MISMACH_TIKUN","VALUE":"מסמך תיקון"},
+      {"KEY":"HESBONIT_TIKUN","VALUE":"חשבונית תיקון"},
+      {"KEY":"ISUR_MOSACH","VALUE":"אישור מוסך"},
+      {"KEY":"TACHO","VALUE":"טכוגרף"},
+      {"KEY":"RISHOIMOVIL","VALUE":"רישוי מוביל"},
+      {"KEY":"HOMAS","VALUE":"אישור חומרים מסוכנים"},
+      {"KEY":"MANOF","VALUE":"אישור מנוף"},
+      {"KEY":"ISHURHOREF","VALUE":"אישור חורף"},
+      {"KEY":"ISHURMACONTKANIM","VALUE":"אישור מכון תקנים"},
+      {"KEY":"DELETHIDROULIT","VALUE":"אישור דלת הידראולית"},
+      {"KEY":"ISHURMITKAN","VALUE":"אישור מיתקן"},
+      {"KEY":"ISHURBODEKMUSMACH","VALUE":"אישור בודק מוסמך"},
+      {"KEY":"ISHURKIBUL","VALUE":"אישור קיבול תאי מיכלית"},
+      {"KEY":"ISHUR_BDIKA_SHNATIT","VALUE":"אישור בדיקה שנתית"},
+      {"KEY":"DOCH_KTZIN_BETICUT","VALUE":"דוח קצין בטיחות"},
+      {"KEY":"BLAMIM","VALUE":"אישור בלמים"},
+      {"KEY":"GENERAL","VALUE":"כללי"},
+      {"KEY":"NISPACH","VALUE":"נספח"}
     ],
-    "APP":
-    [
-      {"KEY": "INSPECTION_SIGNITURE_DRIVER","VALUE": "חתימת הנהג"},
-      {"KEY": "INSPECTION_SIGNITURE_INSPECTOR","VALUE": "חתימת קצין בטיחות"},
-      {"KEY": "INSPECTION_NOTES_HAND_WRITING","VALUE": "הערות בכתב יד"},
-      {"KEY": "INSPECTION_NOTES_TEXT_WRITING","VALUE": "הערות"}
+    "APP": [
+      {"KEY":"INSPECTION_SIGNITURE_DRIVER","VALUE":"חתימת הנהג"},
+      {"KEY":"INSPECTION_SIGNITURE_INSPECTOR","VALUE":"חתימת קצין בטיחות"},
+      {"KEY":"INSPECTION_NOTES_HAND_WRITING","VALUE":"הערות בכתב יד"},
+      {"KEY":"INSPECTION_NOTES_TEXT_WRITING","VALUE":"הערות"}
     ]
   }
 }

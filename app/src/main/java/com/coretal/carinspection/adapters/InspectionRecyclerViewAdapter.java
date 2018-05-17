@@ -1,10 +1,17 @@
 package com.coretal.carinspection.adapters;
 
+import android.content.Context;
+import android.content.res.ColorStateList;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
+import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.v4.widget.CompoundButtonCompat;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +23,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.coretal.carinspection.R;
+import com.coretal.carinspection.utils.DrawableHelper;
+import com.coretal.carinspection.utils.MyPreference;
 import com.thoughtbot.expandablerecyclerview.ExpandableRecyclerViewAdapter;
 import com.thoughtbot.expandablerecyclerview.models.ExpandableGroup;
 import com.thoughtbot.expandablerecyclerview.viewholders.ChildViewHolder;
@@ -32,9 +41,13 @@ import static android.view.animation.Animation.RELATIVE_TO_SELF;
 
 public class InspectionRecyclerViewAdapter
                 extends ExpandableRecyclerViewAdapter<InspectionRecyclerViewAdapter.HeaderViewHolder, InspectionRecyclerViewAdapter.ContentViewHolder> {
+    private final Context context;
+    private MyPreference myPref;
 
-    public InspectionRecyclerViewAdapter(List<? extends ExpandableGroup> groups) {
+    public InspectionRecyclerViewAdapter(Context context, List<? extends ExpandableGroup> groups) {
         super(groups);
+        this.context = context;
+        myPref = new MyPreference(context);
     }
 
     @Override
@@ -81,10 +94,16 @@ public class InspectionRecyclerViewAdapter
 
         public HeaderViewHolder(View itemView) {
             super(itemView);
+
+            DrawableHelper.setColor(itemView.getBackground(), myPref.getColorButton());
+
             sectionTitleEdit = itemView.findViewById(R.id.section_edit);
             arrow = itemView.findViewById(R.id.list_item_genre_arrow);
             checkBox = itemView.findViewById(R.id.checkBox);
             checkBox.setOnCheckedChangeListener(this);
+            int states[][] = {{android.R.attr.state_checked}, {}};
+            int colors[] = {myPref.getColorCheck(), myPref.getColorUncheck()};
+            CompoundButtonCompat.setButtonTintList(checkBox, new ColorStateList(states, colors));
         }
 
         public void setHeader(ExpandableGroup header) {
@@ -151,6 +170,9 @@ public class InspectionRecyclerViewAdapter
             editTextRemarks = itemView.findViewById(R.id.remarks);
             checkBox.setOnCheckedChangeListener(this);
             editTextRemarks.addTextChangedListener(this);
+            int states[][] = {{android.R.attr.state_checked}, {}};
+            int colors[] = {myPref.getColorCheck(), myPref.getColorUncheck()};
+            CompoundButtonCompat.setButtonTintList(checkBox, new ColorStateList(states, colors));
         }
 
         public void setContent(SectionContent content) {

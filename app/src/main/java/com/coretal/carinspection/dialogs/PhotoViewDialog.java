@@ -3,6 +3,8 @@ package com.coretal.carinspection.dialogs;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -15,7 +17,9 @@ import android.widget.Button;
 
 import com.bumptech.glide.Glide;
 import com.coretal.carinspection.R;
+import com.coretal.carinspection.utils.DrawableHelper;
 import com.coretal.carinspection.utils.MyHelper;
+import com.coretal.carinspection.utils.MyPreference;
 import com.github.chrisbanes.photoview.PhotoView;
 
 /**
@@ -25,6 +29,7 @@ import com.github.chrisbanes.photoview.PhotoView;
 public class PhotoViewDialog extends DialogFragment {
 
     private String photoUrl;
+    private MyPreference myPref;
 
     public static PhotoViewDialog newInstance(String pictureURL){
         PhotoViewDialog dialog = new PhotoViewDialog();
@@ -53,8 +58,8 @@ public class PhotoViewDialog extends DialogFragment {
         Window dialogWindow = getDialog().getWindow();
         dialogWindow.setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
 
-        Button btnTakePhoto = (Button) dialogView.findViewById(R.id.btn_done);
-        btnTakePhoto.setOnClickListener(new View.OnClickListener() {
+        Button btnDone = dialogView.findViewById(R.id.btn_done);
+        btnDone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 PhotoViewDialog.this.dismiss();
@@ -65,6 +70,14 @@ public class PhotoViewDialog extends DialogFragment {
         Glide.with(getActivity())
                 .load(photoUrl)
                 .into(photoView);
+
+        myPref = new MyPreference(getContext());
+        LayerDrawable layerDrawable = (LayerDrawable) dialogView.getBackground();
+        Drawable topDrawable = layerDrawable.findDrawableByLayerId(R.id.dialog_bg_top);
+        Drawable containerDrawable = layerDrawable.findDrawableByLayerId(R.id.dialog_bg_container);
+        DrawableHelper.setColor(topDrawable, myPref.getColorButton());
+        DrawableHelper.setColor(containerDrawable, myPref.getColorBackground());
+        DrawableHelper.setColor(btnDone.getBackground(), myPref.getColorButton());
 
         return dialogView;
     }

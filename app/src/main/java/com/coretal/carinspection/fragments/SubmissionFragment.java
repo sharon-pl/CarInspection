@@ -25,6 +25,7 @@ import com.coretal.carinspection.models.Submission;
 import com.coretal.carinspection.utils.AlertHelper;
 import com.coretal.carinspection.utils.Contents;
 import com.coretal.carinspection.utils.DateHelper;
+import com.coretal.carinspection.utils.DrawableHelper;
 import com.coretal.carinspection.utils.FileHelper;
 import com.coretal.carinspection.utils.MyHelper;
 import com.coretal.carinspection.utils.MyPreference;
@@ -103,6 +104,11 @@ public class SubmissionFragment extends Fragment {
                 }, null);
             }
         });
+
+        DrawableHelper.setColor(submitButton.getBackground(), myPref.getColorButton());
+
+        TextView headerlabel = view.findViewById(R.id.headerLabel);
+        DrawableHelper.setColor(headerlabel.getBackground(), myPref.getColorButton());
 
         return view;
     }

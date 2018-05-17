@@ -275,6 +275,10 @@ public class Contents {
         public static final String CONF_EMAIL_SUBJECT = "CONF_EMAIL_SUBJECT";
         public static final String CONF_EMAIL_TARGET_EMAIL = "CONF_EMAIL_TARGET_EMAIL";
 
+        public static final String CONF_APP_SCHEMA_COLOR_BUTTON = "CONF_APP_SCHEMA_COLOR_A";
+        public static final String CONF_APP_SCHEMA_COLOR_CHECK = "CONF_APP_SCHEMA_COLOR_B";
+        public static final String CONF_APP_SCHEMA_COLOR_UNCHECK = "CONF_APP_SCHEMA_COLOR_C";
+        public static final String CONF_APP_SCHEMA_COLOR_BACKGROUND = "CONF_APP_SCHEMA_COLOR_D";
 
         public static String FILE_NAME = "config.bkp";
         public static String FILE_PATH;

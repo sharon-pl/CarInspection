@@ -34,6 +34,7 @@ import com.coretal.carinspection.models.Submission;
 import com.coretal.carinspection.utils.AlertHelper;
 import com.coretal.carinspection.utils.Contents;
 import com.coretal.carinspection.utils.DateHelper;
+import com.coretal.carinspection.utils.DrawableHelper;
 import com.coretal.carinspection.utils.FileHelper;
 import com.coretal.carinspection.utils.JsonHelper;
 import com.coretal.carinspection.utils.MyHelper;
@@ -117,7 +118,6 @@ public class VehicleDetailFragment extends Fragment implements VPlateDialog.Call
         inspectionDateEdit = view.findViewById(R.id.edit_inspect_date);
         submitButton = view.findViewById(R.id.btn_submit);
 
-
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), R.layout.spinner_item, myPreference.get_conf_months());;
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         monthSpinner.setAdapter(adapter);
@@ -189,6 +189,10 @@ public class VehicleDetailFragment extends Fragment implements VPlateDialog.Call
                 }
             }
         });
+
+        DrawableHelper.setColor(userInputBtn.getBackground(), myPreference.getColorButton());
+        DrawableHelper.setColor(submitButton.getBackground(), myPreference.getColorButton());
+//        DrawableHelper.setColor(view.getBackground(), myPreference.getColorBackground());
 
         startInspection();
 

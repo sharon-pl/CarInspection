@@ -3,6 +3,8 @@ package com.coretal.carinspection.fragments;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.DialogFragment;
@@ -19,6 +21,8 @@ import com.coretal.carinspection.R;
 import com.coretal.carinspection.adapters.DateAndPictureRecyclerViewAdapter;
 import com.coretal.carinspection.dialogs.DateAndPictureDialog;
 import com.coretal.carinspection.models.DateAndPicture;
+import com.coretal.carinspection.utils.DrawableHelper;
+import com.coretal.carinspection.utils.MyPreference;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -39,6 +43,7 @@ public class DateAndPictureFragment extends Fragment implements DateAndPictureDi
     private ArrayList<DateAndPicture> deletedItems;
     private DateAndPictureRecyclerViewAdapter adapter;
     private String category;
+    private MyPreference myPref;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -144,7 +149,8 @@ public class DateAndPictureFragment extends Fragment implements DateAndPictureDi
                 fragment.show(getFragmentManager(), "dialog_date_and_picture");
             }
         });
-
+        myPref = new MyPreference(getContext());
+        addFab.setBackgroundTintList(ColorStateList.valueOf(myPref.getColorButton()));
         return view;
     }
 

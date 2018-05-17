@@ -2,6 +2,7 @@ package com.coretal.carinspection.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.preference.PreferenceManager;
 import android.util.Config;
 import android.util.Log;
@@ -102,6 +103,22 @@ public class MyPreference {
         return configSP.getInt(Contents.Config.CONF_SERVICE_MAX_RETRY, 20);
     }
 
+    public int getColorButton(){
+        return configSP.getInt(Contents.Config.CONF_APP_SCHEMA_COLOR_BUTTON, 0xff417EB0);
+    }
+
+    public int getColorCheck(){
+        return configSP.getInt(Contents.Config.CONF_APP_SCHEMA_COLOR_CHECK, 0xff00ff00);
+    }
+
+    public int getColorUncheck(){
+        return configSP.getInt(Contents.Config.CONF_APP_SCHEMA_COLOR_UNCHECK, 0xffff0000);
+    }
+
+    public int getColorBackground(){
+        return configSP.getInt(Contents.Config.CONF_APP_SCHEMA_COLOR_BACKGROUND, 0xffffffff);
+    }
+
     public String[] get_conf_months(){
         String[] months = {"ינואר","פברואר","מרץ","אפריל","מאי","יוני","יולי","אוגוסט","ספטמבר","אוקטובר","נובמבר","דצמבר"};
         return months;
@@ -174,7 +191,12 @@ public class MyPreference {
                 }else if (value instanceof Long){
                     configEditor.putFloat(key, (Long) value).commit();
                 }else if (value instanceof String){
-                    configEditor.putString(key, (String) value).commit();
+                    String valueStr = (String) value;
+                    if (valueStr.startsWith("#")){
+                        configEditor.putInt(key, Color.parseColor(valueStr)).commit();
+                    }else{
+                        configEditor.putString(key, valueStr).commit();
+                    }
                 }else{
                     configEditor.putString(key, value.toString()).commit();
                 }

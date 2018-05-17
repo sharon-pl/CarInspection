@@ -7,6 +7,7 @@ import android.preference.PreferenceManager;
 import android.webkit.URLUtil;
 
 import com.coretal.carinspection.R;
+import com.coretal.carinspection.activities.MainActivity;
 import com.coretal.carinspection.preferences.PreferenceFragmentCompat;
 import com.coretal.carinspection.utils.AlertHelper;
 import com.coretal.carinspection.utils.Contents;
@@ -45,6 +46,13 @@ public class ConfigPrefFragment extends PreferenceFragmentCompat implements Shar
                     sharedPreferences.edit().putString(key, Contents.API_ROOT).apply();
                     reload();
                 }
+                break;
+            case Contents.Config.CONF_APP_SCHEMA_COLOR_BUTTON:
+            case Contents.Config.CONF_APP_SCHEMA_COLOR_CHECK:
+            case Contents.Config.CONF_APP_SCHEMA_COLOR_UNCHECK:
+            case Contents.Config.CONF_APP_SCHEMA_COLOR_BACKGROUND:
+                MainActivity activity = (MainActivity)getActivity();
+                if (activity != null) activity.refresh();
                 break;
             default:
                 break;

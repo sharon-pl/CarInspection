@@ -34,6 +34,30 @@
             android:defaultValue="true" />
     </PreferenceCategory>
     <PreferenceCategory
+        android:title="App Colors"
+        android:key="category_app_colors">
+        <com.jaredrummler.android.colorpicker.ColorPreference
+            android:key="CONF_APP_SCHEMA_COLOR_A"
+            android:title="CONF_APP_SCHEMA_COLOR_A"
+            android:summary="Buttons and Headers"
+            android:defaultValue="#417EB0" />
+        <com.jaredrummler.android.colorpicker.ColorPreference
+            android:key="CONF_APP_SCHEMA_COLOR_B"
+            android:title="CONF_APP_SCHEMA_COLOR_B"
+            android:summary="Check Mark"
+            android:defaultValue="#00ff00" />
+        <com.jaredrummler.android.colorpicker.ColorPreference
+            android:key="CONF_APP_SCHEMA_COLOR_C"
+            android:title="CONF_APP_SCHEMA_COLOR_C"
+            android:summary="Uncheck Mark"
+            android:defaultValue="#ff0000" />
+        <com.jaredrummler.android.colorpicker.ColorPreference
+            android:key="CONF_APP_SCHEMA_COLOR_D"
+            android:title="CONF_APP_SCHEMA_COLOR_D"
+            android:summary="Background"
+            android:defaultValue="#ffffff" />
+    </PreferenceCategory>
+    <PreferenceCategory
         android:title="Web service"
         android:key="category_inspector">
         <com.coretal.carinspection.preferences.MyEditTextPreference

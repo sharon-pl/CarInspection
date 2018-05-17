@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -31,6 +33,7 @@ import com.coretal.carinspection.controls.DateEditText;
 import com.coretal.carinspection.db.DBHelper;
 import com.coretal.carinspection.models.DateAndPicture;
 import com.coretal.carinspection.utils.Contents;
+import com.coretal.carinspection.utils.DrawableHelper;
 import com.coretal.carinspection.utils.FileHelper;
 import com.coretal.carinspection.utils.ImageFilePath;
 import com.coretal.carinspection.utils.MyHelper;
@@ -166,6 +169,13 @@ public class DateAndPictureDialog extends DialogFragment implements SelectPictur
                 }
             }
         });
+
+        LayerDrawable layerDrawable = (LayerDrawable) dialogView.getBackground();
+        Drawable topDrawable = layerDrawable.findDrawableByLayerId(R.id.dialog_bg_top);
+        Drawable containerDrawable = layerDrawable.findDrawableByLayerId(R.id.dialog_bg_container);
+        DrawableHelper.setColor(topDrawable, myPref.getColorButton());
+        DrawableHelper.setColor(containerDrawable, myPref.getColorBackground());
+        DrawableHelper.setColor(btnDone.getBackground(), myPref.getColorButton());
 
         return alertDialog;
     }

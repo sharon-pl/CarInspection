@@ -22,8 +22,10 @@ import com.android.volley.error.VolleyError;
 import com.android.volley.request.JsonObjectRequest;
 import com.coretal.carinspection.R;
 import com.coretal.carinspection.utils.Contents;
+import com.coretal.carinspection.utils.DrawableHelper;
 import com.coretal.carinspection.utils.FileHelper;
 import com.coretal.carinspection.utils.JsonHelper;
+import com.coretal.carinspection.utils.MyPreference;
 import com.coretal.carinspection.utils.VolleyHelper;
 
 import org.json.JSONArray;
@@ -38,6 +40,7 @@ import java.util.Map;
  * A simple {@link Fragment} subclass.
  */
 public class DriverDetailFragment extends Fragment implements AdapterView.OnItemSelectedListener {
+    private MyPreference myPref;
 
     Spinner driverSpinner;
     TextView driverLicenceNumberLabel;
@@ -78,6 +81,9 @@ public class DriverDetailFragment extends Fragment implements AdapterView.OnItem
         progressDialog.setMessage("Getting driver data");
 
         setValuesFromFile();
+
+//        myPref = new MyPreference(getContext());
+//        DrawableHelper.setColor(view.getBackground(), myPref.getColorBackground());
 
         return view;
     }

@@ -126,7 +126,7 @@ public class InspectionFragment extends Fragment {
 
         searchedSectionHeaders.clear();
         searchedSectionHeaders.addAll(sectionHeaders);
-        adapter = new InspectionRecyclerViewAdapter(searchedSectionHeaders);
+        adapter = new InspectionRecyclerViewAdapter(getContext(), searchedSectionHeaders);
         recyclerView.setAdapter(adapter);
         recyclerView.scrollToPosition(500);
     }

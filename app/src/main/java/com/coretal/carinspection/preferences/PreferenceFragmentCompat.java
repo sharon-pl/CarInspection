@@ -3,6 +3,8 @@ package com.coretal.carinspection.preferences;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.preference.Preference;
 
+import com.jaredrummler.android.colorpicker.ColorPreference;
+
 public abstract class PreferenceFragmentCompat extends android.support.v7.preference.PreferenceFragmentCompat {
 
     private static final String DIALOG_FRAGMENT_TAG = "android.support.v7.preference.PreferenceFragment.DIALOG";
@@ -24,6 +26,10 @@ public abstract class PreferenceFragmentCompat extends android.support.v7.prefer
             final DialogFragment fragment = TimePickerPreferenceDialogFragmentCompat.newInstance(preference.getKey());
             fragment.setTargetFragment(this, 0);
             fragment.show(getFragmentManager(), DIALOG_FRAGMENT_TAG);
+        }else if (preference instanceof ColorPreference) {
+            final DialogFragment f = ((ColorPreference) preference).createDialog();
+            f.setTargetFragment(this, 0);
+            f.show(getFragmentManager(), DIALOG_FRAGMENT_TAG);
         } else {
             super.onDisplayPreferenceDialog(preference);
         }

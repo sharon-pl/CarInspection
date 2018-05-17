@@ -23,6 +23,7 @@ import com.coretal.carinspection.activities.MainActivity;
 import com.coretal.carinspection.db.DBHelper;
 import com.coretal.carinspection.utils.AlertHelper;
 import com.coretal.carinspection.utils.Contents;
+import com.coretal.carinspection.utils.DrawableHelper;
 import com.coretal.carinspection.utils.FileHelper;
 import com.coretal.carinspection.utils.JsonHelper;
 import com.coretal.carinspection.utils.MyPreference;
@@ -159,6 +160,7 @@ public class ConfigFragment extends Fragment {
             }
         });
 
+        DrawableHelper.setColor(submitButton.getBackground(), myPreference.getColorButton());
         return view;
     }
 

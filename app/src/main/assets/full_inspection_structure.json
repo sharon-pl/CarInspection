@@ -10,7 +10,7 @@
 					"identifier": "documentCheck1",
 					"caption": "בדוק המצאות רישיון רכב,  תעודת ביטוח, כיול טכוגרף רישיון נהיגה והיתרים",
 					"checked": "true",
-					"notes": "עמודה אחרונה"
+					"notes": ""
 				}]
 			},
 				{
@@ -20,43 +20,43 @@
 						"identifier": "chassisCheck1",
 						"caption": "א. מרכב שלם ותקין",
 						"checked": "true",
-						"notes": "עמודה אחרונה"
+						"notes": ""
 					},
 						{
 							"identifier": "chassisCheck2",
 							"caption": "1.  מרכב, דלתות, מראות, מושבים, ריפוד וחגורות בטיחות",
 							"checked": "true",
-							"notes": "עמודה אחרונה"
+							"notes": ""
 						},
 						{
 							"identifier": "chassisCheck3",
 							"caption": "2. פגושים",
 							"checked": "true",
-							"notes": "עמודה אחרונה"
+							"notes": ""
 						},
 						{
 							"identifier": "chassisCheck4",
 							"caption": "3.  התקן גלגל חילוף",
 							"checked": "true",
-							"notes": "עמודה אחרונה"
+							"notes": ""
 						},
 						{
 							"identifier": "chassisCheck5",
 							"caption": "4.  שמשות",
 							"checked": "true",
-							"notes": "עמודה אחרונה"
+							"notes": ""
 						},
 						{
 							"identifier": "chassisCheck6",
 							"caption": "5.   מגיני בוץ",
 							"checked": "true",
-							"notes": "עמודה אחרונה"
+							"notes": ""
 						},
 						{
 							"identifier": "chassisCheck7",
 							"caption": "6.  מחזירי אור",
 							"checked": "true",
-							"notes": "עמודה אחרונה"
+							"notes": ""
 						}]
 				},
 				{
@@ -66,25 +66,25 @@
 						"identifier": "frameBottomCheck1",
 						"caption": "א  בדוק חזותית - פגיעות (תאונות)",
 						"checked": "true",
-						"notes": "עמודה אחרונה"
+						"notes": ""
 					},
 						{
 							"identifier": "frameBottomCheck2",
 							"caption": "ב. בדוק אי המצאות סדקים בקורות אורך ורוחב",
 							"checked": "true",
-							"notes": "עמודה אחרונה"
+							"notes": ""
 						},
 						{
 							"identifier": "frameBottomCheck3",
 							"caption": "ג. בדוק חזותית שלמות והידוק  צינור מפלט, נקודת עיגון ותליה",
 							"checked": "true",
-							"notes": "עמודה אחרונה"
+							"notes": ""
 						},
 						{
 							"identifier": "frameBottomCheck4",
 							"caption": "ד.  בדוק הידוק ושלמות וו גרירה צלחת והבטחות נעילה ובטחון",
 							"checked": "true",
-							"notes": "עמודה אחרונה"
+							"notes": ""
 						}]
 				}]
 		},
@@ -97,32 +97,32 @@
 				"questions": [{
 					"identifier": "suspensionCheck1",
 					"caption": "1. בדוק שלמות ותקינות: סרנים וציריות",
-					"checked": "false",
-					"notes": "עמודה אחרונה"
+					"checked": "true",
+					"notes": ""
 				},
 					{
 						"identifier": "suspensionCheck2",
 						"caption": "2. קפיצים פינים מרכזיים ונזמים",
-						"checked": "false",
-						"notes": "עמודה אחרונה"
+						"checked": "true",
+						"notes": ""
 					},
 					{
 						"identifier": "suspensionCheck3",
 						"caption": "3. בולמי זעזועים",
-						"checked": "false",
-						"notes": "עמודה אחרונה"
+						"checked": "true",
+						"notes": ""
 					},
 					{
 						"identifier": "suspensionCheck4",
 						"caption": "4. אתר נזילות בטבורים",
-						"checked": "false",
-						"notes": "עמודה אחרונה"
+						"checked": "true",
+						"notes": ""
 					},
 					{
 						"identifier": "suspensionCheck5",
 						"caption": "5. בדוק שלמות גומיות וגרמושקות",
 						"checked": "true",
-						"notes": "עמודה אחרונה"
+						"notes": ""
 					}]
 			},
 				{
@@ -132,25 +132,25 @@
 						"identifier": "tiresCheck1",
 						"caption": "א. בדוק שלמות ותקינות צמיגים וחישוקים",
 						"checked": "true",
-						"notes": "עמודה אחרונה"
+						"notes": ""
 					},
 						{
 							"identifier": "tiresCheck2",
 							"caption": "ב. בדוק חזותית לחץ אוויר כולל באופן החילוף",
 							"checked": "true",
-							"notes": "עמודה אחרונה"
+							"notes": ""
 						},
 						{
 							"identifier": "tiresCheck3",
 							"caption": "ג. בדוק שלמות ועובי סוליית צמיגים",
 							"checked": "true",
-							"notes": "עמודה אחרונה"
+							"notes": ""
 						},
 						{
 							"identifier": "tiresCheck4",
 							"caption": "ד. בדוק הידוק אומי אופנים",
 							"checked": "true",
-							"notes": "עמודה אחרונה"
+							"notes": ""
 						}]
 				},
 				{
@@ -160,37 +160,37 @@
 						"identifier": "steeringSystemCheck1",
 						"caption": "א. בדוק שלמות והידוק תיבת הגה כח",
 						"checked": "true",
-						"notes": "עמודה אחרונה"
+						"notes": ""
 					},
 						{
 							"identifier": "steeringSystemCheck2",
 							"caption": "ב. בדוק חזותית צנרת גמישה   וקשיחה לאיתור דליפות, נזילות ונזקים במערכת הגה כח",
 							"checked": "true",
-							"notes": "עמודה אחרונה"
+							"notes": ""
 						},
 						{
 							"identifier": "steeringSystemCheck3",
 							"caption": "ג. בדוק המצאות ושלמות גומיות אבק",
 							"checked": "true",
-							"notes": "עמודה אחרונה"
+							"notes": ""
 						},
 						{
 							"identifier": "steeringSystemCheck4",
 							"caption": "ד. בדוק שלמות וחופשים בחיבורי הגה",
 							"checked": "true",
-							"notes": "עמודה אחרונה"
+							"notes": ""
 						},
 						{
 							"identifier": "steeringSystemCheck5",
 							"caption": "ה. בדוק שלמות אבחות אומי",
 							"checked": "true",
-							"notes": "עמודה אחרונה"
+							"notes": ""
 						},
 						{
 							"identifier": "steeringSystemCheck6",
 							"caption": "ו. בדוק מוט חיבור מקשר גלגל הגה (צלבים)",
 							"checked": "true",
-							"notes": "עמודה אחרונה"
+							"notes": ""
 						}]
 				}]
 		},
@@ -204,43 +204,43 @@
 					"identifier": "brakingSystem1",
 					"caption": "בדוק תקינות דליפות והידוק:",
 					"checked": "true",
-					"notes": "עמודה אחרונה"
+					"notes": ""
 				},
 					{
 						"identifier": "brakingSystem2",
 						"caption": "מוטות הפעלה",
 						"checked": "true",
-						"notes": "עמודה אחרונה"
+						"notes": ""
 					},
 					{
 						"identifier": "brakingSystem3",
 						"caption": "בדוק מהלך חופשי בדוושת הבלם",
 						"checked": "true",
-						"notes": "עמודה אחרונה"
+						"notes": ""
 					},
 					{
 						"identifier": "brakingSystem4",
 						"caption": "בדוק צינורות גמישים לאיתור  סדקים, נזקים ודליפות אוויר",
 						"checked": "true",
-						"notes": "עמודה אחרונה"
+						"notes": ""
 					},
 					{
 						"identifier": "brakingSystem5",
 						"caption": "בדוק יעילות בלם חניה",
 						"checked": "true",
-						"notes": "עמודה אחרונה"
+						"notes": ""
 					},
 					{
 						"identifier": "brakingSystem6",
 						"caption": "בדוק שסתומי ניקוז ממכלי אוויר",
 						"checked": "true",
-						"notes": "עמודה אחרונה"
+						"notes": ""
 					},
 					{
 						"identifier": "brakingSystem7",
 						"caption": "בדוק הידוק ושלמות מיכלי אוויר",
 						"checked": "true",
-						"notes": "עמודה אחרונה"
+						"notes": ""
 					}]
 			}]
 		},
@@ -254,67 +254,67 @@
 					"identifier": "warningLightsCheck1",
 					"caption": "א. בדוק נוריות ומכוונים",
 					"checked": "true",
-					"notes": "עמודה אחרונה"
+					"notes": ""
 				},
 					{
 						"identifier": "warningLightsCheck2",
 						"caption": "1. מד אוויר בלמים",
 						"checked": "true",
-						"notes": "עמודה אחרונה"
+						"notes": ""
 					},
 					{
 						"identifier": "warningLightsCheck3",
 						"caption": "2. לחץ שמן",
 						"checked": "true",
-						"notes": "עמודה אחרונה"
+						"notes": ""
 					},
 					{
 						"identifier": "warningLightsCheck4",
 						"caption": "3. חום מנוע",
-						"checked": "false",
-						"notes": "עמודה אחרונה"
+						"checked": "true",
+						"notes": ""
 					},
 					{
 						"identifier": "warningLightsCheck5",
 						"caption": "4. טעינה",
-						"checked": "false",
-						"notes": "עמודה אחרונה"
+						"checked": "true",
+						"notes": ""
 					},
 					{
 						"identifier": "warningLightsCheck6",
 						"caption": "5. בלם חניה",
-						"checked": "false",
-						"notes": "עמודה אחרונה"
+						"checked": "true",
+						"notes": ""
 					},
 					{
 						"identifier": "warningLightsCheck7",
 						"caption": "6. מד דלק",
-						"checked": "false",
-						"notes": "עמודה אחרונה"
+						"checked": "true",
+						"notes": ""
 					},
 					{
 						"identifier": "warningLightsCheck8",
 						"caption": "7. בקרת אור גבוהה",
 						"checked": "true",
-						"notes": "עמודה אחרונה"
+						"notes": ""
 					},
 					{
 						"identifier": "warningLightsCheck9",
 						"caption": "8. נורית בקרת A.B.S",
 						"checked": "true",
-						"notes": "עמודה אחרונה"
+						"notes": ""
 					},
 					{
 						"identifier": "warningLightsCheck10",
 						"caption": "9. נורית אור ערפל",
 						"checked": "true",
-						"notes": "עמודה אחרונה"
+						"notes": ""
 					},
 					{
 						"identifier": "warningLightsCheck11",
 						"caption": "10.אור אזהרה וזמזם למערכת בלמים",
 						"checked": "true",
-						"notes": "עמודה אחרונה"
+						"notes": ""
 					}]
 			}]
 		},
@@ -328,61 +328,61 @@
 					"identifier": "headlightsCheck1",
 					"caption": "א. בדוק תקינות פנסים ראשיים",
 					"checked": "true",
-					"notes": "עמודה אחרונה"
+					"notes": ""
 				},
 					{
 						"identifier": "headlightsCheck2",
 						"caption": "ב. בדוק תקינות, שלמות:",
 						"checked": "true",
-						"notes": "עמודה אחרונה"
+						"notes": ""
 					},
 					{
 						"identifier": "headlightsCheck3",
 						"caption": "1. פנסי חניה אורות פניה (מהבהבים)",
 						"checked": "true",
-						"notes": "עמודה אחרונה"
+						"notes": ""
 					},
 					{
 						"identifier": "headlightsCheck4",
 						"caption": "2. עמם אורות",
 						"checked": "true",
-						"notes": "עמודה אחרונה"
+						"notes": ""
 					},
 					{
 						"identifier": "headlightsCheck5",
 						"caption": "3. פנסים אחוריים",
 						"checked": "true",
-						"notes": "עמודה אחרונה"
+						"notes": ""
 					},
 					{
 						"identifier": "headlightsCheck6",
 						"caption": "4. אור בלם",
 						"checked": "true",
-						"notes": "עמודה אחרונה"
+						"notes": ""
 					},
 					{
 						"identifier": "headlightsCheck7",
 						"caption": "5. תאורת רוחב",
 						"checked": "true",
-						"notes": "עמודה אחרונה"
+						"notes": ""
 					},
 					{
 						"identifier": "headlightsCheck8",
 						"caption": "6. אורות בתא הנהג",
 						"checked": "true",
-						"notes": "עמודה אחרונה"
+						"notes": ""
 					},
 					{
 						"identifier": "headlightsCheck9",
 						"caption": "7. אור אזהרה וזמזם למערכת בלמים",
 						"checked": "true",
-						"notes": "עמודה אחרונה"
+						"notes": ""
 					},
 					{
 						"identifier": "headlightsCheck10",
 						"caption": "8. אור, צופר וזמזם לאחור",
 						"checked": "true",
-						"notes": "עמודה אחרונה"
+						"notes": ""
 					}]
 			},
 				{
@@ -392,61 +392,61 @@
 						"identifier": "toolsAccessoriesCheck1",
 						"caption": "1.   מגבים וזרועות",
 						"checked": "true",
-						"notes": "עמודה אחרונה"
+						"notes": ""
 					},
 						{
 							"identifier": "toolsAccessoriesCheck2",
 							"caption": "2.   מתיזי מים",
 							"checked": "true",
-							"notes": "עמודה אחרונה"
+							"notes": ""
 						},
 						{
 							"identifier": "toolsAccessoriesCheck3",
 							"caption": "3.   מראות",
 							"checked": "true",
-							"notes": "עמודה אחרונה"
+							"notes": ""
 						},
 						{
 							"identifier": "toolsAccessoriesCheck4",
 							"caption": "4.   תיק עזרה ראשונה",
 							"checked": "true",
-							"notes": "עמודה אחרונה"
+							"notes": ""
 						},
 						{
 							"identifier": "toolsAccessoriesCheck5",
 							"caption": "5.   מטף כיבוי אש",
 							"checked": "true",
-							"notes": "עמודה אחרונה"
+							"notes": ""
 						},
 						{
 							"identifier": "toolsAccessoriesCheck6",
 							"caption": " א.   מטף כיבוי אש: שלמות ניצרה",
 							"checked": "true",
-							"notes": "עמודה אחרונה"
+							"notes": ""
 						},
 						{
 							"identifier": "toolsAccessoriesCheck7",
 							"caption": " ב.   מטף כיבוי אש: שעון לחץ",
 							"checked": "true",
-							"notes": "עמודה אחרונה"
+							"notes": ""
 						},
 						{
 							"identifier": "toolsAccessoriesCheck8",
 							"caption": "ג.   מטף כיבוי אש: אי הימצאות חלודה",
 							"checked": "true",
-							"notes": "עמודה אחרונה"
+							"notes": ""
 						},
 						{
 							"identifier": "toolsAccessoriesCheck9",
 							"caption": "ב.   ודא המצאות ותקינות מגבה  וידית הפעלה, מפתח גלגלים  ומשולש אזהרה",
 							"checked": "true",
-							"notes": "עמודה אחרונה"
+							"notes": ""
 						},
 						{
 							"identifier": "toolsAccessoriesCheck10",
 							"caption": "ג.   בדוק המצאות שדי עצירה",
 							"checked": "true",
-							"notes": "עמודה אחרונה"
+							"notes": ""
 						}]
 				},
 				{
@@ -456,25 +456,25 @@
 						"identifier": "truckLogCheck1",
 						"caption": "א. בדוק תקינות ושלמות:",
 						"checked": "true",
-						"notes": "עמודה אחרונה"
+						"notes": ""
 					},
 						{
 							"identifier": "truckLogCheck2",
 							"caption": "1. שעון זמן",
 							"checked": "true",
-							"notes": "עמודה אחרונה"
+							"notes": ""
 						},
 						{
 							"identifier": "truckLogCheck3",
 							"caption": "2. סימון וכיתוב בכרטיס (פרטי הרכב והנהג)",
 							"checked": "true",
-							"notes": "עמודה אחרונה"
+							"notes": ""
 						},
 						{
 							"identifier": "truckLogCheck4",
 							"caption": "3. חריגות",
 							"checked": "true",
-							"notes": "עמודה אחרונה"
+							"notes": ""
 						}]
 				}]
 		},
@@ -488,25 +488,25 @@
 					"identifier": "fuleSystemCheck1",
 					"caption": "א. בדוק שלמות מיכל הדלק ומכסים",
 					"checked": "true",
-					"notes": "עמודה אחרונה"
+					"notes": ""
 				},
 					{
 						"identifier": "fuleSystemCheck2",
 						"caption": "ב. בדוק חזותית צנרת גמישה  וקשיחה ורכיבי מע' הדלק  לאיתור דליפות, נזילות ונזקים",
 						"checked": "true",
-						"notes": "עמודה אחרונה"
+						"notes": ""
 					},
 					{
 						"identifier": "fuleSystemCheck3",
 						"caption": "ג. כמות עשן מצינור המפלט",
-						"checked": "false",
-						"notes": "עמודה אחרונה"
+						"checked": "true",
+						"notes": ""
 					},
 					{
 						"identifier": "fuleSystemCheck4",
 						"caption": "ד. נזילות שמן ומים",
-						"checked": "false",
-						"notes": "עמודה אחרונה"
+						"checked": "true",
+						"notes": ""
 					}]
 			}]
 		},
@@ -519,115 +519,115 @@
 				"questions": [{
 					"identifier": "hazardousMaterialsCheck1",
 					"caption": "א. בדוק המצאות ותקינות",
-					"checked": "false",
-					"notes": "עמודה אחרונה"
+					"checked": "true",
+					"notes": ""
 				},
 					{
 						"identifier": "hazardousMaterialsCheck2",
 						"caption": "1. חולצת פי.וי.סי - 1",
-						"checked": "false",
-						"notes": "עמודה אחרונה"
+						"checked": "true",
+						"notes": ""
 					},
 					{
 						"identifier": "hazardousMaterialsCheck3",
 						"caption": "2. מכנסי פי.וי.סי - 1",
 						"checked": "true",
-						"notes": "עמודה אחרונה"
+						"notes": ""
 					},
 					{
 						"identifier": "hazardousMaterialsCheck4",
 						"caption": "3. זוג כפפות גומי פי.וי.סי",
 						"checked": "true",
-						"notes": "עמודה אחרונה"
+						"notes": ""
 					},
 					{
 						"identifier": "hazardousMaterialsCheck5",
 						"caption": "4. זוג כפפות חום (קבלר)",
 						"checked": "true",
-						"notes": "עמודה אחרונה"
+						"notes": ""
 					},
 					{
 						"identifier": "hazardousMaterialsCheck6",
 						"caption": "5. משקפי מגן - 1",
 						"checked": "true",
-						"notes": "עמודה אחרונה"
+						"notes": ""
 					},
 					{
 						"identifier": "hazardousMaterialsCheck7",
 						"caption": "6. בקבוק שטיפת עיניים (שוטפן)",
 						"checked": "true",
-						"notes": "עמודה אחרונה"
+						"notes": ""
 					},
 					{
 						"identifier": "hazardousMaterialsCheck8",
 						"caption": "7. מגן פנים עם ראשיה",
 						"checked": "true",
-						"notes": "עמודה אחרונה"
+						"notes": ""
 					},
 					{
 						"identifier": "hazardousMaterialsCheck9",
 						"caption": "8.  מסכת פנים-1",
 						"checked": "true",
-						"notes": "עמודה אחרונה"
+						"notes": ""
 					},
 					{
 						"identifier": "hazardousMaterialsCheck10",
 						"caption": "9. מסנן אוניברסלי בר תוקף 2(abek) ",
 						"checked": "true",
-						"notes": "עמודה אחרונה"
+						"notes": ""
 					},
 					{
 						"identifier": "hazardousMaterialsCheck11",
 						"caption": "10. פנס מוגן התפוצצות עם סוללות",
 						"checked": "true",
-						"notes": "עמודה אחרונה"
+						"notes": ""
 					},
 					{
 						"identifier": "hazardousMaterialsCheck12",
 						"caption": "11. תיק עזרה ראשונה בהתאם לתקנות 1",
 						"checked": "true",
-						"notes": "עמודה אחרונה"
+						"notes": ""
 					},
 					{
 						"identifier": "hazardousMaterialsCheck13",
 						"caption": "12. לורד 100 צבע שחור לסימון-1",
 						"checked": "true",
-						"notes": "עמודה אחרונה"
+						"notes": ""
 					},
 					{
 						"identifier": "hazardousMaterialsCheck14",
 						"caption": "13. מסכת מילוט -1",
 						"checked": "true",
-						"notes": "עמודה אחרונה"
+						"notes": ""
 					},
 					{
 						"identifier": "hazardousMaterialsCheck15",
 						"caption": "14. קסדה-1",
 						"checked": "true",
-						"notes": "עמודה אחרונה"
+						"notes": ""
 					},
 					{
 						"identifier": "hazardousMaterialsCheck16",
 						"caption": "15. שרוולי ספיגה-2",
 						"checked": "true",
-						"notes": "עמודה אחרונה"
+						"notes": ""
 					},
 					{
 						"identifier": "hazardousMaterialsCheck17",
 						"caption": "16. תיק נשיאה-1",
 						"checked": "true",
-						"notes": "עמודה אחרונה"
+						"notes": ""
 					},
 					{
 						"identifier": "hazardousMaterialsCheck18",
 						"caption": "17. מג'פ בהובלת גז רעיל מקבוצה 23-1",
 						"checked": "true",
-						"notes": "עמודה אחרונה"
+						"notes": ""
 					},{
 						"identifier": "hazardousMaterialsCheck19",
 						"caption": "18. מתקני שילוט-1",
 						"checked": "true",
-						"notes": "עמודה אחרונה"
+						"notes": ""
 					}]
 			}]
 		},
@@ -641,43 +641,43 @@
 					"identifier": "trailerBreakSystemCheck1",
 					"caption": "א. בדוק תקינות דליפות והידוק",
 					"checked": "true",
-					"notes": "עמודה אחרונה"
+					"notes": ""
 				},
 					{
 						"identifier": "trailerBreakSystemCheck2",
 						"caption": "1.מיכל אוויר",
 						"checked": "true",
-						"notes": "עמודה אחרונה"
+						"notes": ""
 					},
 					{
 						"identifier": "trailerBreakSystemCheck3",
 						"caption": "2. מוטות הפעלה",
 						"checked": "true",
-						"notes": "עמודה אחרונה"
+						"notes": ""
 					},
 					{
 						"identifier": "trailerBreakSystemCheck4",
 						"caption": "3.מגברי בלם",
 						"checked": "true",
-						"notes": "עמודה אחרונה"
+						"notes": ""
 					},
 					{
 						"identifier": "trailerBreakSystemCheck5",
 						"caption": "4.  חיבורי אויר",
 						"checked": "true",
-						"notes": "עמודה אחרונה"
+						"notes": ""
 					},
 					{
 						"identifier": "trailerBreakSystemCheck6",
 						"caption": "ב.  בדוק צינורות גמישים לאיתור  סדקים, נזקים, דליפות אוויר",
 						"checked": "true",
-						"notes": "עמודה אחרונה"
+						"notes": ""
 					},
 					{
 						"identifier": "trailerBreakSystemCheck7",
 						"caption": "ג.  בדוק יעילות בלם חניה",
 						"checked": "true",
-						"notes": "עמודה אחרונה"
+						"notes": ""
 					}]
 			},
 				{
@@ -687,7 +687,7 @@
 						"identifier": "trailerSteeringSystemCheck1",
 						"caption": "מערכת היגוי",
 						"checked": "true",
-						"notes": "עמודה אחרונה"
+						"notes": ""
 					}]
 				},
 				{
@@ -697,37 +697,37 @@
 						"identifier": "trailerLightsCheck1",
 						"caption": "א.  בדוק תקינות ושלמות",
 						"checked": "true",
-						"notes": "עמודה אחרונה"
+						"notes": ""
 					},
 						{
 							"identifier": "trailerLightsCheck2",
 							"caption": "1.  פנסי חניה, אורות פניה (מהבהבים)",
 							"checked": "true",
-							"notes": "עמודה אחרונה"
+							"notes": ""
 						},
 						{
 							"identifier": "trailerLightsCheck3",
 							"caption": "2. אור וצופר נסיעה לאחור",
 							"checked": "true",
-							"notes": "עמודה אחרונה"
+							"notes": ""
 						},
 						{
 							"identifier": "trailerLightsCheck4",
 							"caption": "3. פנסים אחוריים",
 							"checked": "true",
-							"notes": "עמודה אחרונה"
+							"notes": ""
 						},
 						{
 							"identifier": "trailerLightsCheck5",
 							"caption": "4. אור בלם",
 							"checked": "true",
-							"notes": "עמודה אחרונה"
+							"notes": ""
 						},
 						{
 							"identifier": "trailerLightsCheck6",
 							"caption": "5. תאורת רוחב",
 							"checked": "true",
-							"notes": "עמודה אחרונה"
+							"notes": ""
 						}]
 				},
 				{
@@ -737,43 +737,43 @@
 						"identifier": "trailerSuspensionCheck1",
 						"caption": "1. סרנים וציריות",
 						"checked": "true",
-						"notes": "עמודה אחרונה"
+						"notes": ""
 					},
 						{
 							"identifier": "trailerSuspensionCheck2",
 							"caption": "2. קפיצים, פינים מרכזיים ונזמים",
 							"checked": "true",
-							"notes": "עמודה אחרונה"
+							"notes": ""
 						},
 						{
 							"identifier": "trailerSuspensionCheck3",
 							"caption": "3. ברגי צלחת אבטחות וחופשים בפין מרכזי",
 							"checked": "true",
-							"notes": "עמודה אחרונה"
+							"notes": ""
 						},
 						{
 							"identifier": "trailerSuspensionCheck4",
 							"caption": "א. בדוק שלמות ותקינות הצמיגים והחישוקים",
 							"checked": "true",
-							"notes": "עמודה אחרונה"
+							"notes": ""
 						},
 						{
 							"identifier": "trailerSuspensionCheck5",
 							"caption": "1. פגושים",
 							"checked": "true",
-							"notes": "עמודה אחרונה"
+							"notes": ""
 						},
 						{
 							"identifier": "trailerSuspensionCheck6",
 							"caption": "2. התקן גלגל חילוף",
 							"checked": "true",
-							"notes": "עמודה אחרונה"
+							"notes": ""
 						},
 						{
 							"identifier": "trailerSuspensionCheck7",
 							"caption": "3. מגיני בוץ",
 							"checked": "true",
-							"notes": "עמודה אחרונה"
+							"notes": ""
 						}]
 				},
 				{
@@ -783,13 +783,13 @@
 						"identifier": "trailerChassisCheck1",
 						"caption": "4.מגברי בלם",
 						"checked": "true",
-						"notes": "עמודה אחרונה"
+						"notes": ""
 					},
 						{
 							"identifier": "trailerChassisCheck2",
 							"caption": "5.חיבורי אוויר",
 							"checked": "true",
-							"notes": "עמודה אחרונה"
+							"notes": ""
 						}]
 				},
 				{
@@ -799,19 +799,19 @@
 						"identifier": "trailerTiresCheck1",
 						"caption": "א. בדוק שלמות ועובי סוליית צמיגים",
 						"checked": "true",
-						"notes": "עמודה אחרונה"
+						"notes": ""
 					},
 						{
 							"identifier": "trailerTiresCheck2",
 							"caption": "ב. בדוק חזותית לחץ אויר (כולל אופן חילוף)",
 							"checked": "true",
-							"notes": "עמודה אחרונה"
+							"notes": ""
 						},
 						{
 							"identifier": "trailerTiresCheck3",
 							"caption": "ג.  בדוק שלמות ועובי סוליית צמיגים",
 							"checked": "true",
-							"notes": "עמודה אחרונה"
+							"notes": ""
 						}]
 				},
 				{
@@ -821,7 +821,7 @@
 						"identifier": "trailerLocksCheck1",
 						"caption": "בדוק שלמות ותקינות מנעולי הצמדה",
 						"checked": "true",
-						"notes": "עמודה אחרונה"
+						"notes": ""
 					}]
 				}]
 		}]

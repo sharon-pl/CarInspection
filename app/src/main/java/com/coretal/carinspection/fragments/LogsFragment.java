@@ -17,6 +17,7 @@ import com.coretal.carinspection.db.DBHelper;
 import com.coretal.carinspection.models.Submission;
 import com.coretal.carinspection.utils.Contents;
 import com.coretal.carinspection.utils.DateHelper;
+import com.coretal.carinspection.utils.DrawableHelper;
 import com.coretal.carinspection.utils.MyHelper;
 import com.coretal.carinspection.utils.MyPreference;
 import com.creativityapps.gmailbackgroundlibrary.BackgroundMail;
@@ -91,6 +92,12 @@ public class LogsFragment extends Fragment {
                 logTextView.setText(MyHelper.getLogs());
             }
         });
+
+        DrawableHelper.setColor(emailBtn.getBackground(), myPref.getColorButton());
+        DrawableHelper.setColor(eraseBtn.getBackground(), myPref.getColorButton());
+
+        TextView headerlabel = view.findViewById(R.id.headerLabel);
+        DrawableHelper.setColor(headerlabel.getBackground(), myPref.getColorButton());
 
         return view;
     }

@@ -2,7 +2,12 @@ package com.coretal.carinspection.dialogs;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
@@ -15,13 +20,17 @@ import com.coretal.carinspection.R;
 import com.coretal.carinspection.db.DBHelper;
 import com.coretal.carinspection.models.Submission;
 import com.coretal.carinspection.utils.AlertHelper;
+import com.coretal.carinspection.utils.DrawableHelper;
 import com.coretal.carinspection.utils.MyHelper;
+import com.coretal.carinspection.utils.MyPreference;
 
 /**
  * Created by Kangtle_R on 1/24/2018.
  */
 
 public class VPlateDialog extends DialogFragment {
+    private MyPreference myPref;
+
     public interface Callback {
         public void onSubmitVPlateDialog(String vPlate);
     }
@@ -40,6 +49,7 @@ public class VPlateDialog extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         dbHelper = new DBHelper(getContext());
+        myPref = new MyPreference(getContext());
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View dialogView = inflater.inflate(R.layout.dialog_v_plate, null);
 
@@ -47,7 +57,6 @@ public class VPlateDialog extends DialogFragment {
         dialogBuilder.setView(dialogView);
         final AlertDialog alertDialog = dialogBuilder.create();
         alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-
         Button btnSubmit = (Button) dialogView.findViewById(R.id.btn_submit);
         final EditText vPlateEdit = (EditText) dialogView.findViewById(R.id.edit_v_plate);
 
@@ -71,6 +80,13 @@ public class VPlateDialog extends DialogFragment {
                 callback.onSubmitVPlateDialog(vPlateEdit.getText().toString());
             }
         });
+
+        LayerDrawable layerDrawable = (LayerDrawable) dialogView.getBackground();
+        Drawable topDrawable = layerDrawable.findDrawableByLayerId(R.id.dialog_bg_top);
+        Drawable containerDrawable = layerDrawable.findDrawableByLayerId(R.id.dialog_bg_container);
+        DrawableHelper.setColor(topDrawable, myPref.getColorButton());
+        DrawableHelper.setColor(containerDrawable, myPref.getColorBackground());
+        DrawableHelper.setColor(btnSubmit.getBackground(), myPref.getColorButton());
 
         return alertDialog;
     }

@@ -3,6 +3,8 @@ package com.coretal.carinspection.dialogs;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
@@ -16,6 +18,7 @@ import android.widget.Toast;
 import com.coretal.carinspection.R;
 import com.coretal.carinspection.db.DBHelper;
 import com.coretal.carinspection.models.Submission;
+import com.coretal.carinspection.utils.DrawableHelper;
 import com.coretal.carinspection.utils.MyHelper;
 import com.coretal.carinspection.utils.MyPreference;
 
@@ -68,6 +71,13 @@ public class PhoneNumberDialog extends DialogFragment {
                 }
             }
         });
+
+        LayerDrawable layerDrawable = (LayerDrawable) dialogView.getBackground();
+        Drawable topDrawable = layerDrawable.findDrawableByLayerId(R.id.dialog_bg_top);
+        Drawable containerDrawable = layerDrawable.findDrawableByLayerId(R.id.dialog_bg_container);
+        DrawableHelper.setColor(topDrawable, myPref.getColorButton());
+        DrawableHelper.setColor(containerDrawable, myPref.getColorBackground());
+        DrawableHelper.setColor(btnSubmit.getBackground(), myPref.getColorButton());
 
         return alertDialog;
     }

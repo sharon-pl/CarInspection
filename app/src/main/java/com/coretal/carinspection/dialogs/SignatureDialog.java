@@ -4,6 +4,8 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
@@ -23,7 +25,9 @@ import com.coretal.carinspection.db.DBHelper;
 import com.coretal.carinspection.models.Submission;
 import com.coretal.carinspection.utils.AlertHelper;
 import com.coretal.carinspection.utils.Contents;
+import com.coretal.carinspection.utils.DrawableHelper;
 import com.coretal.carinspection.utils.FileHelper;
+import com.coretal.carinspection.utils.MyPreference;
 import com.github.chrisbanes.photoview.PhotoView;
 import com.github.gcacace.signaturepad.views.SignaturePad;
 
@@ -32,6 +36,8 @@ import com.github.gcacace.signaturepad.views.SignaturePad;
  */
 
 public class SignatureDialog extends DialogFragment {
+    private MyPreference myPref;
+
     public interface Callback {
         public void onSubmitSignatures();
     }
@@ -143,6 +149,14 @@ public class SignatureDialog extends DialogFragment {
                 SignatureDialog.this.dismiss();
             }
         });
+
+        myPref = new MyPreference(getContext());
+        LayerDrawable layerDrawable = (LayerDrawable) dialogView.getBackground();
+        Drawable topDrawable = layerDrawable.findDrawableByLayerId(R.id.dialog_bg_top);
+        Drawable containerDrawable = layerDrawable.findDrawableByLayerId(R.id.dialog_bg_container);
+        DrawableHelper.setColor(topDrawable, myPref.getColorButton());
+        DrawableHelper.setColor(containerDrawable, myPref.getColorBackground());
+        DrawableHelper.setColor(submitButton.getBackground(), myPref.getColorButton());
 
         return dialogView;
     }

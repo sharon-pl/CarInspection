@@ -3,6 +3,8 @@ package com.coretal.carinspection.dialogs;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
@@ -11,12 +13,16 @@ import android.view.View;
 import android.widget.Button;
 
 import com.coretal.carinspection.R;
+import com.coretal.carinspection.utils.DrawableHelper;
+import com.coretal.carinspection.utils.MyPreference;
 
 /**
  * Created by Kangtle_R on 1/24/2018.
  */
 
 public class SelectPictureSourceDialog extends DialogFragment {
+    private MyPreference myPref;
+
     public interface Callback {
         public void onTakePhoto();
         public void onFromGallery();
@@ -58,6 +64,14 @@ public class SelectPictureSourceDialog extends DialogFragment {
                 callback.onFromGallery();
             }
         });
+
+        myPref = new MyPreference(getContext());
+        LayerDrawable layerDrawable = (LayerDrawable) dialogView.getBackground();
+        Drawable topDrawable = layerDrawable.findDrawableByLayerId(R.id.dialog_bg_top);
+        Drawable containerDrawable = layerDrawable.findDrawableByLayerId(R.id.dialog_bg_container);
+        DrawableHelper.setColor(topDrawable, myPref.getColorButton());
+        DrawableHelper.setColor(containerDrawable, myPref.getColorBackground());
+
         return alertDialog;
     }
 }
