@@ -42,6 +42,7 @@ public class Contents {
     public static String API_GET_DATE_AND_PICTURES = API_ROOT + "/vehicle/getVehicleDateAndPictureInfo/%s/%s";//phone_number/v_plate
     public static String API_GET_PICTURE_BY_ID = API_ROOT + "/image/getPictureById/%s/%s";//phone_number/picture id
     public static String API_GET_CONFIG = API_ROOT + "/configuration/getConfigurationFile/%s";//phone number
+    public static String API_GET_CONFIG_FILE_TYPES_EMUM = API_ROOT + "/configuration/getPictureAndData/%s";//phone number
     public static String API_SUBMIT_PICTURE = API_ROOT + "/submitPicture/fileupload";
     public static String API_SUBMIT_INSPECTION = API_ROOT + "/submitInspection";
 
@@ -231,7 +232,7 @@ public class Contents {
 
         public static Map<String, String> getTypesByCategory(String category) {
             Map<String, String> types = new LinkedHashMap<>();
-            JSONObject allTypesJson = JsonHelper.readJsonFromAsset(FILE_NAME);
+            JSONObject allTypesJson = JsonHelper.readJsonFromFile(FILE_PATH);
             if (allTypesJson == null) return types;
             try {
                 JSONObject categoriesObject = allTypesJson.getJSONObject(CATEGORIES);
@@ -298,7 +299,7 @@ public class Contents {
         VehicleAdditionalDetails.FILE_PATH = EXTERNAL_JSON_DIR_PATH + "/" + VehicleAdditionalDetails.FILE_NAME;
         JsonInspectionData.FILE_PATH = EXTERNAL_JSON_DIR_PATH + "/" + JsonInspectionData.FILE_NAME;
         JsonDateAndPictures.FILE_PATH = EXTERNAL_JSON_DIR_PATH + "/" + JsonDateAndPictures.FILE_NAME;
-        JsonFileTypesEnum.FILE_PATH = EXTERNAL_JSON_DIR_PATH + "/" + JsonFileTypesEnum.FILE_NAME;
+        JsonFileTypesEnum.FILE_PATH = MyApp.getContext().getExternalFilesDir(null) + "/" + JsonFileTypesEnum.FILE_NAME;
         Config.FILE_PATH = MyApp.getContext().getExternalFilesDir(null) + "/" + Config.FILE_NAME;
     }
 

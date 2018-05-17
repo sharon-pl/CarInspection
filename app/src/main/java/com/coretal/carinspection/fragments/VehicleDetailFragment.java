@@ -426,6 +426,27 @@ public class VehicleDetailFragment extends Fragment implements VPlateDialog.Call
                     }
             );
 
+            JsonObjectRequest getFileTypeEnumRequest = new JsonObjectRequest(
+                    Request.Method.GET,
+                    String.format(Contents.API_GET_CONFIG_FILE_TYPES_EMUM, Contents.PHONE_NUMBER),
+                    null,
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            if (isSuccessResponse(response)){
+                                JsonHelper.saveJsonObject(response, Contents.JsonFileTypesEnum.FILE_PATH);
+                            }else{
+                                successAllRequests = false;
+                            }
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                        }
+                    }
+            );
+
             volleyHelper.add(getVehicleDataRequest);
             volleyHelper.add(getInspectorsRequest);
             volleyHelper.add(getDriversRequest);
@@ -435,6 +456,7 @@ public class VehicleDetailFragment extends Fragment implements VPlateDialog.Call
             volleyHelper.add(getVehicleAdditionalDetailsRequest);
             volleyHelper.add(getInspectionDataRequest);
             volleyHelper.add(getDateAndPictureRequest);
+            volleyHelper.add(getFileTypeEnumRequest);
         }
     }
 
