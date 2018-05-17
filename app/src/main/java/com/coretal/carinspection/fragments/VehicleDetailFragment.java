@@ -596,6 +596,12 @@ public class VehicleDetailFragment extends Fragment implements VPlateDialog.Call
     }
 
     @Override
+    public void onStop() {
+        super.onStop();
+        progressDialog.dismiss();
+    }
+
+    @Override
     public void onDestroy() {
         super.onDestroy();
         dbHelper.close();

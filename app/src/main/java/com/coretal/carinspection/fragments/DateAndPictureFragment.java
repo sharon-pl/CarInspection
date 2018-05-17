@@ -21,6 +21,7 @@ import com.coretal.carinspection.R;
 import com.coretal.carinspection.adapters.DateAndPictureRecyclerViewAdapter;
 import com.coretal.carinspection.dialogs.DateAndPictureDialog;
 import com.coretal.carinspection.models.DateAndPicture;
+import com.coretal.carinspection.utils.AlertHelper;
 import com.coretal.carinspection.utils.DrawableHelper;
 import com.coretal.carinspection.utils.MyPreference;
 
@@ -108,33 +109,28 @@ public class DateAndPictureFragment extends Fragment implements DateAndPictureDi
             @Override
             public void onSwiped(final RecyclerView.ViewHolder viewHolder, int swipeDir) {
                 //Remove swiped item from list and notify the RecyclerView
-                AlertDialog alertDialog = new AlertDialog.Builder(getActivity()).create();
-                alertDialog.setTitle("Delete");
-                alertDialog.setMessage("Are you sure to delete it?");
-                alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Yes",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                synchronized(adapter){
-                                    int index = viewHolder.getAdapterPosition();
-                                    DateAndPicture item = dateAndPictures.remove(index);
-                                    item.status = DateAndPicture.STATUS_DELETED;
-                                    deletedItems.add(item);
-                                    adapter.notifyItemRemoved(index);
-                                }
-                                dialog.dismiss();
-                            }
-                        });
-                alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "No",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                synchronized(adapter){
-                                    int index = viewHolder.getAdapterPosition();
-                                    adapter.notifyItemChanged(index);
-                                }
-                                dialog.dismiss();
-                            }
-                        });
-                alertDialog.show();
+                AlertHelper.question(getContext(), "Delete", "Are you sure to delete it?", "Yes", "No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        synchronized(adapter){
+                            int index = viewHolder.getAdapterPosition();
+                            DateAndPicture item = dateAndPictures.remove(index);
+                            item.status = DateAndPicture.STATUS_DELETED;
+                            deletedItems.add(item);
+                            adapter.notifyItemRemoved(index);
+                        }
+                        dialog.dismiss();
+                    }
+                }, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        synchronized(adapter){
+                            int index = viewHolder.getAdapterPosition();
+                            adapter.notifyItemChanged(index);
+                        }
+                        dialog.dismiss();
+                    }
+                });
             }
         };
 
