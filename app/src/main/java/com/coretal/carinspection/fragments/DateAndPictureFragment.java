@@ -118,6 +118,7 @@ public class DateAndPictureFragment extends Fragment implements DateAndPictureDi
                             item.status = DateAndPicture.STATUS_DELETED;
                             deletedItems.add(item);
                             adapter.notifyItemRemoved(index);
+                            adapter.notifyItemRangeChanged(index, dateAndPictures.size());
                         }
                         dialog.dismiss();
                     }
