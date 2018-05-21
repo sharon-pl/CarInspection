@@ -62,6 +62,7 @@ public class VehicleDetailFragment extends Fragment implements VPlateDialog.Call
     private Spinner inspectorSpinner;
     private TextView vPlateLabel;
     private Button userInputBtn;
+    private TextView vehicleMakeLabel;
     private TextView vehicleTypeLabel;
     private TextView vehicleSubTypeLabel;
     private TextView vehicleDetailsLabel;
@@ -110,6 +111,7 @@ public class VehicleDetailFragment extends Fragment implements VPlateDialog.Call
         inspectorSpinner = view.findViewById(R.id.inspector_spinner);
         userInputBtn = view.findViewById(R.id.btn_user_input);
         vPlateLabel = view.findViewById(R.id.label_v_plate);
+        vehicleMakeLabel = view.findViewById(R.id.vehicle_make);
         vehicleTypeLabel = view.findViewById(R.id.vehicle_type);
         vehicleSubTypeLabel = view.findViewById(R.id.vehicle_subtype);
         vehicleDetailsLabel = view.findViewById(R.id.vehicle_details);
@@ -517,9 +519,13 @@ public class VehicleDetailFragment extends Fragment implements VPlateDialog.Call
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         inspectorSpinner.setAdapter(adapter);
 
+        int selectedInspectorIndex = inspectorIDs.indexOf(myPreference.get_conf_inspector_id());
+        inspectorSpinner.setSelection(selectedInspectorIndex);
+
         JSONObject vehicleDataJson = JsonHelper.readJsonFromFile(Contents.JsonVehicleData.FILE_PATH);
         if (vehicleDataJson == null) return;
         try {
+            String vehicleMake = vehicleDataJson.getString(Contents.JsonVehicleData.VEHICLE_MAKE);
             String type = vehicleDataJson.getString(Contents.JsonVehicleData.TYPE);
             String subtype = vehicleDataJson.getString(Contents.JsonVehicleData.SUBTYPE);
             String details = vehicleDataJson.getString(Contents.JsonVehicleData.DETAILS);
@@ -527,6 +533,7 @@ public class VehicleDetailFragment extends Fragment implements VPlateDialog.Call
             driverID = vehicleDataJson.getString(Contents.JsonVehicleData.DRIVERID);
             driverName = vehicleDataJson.getString(Contents.JsonVehicleData.DRIVERNAME);
 
+            vehicleMakeLabel.setText(vehicleMake);
             vehicleTypeLabel.setText(type);
             vehicleSubTypeLabel.setText(subtype);
             vehicleDetailsLabel.setText(details);
@@ -542,10 +549,15 @@ public class VehicleDetailFragment extends Fragment implements VPlateDialog.Call
         String inspectDate = inspectionDateEdit.getText().toString();
         String odometer = odometerEdit.getText().toString();
         String location = locationEdit.getText().toString();
+        int selectedInspectorIndex = inspectorSpinner.getSelectedItemPosition();
+        String inspectorID = inspectorIDs.get(selectedInspectorIndex);
+        String inspectorName = inspectorNames.get(selectedInspectorIndex);
 
         JSONObject vehicleDataJson = JsonHelper.readJsonFromFile(Contents.JsonVehicleData.FILE_PATH);
         if (vehicleDataJson == null) return;
         try {
+            vehicleDataJson.put(Contents.JsonVehicleData.INSPECTION_ID, inspectorID);
+            vehicleDataJson.put(Contents.JsonVehicleData.INSPECTION_NAME, inspectorName);
             vehicleDataJson.put(Contents.JsonVehicleData.INSPECTION_MONTH, selectedMonth);
             vehicleDataJson.put(Contents.JsonVehicleData.INSPECTION_DATE, inspectDate);
             vehicleDataJson.put(Contents.JsonVehicleData.INSPECTION_LOCATION, location);

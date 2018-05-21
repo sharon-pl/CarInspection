@@ -64,9 +64,13 @@ public class Contents {
         public static String DRIVERNAME = "driverName";
         public static String COMPANYNAME = "companyName";
         public static String DATESANDPICTURES = "datesAndPictures";
+        public static String INSPECTION_ID = "inspectorId;";
+        public static String INSPECTION_NAME = "inspectorName;";
         public static String INSPECTION_MONTH = "inspection_month";
         public static String INSPECTION_DATE = "inspection_date";
         public static String INSPECTION_LOCATION = "inspection_location";
+        public static String VEHICLE_MAKE = "vehicleMake";
+        public static String VEHICLE_MAKE_ID = "vehicleMakeId";
         public static String FILE_NAME = "vehicle_data.json";
         public static String FILE_PATH;
     }
