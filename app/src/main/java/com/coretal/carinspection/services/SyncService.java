@@ -178,6 +178,11 @@ public class SyncService extends Service {
             submitData.put("driverSigniturePictureId", driverSigniturePictureId);
             submitData.put("inspectorSigniturePictureId", inspectorSigniturePictureId);
 
+            //For test
+            String path = Contents.EXTERNAL_JSON_DIR_PATH + "/submitdata.json";
+            JsonHelper.saveJsonObject(submitData, path);
+            //================
+
             return submitData.toString();
         } catch (JSONException e) {
             e.printStackTrace();

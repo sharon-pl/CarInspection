@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -21,6 +22,7 @@ import com.android.volley.Response;
 import com.android.volley.error.VolleyError;
 import com.android.volley.request.JsonObjectRequest;
 import com.coretal.carinspection.R;
+import com.coretal.carinspection.controls.DateEditText;
 import com.coretal.carinspection.utils.Contents;
 import com.coretal.carinspection.utils.DrawableHelper;
 import com.coretal.carinspection.utils.FileHelper;
@@ -47,14 +49,29 @@ public class DriverDetailFragment extends Fragment implements AdapterView.OnItem
     TextView driverAddressLabel;
     EditText driverRemarksEdit;
 
+    private DateEditText licenceDateEdit;
+    private DateEditText hatzharatnahagDateEdit;
+    private DateEditText homasDateEdit;
+    private DateEditText manofDateEdit;
+    private Switch isKavuaSwitch;
+
     DateAndPictureFragment dateAndPictureFragment;
+
     private String fullName;
     private String licence;
+    private String licenceDateStr;
+    private String hatzharatnahagDateStr;
+    private String homasDateStr;
+    private String manofDateStr;
+    private boolean isKavua;
     private String address;
     private String remarks;
+
     private ArrayList<String> driverIDs;
     private ArrayList<String> driverNames;
+
     private String driverID;
+
     private ProgressDialog progressDialog;
     private JSONArray dateAndPictures;
 
@@ -75,6 +92,12 @@ public class DriverDetailFragment extends Fragment implements AdapterView.OnItem
         driverLicenceNumberLabel = (TextView) view.findViewById(R.id.licence_number);
         driverAddressLabel = (TextView) view.findViewById(R.id.address);
         driverRemarksEdit = (EditText) view.findViewById(R.id.remarks);
+
+        licenceDateEdit = view.findViewById(R.id.edit_licence_date);
+        hatzharatnahagDateEdit = view.findViewById(R.id.edit_hatzharatnahag_date);
+        homasDateEdit = view.findViewById(R.id.edit_homas_date);
+        manofDateEdit = view.findViewById(R.id.edit_manof_date);
+        isKavuaSwitch = view.findViewById(R.id.switch_is_kavua);
 
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setCancelable(false);
@@ -107,11 +130,21 @@ public class DriverDetailFragment extends Fragment implements AdapterView.OnItem
             driverID = driverIDs.get(driverSpinner.getSelectedItemPosition());
 
             String driverName = driverNames.get(driverSpinner.getSelectedItemPosition());
+            licenceDateStr = licenceDateEdit.getText().toString();
+            hatzharatnahagDateStr = hatzharatnahagDateEdit.getText().toString();
+            homasDateStr = homasDateEdit.getText().toString();
+            manofDateStr = manofDateEdit.getText().toString();
+            isKavua = isKavuaSwitch.isChecked();
             remarks = driverRemarksEdit.getText().toString();
 
             driverJsonObject.put(Contents.JsonVehicleDriverData.FULL_NAME, fullName);
             driverJsonObject.put(Contents.JsonVehicleDriverData.DRIVER_ID, driverID);
             driverJsonObject.put(Contents.JsonVehicleDriverData.DRIVER_LICENSE_NUMBER, licence);
+            driverJsonObject.put(Contents.JsonVehicleDriverData.DRIVER_LICENSE_DATE, licenceDateStr);
+            driverJsonObject.put(Contents.JsonVehicleDriverData.DRIVER_HATZHARATNAHAG_DATE, hatzharatnahagDateStr);
+            driverJsonObject.put(Contents.JsonVehicleDriverData.DRIVER_HOMAS_DATE, homasDateStr);
+            driverJsonObject.put(Contents.JsonVehicleDriverData.DRIVER_MANOF_DATE, manofDateStr);
+            driverJsonObject.put(Contents.JsonVehicleDriverData.DRIVER_IS_KAVUA, isKavua);
             driverJsonObject.put(Contents.JsonVehicleDriverData.DRIVER_ADDRESS, address);
             driverJsonObject.put(Contents.JsonVehicleDriverData.REMARKS, remarks);
             driverJsonObject.put(Contents.JsonDateAndPictures.DATES_AND_PICTURES, dateAndPictureFragment.getOutput());
@@ -142,6 +175,11 @@ public class DriverDetailFragment extends Fragment implements AdapterView.OnItem
             fullName = "";
             driverID = "";
             licence = "";
+            licenceDateStr = "";
+            hatzharatnahagDateStr = "";
+            homasDateStr = "";
+            manofDateStr = "";
+            isKavua = false;
             address = "";
             remarks = "";
             dateAndPictures = null;
@@ -150,6 +188,11 @@ public class DriverDetailFragment extends Fragment implements AdapterView.OnItem
                 fullName = driverDataJson.getString(Contents.JsonVehicleDriverData.FULL_NAME);
                 driverID = driverDataJson.getString(Contents.JsonVehicleDriverData.DRIVER_ID);
                 licence = driverDataJson.getString(Contents.JsonVehicleDriverData.DRIVER_LICENSE_NUMBER);
+                licenceDateStr = driverDataJson.getString(Contents.JsonVehicleDriverData.DRIVER_LICENSE_DATE);
+                hatzharatnahagDateStr = driverDataJson.getString(Contents.JsonVehicleDriverData.DRIVER_HATZHARATNAHAG_DATE);
+                homasDateStr = driverDataJson.getString(Contents.JsonVehicleDriverData.DRIVER_HOMAS_DATE);
+                manofDateStr = driverDataJson.getString(Contents.JsonVehicleDriverData.DRIVER_MANOF_DATE);
+                isKavua = driverDataJson.getBoolean(Contents.JsonVehicleDriverData.DRIVER_IS_KAVUA);
                 address = driverDataJson.getString(Contents.JsonVehicleDriverData.DRIVER_ADDRESS);
                 remarks = driverDataJson.optString(Contents.JsonVehicleDriverData.REMARKS);
                 dateAndPictures = driverDataJson.optJSONArray(Contents.JsonDateAndPictures.DATES_AND_PICTURES);
@@ -169,6 +212,11 @@ public class DriverDetailFragment extends Fragment implements AdapterView.OnItem
         });
 
         driverLicenceNumberLabel.setText(licence);
+        licenceDateEdit.setText(licenceDateStr);
+        hatzharatnahagDateEdit.setText(hatzharatnahagDateStr);
+        homasDateEdit.setText(homasDateStr);
+        manofDateEdit.setText(manofDateStr);
+        isKavuaSwitch.setChecked(isKavua);
         driverAddressLabel.setText(address);
         driverRemarksEdit.setText(remarks);
 

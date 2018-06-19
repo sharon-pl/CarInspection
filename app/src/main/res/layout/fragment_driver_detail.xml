@@ -66,7 +66,110 @@
                     android:textSize="18sp"
                     />
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:orientation="vertical">
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/licence_date"
+                    android:textSize="18sp" />
+
+                <com.coretal.carinspection.controls.DateEditText
+                    android:id="@+id/edit_licence_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@color/lightGray"
+                    android:paddingStart="4dp"
+                    android:paddingEnd="4dp"
+                    android:drawableEnd="@android:drawable/ic_menu_my_calendar" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/hatzharatnahag_date"
+                    android:textSize="18sp" />
+
+                <com.coretal.carinspection.controls.DateEditText
+                    android:id="@+id/edit_hatzharatnahag_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@color/lightGray"
+                    android:paddingStart="4dp"
+                    android:paddingEnd="4dp"
+                    android:drawableEnd="@android:drawable/ic_menu_my_calendar" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/homas_date"
+                    android:textSize="18sp" />
+
+                <com.coretal.carinspection.controls.DateEditText
+                    android:id="@+id/edit_homas_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@color/lightGray"
+                    android:paddingStart="4dp"
+                    android:paddingEnd="4dp"
+                    android:drawableEnd="@android:drawable/ic_menu_my_calendar" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/manof_date"
+                    android:textSize="18sp" />
+
+                <com.coretal.carinspection.controls.DateEditText
+                    android:id="@+id/edit_manof_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@color/lightGray"
+                    android:paddingStart="4dp"
+                    android:paddingEnd="4dp"
+                    android:drawableEnd="@android:drawable/ic_menu_my_calendar" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:orientation="horizontal">
+
+                <Switch
+                    android:id="@+id/switch_is_kavua"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/is_kavua"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -58,4 +58,9 @@
     <string name="submissions">Submissions</string>
     <string name="enter_your_phone_number">Enter your phone number</string>
     <string name="phone_number">Phone Number</string>
+    <string name="licence_date">Licence Date</string>
+    <string name="hatzharatnahag_date">HatzharatNahag Date</string>
+    <string name="homas_date">Homas Date</string>
+    <string name="manof_date">Manof Date</string>
+    <string name="is_kavua">Is Kavua</string>
 </resources>

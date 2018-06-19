@@ -64,11 +64,11 @@ public class Contents {
         public static String DRIVERNAME = "driverName";
         public static String COMPANYNAME = "companyName";
         public static String DATESANDPICTURES = "datesAndPictures";
-        public static String INSPECTION_ID = "inspectorId;";
-        public static String INSPECTION_NAME = "inspectorName;";
-        public static String INSPECTION_MONTH = "inspection_month";
-        public static String INSPECTION_DATE = "inspection_date";
-        public static String INSPECTION_LOCATION = "inspection_location";
+        public static String INSPECTION_ID = "inspectorId";
+        public static String INSPECTION_NAME = "inspectorName";
+        public static String INSPECTION_MONTH = "inspectionMonth";
+        public static String INSPECTION_DATE = "inspectionDate";
+        public static String INSPECTION_LOCATION = "inspectionLocation";
         public static String VEHICLE_MAKE = "vehicleMake";
         public static String VEHICLE_MAKE_ID = "vehicleMakeId";
         public static String FILE_NAME = "vehicle_data.json";
@@ -134,9 +134,14 @@ public class Contents {
     }
 
     public static class JsonVehicleDriverData {
+        public static String DRIVER_ID = "driverId";
         public static String FULL_NAME = "fullName";
         public static String DRIVER_LICENSE_NUMBER = "driverLicenseNumber";
-        public static String DRIVER_ID = "driverId";
+        public static String DRIVER_LICENSE_DATE = "driverLicenceDate";
+        public static String DRIVER_HATZHARATNAHAG_DATE = "driverHatzharatNahagDate";
+        public static String DRIVER_HOMAS_DATE = "driverHomasDate";
+        public static String DRIVER_MANOF_DATE = "driverManofDate";
+        public static String DRIVER_IS_KAVUA = "driverIsKavua";
         public static String DRIVER_ADDRESS = "driverAddress";
         public static String REMARKS = "remarks";
         public static String FILE_NAME = "vehicle_driver_data.json";
