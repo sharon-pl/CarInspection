@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Car Inspection</string>
+    <string name="app_name">פלד בטיחות</string>
 
     <!-- Navigation -->
     <string name="Home">בית</string>
@@ -22,7 +22,7 @@
     <string name="vehicle_type">סוג רכב</string>
     <string name="vehicle_subtype">תת סוג רכב</string>
     <string name="vehicle_details_text">פרטים</string>
-    <string name="current_odometer">Current Odometer</string>
+    <string name="current_odometer">ספידומטר נוכחי</string>
     <string name="inspection_location">מיקום בדיקה</string>
     <string name="inspector">קצין בטיחות</string>
     <string name="submit">שלח נתונים</string>
@@ -32,18 +32,35 @@
     <string name="v_trailer">נגרר</string>
     <string name="v_type">סוג נגרר</string>
     <string name="v_subtype">תת סוג נגרר</string>
-    <string name="sub_title">Sub Title</string>
+    <string name="sub_title">כותרת משנה</string>
     <string name="remarks">הערות</string>
     <string name="title">כותרת</string>
-    <string name="section">Section</string>
+    <string name="section">סעיף</string>
     <string name="configuration">הגדרות</string>
     <string name="logs_and_submission">לוגים והגדרות</string>
     <string name="email">\@אימייל</string>
     <string name="erase">מחק</string>
-    <string name="submission">Submission</string>
-    <string name="log_file">Log File</string>
+    <string name="submission">בדיקות</string>
+    <string name="log_file">קובץ לוג</string>
     <string name="v_plate">מספר רכב</string>
     <string name="enter_your_v_plate">הזן מספר רכב</string>
     <string name="add_new_date_and_picture">הוסף תמונה ותאריך</string>
     <string name="done">סיום</string>
+    <string name="take_photo">צלם</string>
+    <string name="upload_from_photo_library">העלה מהגלריה</string>
+    <string name="other_info">מידע נוסף</string>
+    <string name="search">חיפוש...</string>
+    <string name="driver_signature">חתימת נהג</string>
+    <string name="driver_name">שם נהג</string>
+    <string name="inspector_signature">חתימת קצין בטיחות</string>
+    <string name="inspector_name">שם קצין בטיחות</string>
+    <string name="logs">לוגים</string>
+    <string name="submissions">בדיקות שנשלחו</string>
+    <string name="enter_your_phone_number">הזן מספר טלפון</string>
+    <string name="phone_number">מס טלפון</string>
+    <string name="licence_date">תוקף רשיון</string>
+    <string name="hatzharatnahag_date">תוקף הצהרת נהג</string>
+    <string name="homas_date">תוקף חומס</string>
+    <string name="manof_date">תוקף מנוף</string>
+    <string name="is_kavua">נהג קבוע ברכב</string>
 </resources>
