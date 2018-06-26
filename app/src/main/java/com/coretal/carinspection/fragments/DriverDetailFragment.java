@@ -275,4 +275,10 @@ public class DriverDetailFragment extends Fragment implements AdapterView.OnItem
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        saveValuesToFile();
+    }
 }

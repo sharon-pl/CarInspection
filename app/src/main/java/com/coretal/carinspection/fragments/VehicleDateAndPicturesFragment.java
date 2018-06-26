@@ -81,5 +81,12 @@ public class VehicleDateAndPicturesFragment extends Fragment {
         fragmentTransaction.replace(R.id.fragment_container, dateAndPictureFragment);
         fragmentTransaction.commit();
     }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        saveValuesToFile();
+    }
+
 }
 

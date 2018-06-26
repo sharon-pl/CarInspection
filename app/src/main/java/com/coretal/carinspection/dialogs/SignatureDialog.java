@@ -186,7 +186,8 @@ public class SignatureDialog extends DialogFragment {
         String phoneNumber = Contents.PHONE_NUMBER;
         int submissionID = dbHelper.getDraftSubmission().id;
         long newFileID = dbHelper.getLastInsertFileId() + 1;
-        String newPictureID = phoneNumber + "_" + submissionID + "_" + newFileID;
+        long timestamp = System.currentTimeMillis();
+        String newPictureID = phoneNumber + "_" + submissionID + "_" + newFileID + "_" + timestamp;
 
         FileHelper.saveBitmap(bitmap, 100, fileLocation);
         long insertedID = dbHelper.newFile(newPictureID, fileLocation);

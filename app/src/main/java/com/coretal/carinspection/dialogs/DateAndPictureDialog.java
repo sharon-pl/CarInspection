@@ -156,7 +156,8 @@ public class DateAndPictureDialog extends DialogFragment implements SelectPictur
                 String phoneNumber = Contents.PHONE_NUMBER;
                 int submissionID = dbHelper.getDraftSubmission().id;
                 long newFileID = dbHelper.getLastInsertFileId() + 1;
-                newPictureID = phoneNumber + "_" + submissionID + "_" + newFileID;
+                long timestamp = System.currentTimeMillis();
+                newPictureID = phoneNumber + "_" + submissionID + "_" + newFileID + "_" + timestamp;
 
                 String imageSource = myPref.get_conf_app_image_source();
                 if (imageSource.equals("CAMERA")){

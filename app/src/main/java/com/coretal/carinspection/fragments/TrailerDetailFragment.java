@@ -218,4 +218,10 @@ public class TrailerDetailFragment extends Fragment implements AdapterView.OnIte
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        saveValuesToFile();
+    }
 }

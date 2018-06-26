@@ -234,4 +234,10 @@ public class InspectionFragment extends Fragment {
         }
         return allSectionObject;
     }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        saveValuesToFile();
+    }
 }

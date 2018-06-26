@@ -608,6 +608,12 @@ public class VehicleDetailFragment extends Fragment implements VPlateDialog.Call
     }
 
     @Override
+    public void onPause() {
+        super.onPause();
+        saveValuesToFile();
+    }
+
+    @Override
     public void onStop() {
         super.onStop();
         progressDialog.dismiss();

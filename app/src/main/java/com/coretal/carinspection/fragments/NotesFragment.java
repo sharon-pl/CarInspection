@@ -124,7 +124,8 @@ public class NotesFragment extends Fragment {
         String phoneNumber = Contents.PHONE_NUMBER;
         int submissionID = dbHelper.getDraftSubmission().id;
         long newFileID = dbHelper.getLastInsertFileId() + 1;
-        String newPictureID = phoneNumber + "_" + submissionID + "_" + newFileID;
+        long timestamp = System.currentTimeMillis();
+        String newPictureID = phoneNumber + "_" + submissionID + "_" + newFileID + "_" + timestamp;
 
         Bitmap bitmap = pad.getSignatureBitmap();
         FileHelper.saveBitmap(bitmap, 100, signatureFilePath);
@@ -132,6 +133,12 @@ public class NotesFragment extends Fragment {
             long insertedID = dbHelper.newFile(newPictureID, signatureFilePath);
             dbHelper.setFileType(insertedID, "INSPECTION_NOTES_HAND_WRITING");
         }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        onHiddenChanged(true);
     }
 
     @Override

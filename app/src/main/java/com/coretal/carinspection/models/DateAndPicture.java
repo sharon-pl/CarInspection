@@ -50,7 +50,7 @@ public class DateAndPicture {
     public void setPictureId(String pictureId) {
         this.pictureId = pictureId;
         if(this.pictureId != null) {
-            boolean isNewPicture = this.pictureId.split("_").length == 3;
+            boolean isNewPicture = this.pictureId.split("_").length == 4;
             if (isNewPicture) {
                 this.pictureURL = Contents.EXTERNAL_PICTURES_DIR_PATH + "/" + pictureId + ".jpg";
             }else{
