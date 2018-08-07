@@ -11,33 +11,33 @@ import android.support.v4.app.DialogFragment;
 import android.telephony.PhoneNumberUtils;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.webkit.URLUtil;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.coretal.carinspection.R;
-import com.coretal.carinspection.db.DBHelper;
-import com.coretal.carinspection.models.Submission;
+import com.coretal.carinspection.utils.Contents;
 import com.coretal.carinspection.utils.DrawableHelper;
-import com.coretal.carinspection.utils.MyHelper;
 import com.coretal.carinspection.utils.MyPreference;
 
 /**
  * Created by Kangtle_R on 1/24/2018.
  */
 
-public class PhoneNumberDialog extends DialogFragment {
+public class API_PhoneNumberDialog extends DialogFragment {
     public interface Callback {
-        public void onSubmitPhoneNumberDialog(String phoneNumber);
+        public void onSubmitPhoneNumberDialog(String apiRoot, String phoneNumber);
     }
 
     private EditText phoneNumberEdit;
+    private EditText apiRootEdit;
     private Button btnSubmit;
     private MyPreference myPref;
     private Callback callback;
 
-    public static PhoneNumberDialog newInstance(Callback callback){
-        PhoneNumberDialog dialog = new PhoneNumberDialog();
+    public static API_PhoneNumberDialog newInstance(Callback callback){
+        API_PhoneNumberDialog dialog = new API_PhoneNumberDialog();
         dialog.callback = callback;
         dialog.setCancelable(false);
         return dialog;
@@ -48,7 +48,7 @@ public class PhoneNumberDialog extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         myPref = new MyPreference(getContext());
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        View dialogView = inflater.inflate(R.layout.dialog_phone_number, null);
+        View dialogView = inflater.inflate(R.layout.dialog_api_phone_number, null);
 
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getActivity());
         dialogBuilder.setView(dialogView);
@@ -56,18 +56,22 @@ public class PhoneNumberDialog extends DialogFragment {
         alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
 
         btnSubmit = dialogView.findViewById(R.id.btn_submit);
+        apiRootEdit = dialogView.findViewById(R.id.edit_api_root);
         phoneNumberEdit = dialogView.findViewById(R.id.edit_number);
+        apiRootEdit.setText(Contents.API_ROOT);
 
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String apiRoot = apiRootEdit.getText().toString();
                 String phoneNumber = phoneNumberEdit.getText().toString();
-                if (PhoneNumberUtils.isGlobalPhoneNumber(phoneNumber)){
+                if (URLUtil.isValidUrl(apiRoot) && PhoneNumberUtils.isGlobalPhoneNumber(phoneNumber)){
+                    myPref.setAPIRoot(apiRoot);
                     myPref.setPhoneNumber(phoneNumber);
                     dismiss();
-                    callback.onSubmitPhoneNumberDialog(phoneNumber);
+                    callback.onSubmitPhoneNumberDialog(apiRoot, phoneNumber);
                 }else{
-                    Toast.makeText(getContext(), "Please enter phone number correctly.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Please enter root url and phone number correctly.", Toast.LENGTH_SHORT).show();
                 }
             }
         });

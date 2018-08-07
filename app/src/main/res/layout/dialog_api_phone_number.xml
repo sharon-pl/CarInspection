@@ -8,6 +8,28 @@
 
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/enter_api"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/enter_root_url_of_api" />
+
+        <EditText
+            android:id="@+id/edit_api_root"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/lightGray"
+            android:hint="@string/api_root"
+            android:paddingEnd="4dp"
+            android:paddingStart="4dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_marginTop="20dp">

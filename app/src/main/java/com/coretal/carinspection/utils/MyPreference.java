@@ -29,6 +29,7 @@ public class MyPreference {
 
     private static String IS_GETTED_CONFIG = "IS_GETTED_CONFIG";
     private static String PHONE_NUMBER = "PHONE_NUMBER";
+    private static String API_ROOT = "API_ROOT";
 
     public MyPreference(Context context){
         this.context = context;
@@ -38,6 +39,10 @@ public class MyPreference {
 
     public void setPhoneNumber(String phoneNumber){
         configEditor.putString(PHONE_NUMBER, phoneNumber).apply();
+    }
+
+    public void setAPIRoot(String rootURL) {
+        configEditor.putString(Contents.Config.WS_CONFIG_URL, rootURL).apply();
     }
 
     public String getPhoneNumber(){
@@ -220,4 +225,5 @@ public class MyPreference {
     public void reset(){
 
     }
+
 }

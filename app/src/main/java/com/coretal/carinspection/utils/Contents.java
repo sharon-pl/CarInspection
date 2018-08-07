@@ -29,6 +29,7 @@ import java.util.UUID;
 public class Contents {
     public static boolean IS_STARTED_INSPECTION = false;
     public static String API_ROOT = "http://24.30.63.116:8080/Peled_v6/restful";
+//    public static String API_ROOT = "http://peled.co/Peled_v6/restful";
     public static String API_GET_VEHICLE_DATA = API_ROOT + "/vehicle/getVehicleData/%s/%s"; //phone_number/v_plate
     public static String API_GET_INSPECTORS = API_ROOT + "/inspector/getInspectors/%s";//phone_number
     public static String API_GET_DRIVERS = API_ROOT + "/driver/getDriversData/%s/%s";//phone_number/v_plate
@@ -316,19 +317,23 @@ public class Contents {
         MyPreference myPreference = new MyPreference(context);
 
         API_ROOT = myPreference.getAPIBaseURL();
-        API_GET_VEHICLE_DATA = API_ROOT + "/vehicle/getVehicleData/%s/%s"; //hash/v_plate
-        API_GET_INSPECTORS = API_ROOT + "/inspector/getInspectors/%s";//hash
-        API_GET_DRIVERS = API_ROOT + "/driver/getDriversData/%s/%s";//hash/v_plate
-        API_GET_VEHICLE_DRIVER_DATA = API_ROOT + "/driver/getVhicleDriverData/%s/%s";//hash/v_plate
-        API_GET_TRAILERS = API_ROOT + "/trailer/getTrailersData/%s/%s";//hash/v_plate
-        API_GET_VEHICLE_TRAILER_DATA = API_ROOT + "/trailer/getVhicleTrailerData/%s/%s";//hash/v_plate
-        API_GET_VEHICLE_ADDITIONAL_DETAILS = API_ROOT + "/vehicle/getAdditionalDetails/%s/%s";//hash/v_plate
-        API_GET_INSPECTION_DATA = API_ROOT + "/inspection/getInspectionData/%s/%s";//hash/v_plate
-        API_GET_DATE_AND_PICTURES = API_ROOT + "/vehicle/getVehicleDateAndPictureInfo/%s/%s";//hash/v_plate
-        API_GET_PICTURE_BY_ID = API_ROOT + "/image/getPictureById/%s/%s";//hash/picture id
+
+        API_GET_VEHICLE_DATA = API_ROOT + "/vehicle/getVehicleData/%s/%s"; //phone_number/v_plate
+        API_GET_INSPECTORS = API_ROOT + "/inspector/getInspectors/%s";//phone_number
+        API_GET_DRIVERS = API_ROOT + "/driver/getDriversData/%s/%s";//phone_number/v_plate
+        API_GET_DRIVER = API_ROOT + "/driver/getDriverData/%s/%s";//phone_number/driver_id
+        API_GET_VEHICLE_DRIVER_DATA = API_ROOT + "/driver/getVhicleDriverData/%s/%s";//phone_number/v_plate
+        API_GET_TRAILERS = API_ROOT + "/trailer/getTrailersData/%s/%s";//phone_number/v_plate
+        API_GET_TRAILER = API_ROOT + "/trailer/getTrailerData/%s/%s";//phone_number/trailer_id
+        API_GET_VEHICLE_TRAILER_DATA = API_ROOT + "/trailer/getVhicleTrailerData/%s/%s";//phone_number/v_plate
+        API_GET_VEHICLE_ADDITIONAL_DETAILS = API_ROOT + "/vehicle/getAdditionalDetails/%s/%s";//phone_number/v_plate
+        API_GET_INSPECTION_DATA = API_ROOT + "/inspection/getInspectionData/%s/%s";//phone_number/v_plate
+        API_GET_DATE_AND_PICTURES = API_ROOT + "/vehicle/getVehicleDateAndPictureInfo/%s/%s";//phone_number/v_plate
+        API_GET_PICTURE_BY_ID = API_ROOT + "/image/getPictureById/%s/%s";//phone_number/picture id
+        API_GET_CONFIG = API_ROOT + "/configuration/getConfigurationFile/%s";//phone number
+        API_GET_CONFIG_FILE_TYPES_EMUM = API_ROOT + "/configuration/getPictureAndData/%s";//phone number
 
         API_SUBMIT_PICTURE = API_ROOT + "/submitPicture/fileupload";
         API_SUBMIT_INSPECTION = API_ROOT + "/submitInspection";
-
     }
 }

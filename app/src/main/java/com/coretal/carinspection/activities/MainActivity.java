@@ -32,14 +32,12 @@ import com.android.volley.Response;
 import com.android.volley.error.VolleyError;
 import com.android.volley.request.JsonObjectRequest;
 import com.coretal.carinspection.R;
-import com.coretal.carinspection.dialogs.PhoneNumberDialog;
-import com.coretal.carinspection.dialogs.VPlateDialog;
+import com.coretal.carinspection.dialogs.API_PhoneNumberDialog;
 import com.coretal.carinspection.fragments.VehicleDateAndPicturesFragment;
 import com.coretal.carinspection.fragments.HomeFragment;
 import com.coretal.carinspection.fragments.InspectionFragment;
 import com.coretal.carinspection.fragments.NotesFragment;
 import com.coretal.carinspection.fragments.SettingFragment;
-import com.coretal.carinspection.fragments.VehicleDetailFragment;
 import com.coretal.carinspection.receivers.AlarmReceiver;
 import com.coretal.carinspection.utils.AlertHelper;
 import com.coretal.carinspection.utils.Contents;
@@ -50,7 +48,7 @@ import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
 import org.json.JSONObject;
 
-public class MainActivity extends AppCompatActivity implements PhoneNumberDialog.Callback {
+public class MainActivity extends AppCompatActivity implements API_PhoneNumberDialog.Callback {
 
     String[] PERMISSIONS = {Manifest.permission.READ_PHONE_STATE, Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
@@ -208,10 +206,12 @@ public class MainActivity extends AppCompatActivity implements PhoneNumberDialog
     }
 
     private void setupAfterPermissions(){
+        String apiRoot = myPreference.getAPIBaseURL();
         String phoneNumber = myPreference.getPhoneNumber();
-        if (phoneNumber.isEmpty()){
-            getPhoneNumberWithDialog();
+        if (phoneNumber.isEmpty() || apiRoot.isEmpty()){
+            getAPI_PhoneNumberWithDialog();
         }else{
+            Contents.configAPIs(this);
             Contents.PHONE_NUMBER = phoneNumber;
             if(!myPreference.isGettedConfig()){
                 getConfigFile();
@@ -259,15 +259,15 @@ public class MainActivity extends AppCompatActivity implements PhoneNumberDialog
         registerReceiver(connectivityReceiver, intentFilter);
     }
 
-    public void getPhoneNumberWithDialog(){
+    public void getAPI_PhoneNumberWithDialog(){
 
-        DialogFragment fragment = PhoneNumberDialog.newInstance(this);
-        fragment.show(getSupportFragmentManager(), "dialog_phone_number");
+        DialogFragment fragment = API_PhoneNumberDialog.newInstance(this);
+        fragment.show(getSupportFragmentManager(), "dialog_api_phone_number");
 
     }
 
     @Override
-    public void onSubmitPhoneNumberDialog(String phoneNumber) {
+    public void onSubmitPhoneNumberDialog(String apiRoot, String phoneNumber) {
         setupAfterPermissions();
     }
 
@@ -290,7 +290,7 @@ public class MainActivity extends AppCompatActivity implements PhoneNumberDialog
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     dialog.dismiss();
-                                    getPhoneNumberWithDialog();
+                                    getAPI_PhoneNumberWithDialog();
                                 }
                             });
                         }else{
@@ -309,7 +309,7 @@ public class MainActivity extends AppCompatActivity implements PhoneNumberDialog
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.dismiss();
-                                getPhoneNumberWithDialog();
+                                getAPI_PhoneNumberWithDialog();
                             }
                         });
                     }

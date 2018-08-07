@@ -24,6 +24,7 @@ public class DateAndPicture {
     public String dateStr;
 
     public String pictureId;
+    public String oldPictureId = "";
     public String pictureURL;
     public String type;
 
@@ -48,6 +49,7 @@ public class DateAndPicture {
     }
 
     public void setPictureId(String pictureId) {
+        this.oldPictureId = this.pictureId;
         this.pictureId = pictureId;
         if(this.pictureId != null) {
             boolean isNewPicture = this.pictureId.split("_").length == 4;
@@ -60,9 +62,14 @@ public class DateAndPicture {
     }
 
     public JSONObject getJSONObject() throws JSONException {
+        String concatPictureId = pictureId;
+        if(oldPictureId!=null && !oldPictureId.isEmpty() && !oldPictureId.equals(pictureId)){
+            concatPictureId = oldPictureId + "#" + pictureId;
+        }
+
         JSONObject jsonObject = new JSONObject();
         jsonObject.putOpt(Contents.JsonDateAndPictures.DATE, dateStr);
-        jsonObject.putOpt(Contents.JsonDateAndPictures.PICTUREID, pictureId);
+        jsonObject.putOpt(Contents.JsonDateAndPictures.PICTUREID, concatPictureId);
         jsonObject.putOpt(Contents.JsonDateAndPictures.TYPE, type);
         jsonObject.putOpt(Contents.JsonDateAndPictures.STATUS, status);
         return jsonObject;

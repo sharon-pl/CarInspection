@@ -63,4 +63,6 @@
     <string name="homas_date">Homas Date</string>
     <string name="manof_date">Manof Date</string>
     <string name="is_kavua">Is Kavua</string>
+    <string name="enter_root_url_of_api">Enter root url of API</string>
+    <string name="api_root">API Root</string>
 </resources>

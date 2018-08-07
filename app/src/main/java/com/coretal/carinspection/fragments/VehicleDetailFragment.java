@@ -100,6 +100,8 @@ public class VehicleDetailFragment extends Fragment implements VPlateDialog.Call
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_vehicle_detail, container, false);
+        inspectorIDs = new ArrayList<>();
+        inspectorNames = new ArrayList<>();
 
         dbHelper = new DBHelper(getContext());
         volleyHelper = new VolleyHelper(getContext(), this);
@@ -235,7 +237,7 @@ public class VehicleDetailFragment extends Fragment implements VPlateDialog.Call
             progressDialog.setMessage("Please wait...\nGetting the vehicle details");
             progressDialog.show();
 
-            Contents.configAPIs(getContext());
+//            Contents.configAPIs(getContext());
 
             successAllRequests = true;
 
@@ -610,7 +612,9 @@ public class VehicleDetailFragment extends Fragment implements VPlateDialog.Call
     @Override
     public void onPause() {
         super.onPause();
-        saveValuesToFile();
+        if(Contents.IS_STARTED_INSPECTION){
+            saveValuesToFile();
+        }
     }
 
     @Override
