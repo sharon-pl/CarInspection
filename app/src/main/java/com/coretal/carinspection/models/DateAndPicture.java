@@ -49,14 +49,21 @@ public class DateAndPicture {
     }
 
     public void setPictureId(String pictureId) {
-        this.oldPictureId = this.pictureId;
-        this.pictureId = pictureId;
+        String[] pictureIds = pictureId.split("#");
+        if(pictureIds.length > 1){
+            this.oldPictureId = pictureIds[0];
+            this.pictureId = pictureIds[1];
+        }else{
+            this.oldPictureId = this.pictureId;
+            this.pictureId = pictureId;
+        }
+
         if(this.pictureId != null) {
             boolean isNewPicture = this.pictureId.split("_").length == 4;
             if (isNewPicture) {
-                this.pictureURL = Contents.EXTERNAL_PICTURES_DIR_PATH + "/" + pictureId + ".jpg";
+                this.pictureURL = Contents.EXTERNAL_PICTURES_DIR_PATH + "/" + this.pictureId + ".jpg";
             }else{
-                this.pictureURL = String.format(Contents.API_GET_PICTURE_BY_ID, Contents.PHONE_NUMBER, pictureId);
+                this.pictureURL = String.format(Contents.API_GET_PICTURE_BY_ID, Contents.PHONE_NUMBER, this.pictureId);
             }
         }
     }
