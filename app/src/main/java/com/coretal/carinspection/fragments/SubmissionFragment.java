@@ -48,7 +48,7 @@ public class SubmissionFragment extends Fragment {
     private DBHelper dbHelper;
     private MyPreference myPref;
     private Spinner actionSpinner;
-
+    private List<List<SubmissionTableViewAdapter.Cell>> cellList;
     public SubmissionFragment() {
         // Required empty public constructor
     }
@@ -75,7 +75,7 @@ public class SubmissionFragment extends Fragment {
         myPref = new MyPreference(getContext());
         List<Submission> submissions = dbHelper.getAllSubmissions();
 
-        List<List<SubmissionTableViewAdapter.Cell>> cellList = getCellListForAllSubmissions(submissions); // getCellList();
+        cellList = getCellListForAllSubmissions(submissions); // getCellList();
         List<SubmissionTableViewAdapter.RowHeader> rowHeaders = createRowHeaderList(submissions.size());
         List<SubmissionTableViewAdapter.ColumnHeader> columnHeaders = createColumnHeaderModelList();
 //        mTableViewAdapter.setAllItems(columnHeaders, rowHeaders, cellList);
@@ -94,6 +94,9 @@ public class SubmissionFragment extends Fragment {
                             case 0: //Reset
                                 Log.d("Kangtle", "Reset num try");
                                 dbHelper.resetNumtry();
+                                List<Submission> submissions = dbHelper.getAllSubmissions();
+                                List<List<SubmissionTableViewAdapter.Cell>> cellList = getCellListForAllSubmissions(submissions); // getCellList();
+                                mTableViewAdapter.setCellItems(cellList);
                                 mTableViewAdapter.notifyDataSetChanged();
                                 break;
                             default:

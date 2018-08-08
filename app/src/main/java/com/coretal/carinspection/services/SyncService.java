@@ -21,6 +21,7 @@ import com.coretal.carinspection.utils.JsonHelper;
 import com.coretal.carinspection.utils.MyPreference;
 import com.coretal.carinspection.utils.VolleyHelper;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -158,6 +159,9 @@ public class SyncService extends Service {
         JSONObject dateAndPicturesJson = JsonHelper.readJsonFromFile(jsonDir + "/" + Contents.JsonDateAndPictures.FILE_NAME);
         JSONObject trailerDataJson = JsonHelper.readJsonFromFile(jsonDir + "/" + Contents.JsonVehicleTrailerData.FILE_NAME);
 
+        JSONArray dateAndPicturesArray = null;
+        if(dateAndPicturesJson != null) dateAndPicturesArray = dateAndPicturesJson.optJSONArray(Contents.JsonDateAndPictures.DATES_AND_PICTURES);
+
         JSONObject submitData = new JSONObject();
 
         try {
@@ -173,7 +177,8 @@ public class SyncService extends Service {
             submitData.put("driverData", driverDataJson);
             submitData.put("trailerData", trailerDataJson);
             submitData.put("vehicleData", vehicleDataJson);
-            submitData.put("datesAndPictures", dateAndPicturesJson.getJSONArray(Contents.JsonDateAndPictures.DATES_AND_PICTURES));
+
+            submitData.put("datesAndPictures", dateAndPicturesArray);
             submitData.put("inspectionNotes", inspectionNotesObject);
             submitData.put("driverSigniturePictureId", driverSigniturePictureId);
             submitData.put("inspectorSigniturePictureId", inspectorSigniturePictureId);

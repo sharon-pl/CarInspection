@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -22,6 +23,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -32,6 +34,7 @@ import com.coretal.carinspection.R;
 import com.coretal.carinspection.controls.DateEditText;
 import com.coretal.carinspection.db.DBHelper;
 import com.coretal.carinspection.models.DateAndPicture;
+import com.coretal.carinspection.utils.AlertHelper;
 import com.coretal.carinspection.utils.Contents;
 import com.coretal.carinspection.utils.DrawableHelper;
 import com.coretal.carinspection.utils.FileHelper;
@@ -84,6 +87,7 @@ public class DateAndPictureDialog extends DialogFragment implements SelectPictur
 
     public static DateAndPictureDialog newInstance(String category, Callback callback){
         DateAndPictureDialog dialog = new DateAndPictureDialog();
+        dialog.setCancelable(false);
         dialog.callback = callback;
         dialog.category = category;
         return dialog;
@@ -103,6 +107,7 @@ public class DateAndPictureDialog extends DialogFragment implements SelectPictur
         imageView = dialogView.findViewById(R.id.picture);
         dateEditText = dialogView.findViewById(R.id.date_edit);
         Button btnDone = (Button) dialogView.findViewById(R.id.btn_done);
+        ImageButton btnCancel = dialogView.findViewById(R.id.btn_cancel);
 
         final AlertDialog alertDialog = dialogBuilder.create();
         alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
@@ -147,6 +152,24 @@ public class DateAndPictureDialog extends DialogFragment implements SelectPictur
                     callback.onDoneDateAndPictureDialog(item);
                 }
                 alertDialog.dismiss();
+            }
+        });
+
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertHelper.question(getContext(), "Alert", "Are you sure you want to cancel?", "Yes", "No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        alertDialog.dismiss();
+                    }
+                }, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
             }
         });
 

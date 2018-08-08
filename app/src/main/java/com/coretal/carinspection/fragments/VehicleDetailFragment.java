@@ -183,9 +183,16 @@ public class VehicleDetailFragment extends Fragment implements VPlateDialog.Call
                 if(Contents.IS_STARTED_INSPECTION) {
                     if (checkFields()) {
                         saveValuesToFile();
+
+                        String inspectorName = (String) inspectorSpinner.getSelectedItem();
+                        String driverName = "";
+                        JSONObject driverDataJson = JsonHelper.readJsonFromFile(Contents.JsonVehicleDriverData.FILE_PATH);
+                        if(driverDataJson != null)
+                             driverName = driverDataJson.optString(Contents.JsonVehicleDriverData.FULL_NAME);
+
                         SignatureDialog fragment = SignatureDialog.newInstance(VehicleDetailFragment.this);
                         fragment.setDriverName(driverName);
-                        fragment.setInspectorName(myPreference.get_conf_inspector_name());
+                        fragment.setInspectorName(inspectorName);
                         fragment.show(getFragmentManager(), "dialog_signature");
                     }
                 }else{
@@ -556,7 +563,7 @@ public class VehicleDetailFragment extends Fragment implements VPlateDialog.Call
         String inspectorName = inspectorNames.get(selectedInspectorIndex);
 
         JSONObject vehicleDataJson = JsonHelper.readJsonFromFile(Contents.JsonVehicleData.FILE_PATH);
-        if (vehicleDataJson == null) return;
+        if (vehicleDataJson == null) vehicleDataJson = new JSONObject();
         try {
             vehicleDataJson.put(Contents.JsonVehicleData.INSPECTION_ID, inspectorID);
             vehicleDataJson.put(Contents.JsonVehicleData.INSPECTION_NAME, inspectorName);
