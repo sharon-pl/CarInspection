@@ -65,4 +65,5 @@
     <string name="is_kavua">Is Kavua</string>
     <string name="enter_root_url_of_api">Enter root url of API</string>
     <string name="api_root">API Root</string>
+    <string name="inspect_valid_until">Inspect valid until</string>
 </resources>

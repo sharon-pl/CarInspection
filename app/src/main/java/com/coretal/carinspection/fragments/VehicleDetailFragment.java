@@ -69,6 +69,7 @@ public class VehicleDetailFragment extends Fragment implements VPlateDialog.Call
     private EditText odometerEdit;
     private EditText locationEdit;
     private DateEditText inspectionDateEdit;
+    private DateEditText inspectionValidUntilDateEdit;
     private Button submitButton;
 
     private DBHelper dbHelper;
@@ -120,6 +121,7 @@ public class VehicleDetailFragment extends Fragment implements VPlateDialog.Call
         odometerEdit = view.findViewById(R.id.current_odometer);
         locationEdit = view.findViewById(R.id.inspection_location_editText);
         inspectionDateEdit = view.findViewById(R.id.edit_inspect_date);
+        inspectionValidUntilDateEdit = view.findViewById(R.id.edit_inspect_valid_until_date);
         submitButton = view.findViewById(R.id.btn_submit);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), R.layout.spinner_item, myPreference.get_conf_months());;
@@ -147,6 +149,11 @@ public class VehicleDetailFragment extends Fragment implements VPlateDialog.Call
         int thisMonth = Calendar.getInstance().get(Calendar.MONTH);
         monthSpinner.setSelection(thisMonth);
         inspectionDateEdit.setDate(currentDate);
+
+        Calendar validUntilCalendar = Calendar.getInstance();
+        validUntilCalendar.add(Calendar.MONTH, 1);
+        Date validUntilDate = validUntilCalendar.getTime();
+        inspectionValidUntilDateEdit.setDate(validUntilDate);
 
         userInputBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -556,6 +563,7 @@ public class VehicleDetailFragment extends Fragment implements VPlateDialog.Call
         String[] months = getResources().getStringArray(R.array.months);
         String selectedMonth = months[monthSpinner.getSelectedItemPosition()];
         String inspectDate = inspectionDateEdit.getText().toString();
+        String inspectValidUntilDate = inspectionValidUntilDateEdit.getText().toString();
         String odometer = odometerEdit.getText().toString();
         String location = locationEdit.getText().toString();
         int selectedInspectorIndex = inspectorSpinner.getSelectedItemPosition();
@@ -569,6 +577,7 @@ public class VehicleDetailFragment extends Fragment implements VPlateDialog.Call
             vehicleDataJson.put(Contents.JsonVehicleData.INSPECTION_NAME, inspectorName);
             vehicleDataJson.put(Contents.JsonVehicleData.INSPECTION_MONTH, selectedMonth);
             vehicleDataJson.put(Contents.JsonVehicleData.INSPECTION_DATE, inspectDate);
+            vehicleDataJson.put(Contents.JsonVehicleData.INSPECTION_VALID_UNTIL_DATE, inspectValidUntilDate);
             vehicleDataJson.put(Contents.JsonVehicleData.INSPECTION_LOCATION, location);
             vehicleDataJson.put(Contents.JsonVehicleData.CURRENTODOMETER, odometer);
             JsonHelper.saveJsonObject(vehicleDataJson, Contents.JsonVehicleData.FILE_PATH);

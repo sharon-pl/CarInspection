@@ -120,6 +120,29 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="@string/inspect_valid_until"
+                    android:textSize="18sp" />
+
+                <com.coretal.carinspection.controls.DateEditText
+                    android:id="@+id/edit_inspect_valid_until_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@color/lightGray"
+                    android:paddingStart="4dp"
+                    android:paddingEnd="4dp"
+                    android:drawableEnd="@android:drawable/ic_menu_my_calendar" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:text="@string/inspector"
                     android:textSize="18sp" />
 

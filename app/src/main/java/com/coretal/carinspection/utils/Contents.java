@@ -69,6 +69,7 @@ public class Contents {
         public static String INSPECTION_NAME = "inspectorName";
         public static String INSPECTION_MONTH = "inspectionMonth";
         public static String INSPECTION_DATE = "inspectionDate";
+        public static String INSPECTION_VALID_UNTIL_DATE = "inspectionValidUntilDate";
         public static String INSPECTION_LOCATION = "inspectionLocation";
         public static String VEHICLE_MAKE = "vehicleMake";
         public static String VEHICLE_MAKE_ID = "vehicleMakeId";

@@ -64,17 +64,65 @@ public class SyncService extends Service {
                 continue;
             }
             Log.d("Kangtle", "started to submit submissions vPlate " + submission.vehiclePlate);
-            VolleyHelper volleyHelper = new VolleyHelper(this, new VolleyHelper.Callback() {
+            Log.d("Kangtle", "will submit pictures first");
+            VolleyHelper pictureVolleyHelper = new VolleyHelper(this, new VolleyHelper.Callback() {
                 @Override
                 public void onFinishedAllRequests() {
                     if (submission.failedCount > 0){
                         submission.status = Submission.STATUS_FAILED;
-                        Log.d("Kangtle", "failed to submit " + submission.vehiclePlate);
+                        Log.d("Kangtle", "failed to submit pictures for " + submission.vehiclePlate);
+                        dbHelper.setSubmissionStatus(submission);
                     }else{
-                        submission.status = Submission.STATUS_SUBMITTED;
-                        Log.d("Kangtle", "success to submit " + submission.vehiclePlate);
+                        Log.d("Kangtle", "successed to submit pictures for " + submission.vehiclePlate);
+                        Log.d("Kangtle", "will submit inspection data");
+                        VolleyHelper inspectionVolleyHelper = new VolleyHelper(SyncService.this);
+                        JsonObjectRequest postInspectionDataRequest = new JsonObjectRequest(
+                                Request.Method.POST,
+                                Contents.API_SUBMIT_INSPECTION,
+                                null,
+                                new Response.Listener<JSONObject>() {
+                                    @Override
+                                    public void onResponse(JSONObject response) {
+                                        Log.d("Kangtle", "API_SUBMIT_INSPECTION: " + response.toString());
+
+                                        submission.status = Submission.STATUS_SUBMITTED;
+                                        Log.d("Kangtle", "success to submit " + submission.vehiclePlate);
+                                        dbHelper.setSubmissionStatus(submission);
+                                    }
+                                },
+                                new Response.ErrorListener() {
+                                    @Override
+                                    public void onErrorResponse(VolleyError error) {
+                                        Log.e("Kangtle", "API_SUBMIT_INSPECTION: onErrorResponse");
+
+                                        submission.failedCount ++;
+                                        submission.errorDetail = "API_SUBMIT_INSPECTION: onErrorResponse";
+                                        submission.status = Submission.STATUS_FAILED;
+
+                                        Log.d("Kangtle", "failed to submit " + submission.vehiclePlate);
+                                        dbHelper.setSubmissionStatus(submission);
+                                    }
+                                }
+                        ){
+                            @Override
+                            public byte[] getBody() {
+                                String inspectData = getSubmitInspectionData(submission);
+                                try {
+                                    return inspectData.getBytes("UTF-8");
+                                } catch (UnsupportedEncodingException e) {
+                                    return inspectData.getBytes();
+                                }
+                            }
+
+                            @Override
+                            public Map<String, String> getHeaders() throws AuthFailureError {
+                                Map<String, String>  params = new HashMap<>();
+                                params.put("Content-Type", "application/json");
+                                return params;
+                            }
+                        };
+                        inspectionVolleyHelper.add(postInspectionDataRequest);
                     }
-                    dbHelper.setSubmissionStatus(submission);
                 }
             });
 
@@ -105,46 +153,8 @@ public class SyncService extends Service {
                 multiPartRequest.addFile("file", submissionFile.fileLocation);
                 multiPartRequest.addStringParam("pictureId", submissionFile.pictureId);
 
-                volleyHelper.add(multiPartRequest);
+                pictureVolleyHelper.add(multiPartRequest);
             }
-
-            JsonObjectRequest postInspectionDataRequest = new JsonObjectRequest(
-                    Request.Method.POST,
-                    Contents.API_SUBMIT_INSPECTION,
-                    null,
-                    new Response.Listener<JSONObject>() {
-                        @Override
-                        public void onResponse(JSONObject response) {
-                            Log.d("Kangtle", "API_SUBMIT_INSPECTION: " + response.toString());
-                        }
-                    },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            Log.e("Kangtle", "API_SUBMIT_INSPECTION: onErrorResponse");
-                            submission.failedCount ++;
-                            submission.errorDetail = "API_SUBMIT_INSPECTION: onErrorResponse";
-                        }
-                    }
-            ){
-                @Override
-                public byte[] getBody() {
-                    String inspectData = getSubmitInspectionData(submission);
-                    try {
-                        return inspectData.getBytes("UTF-8");
-                    } catch (UnsupportedEncodingException e) {
-                        return inspectData.getBytes();
-                    }
-                }
-
-                @Override
-                public Map<String, String> getHeaders() throws AuthFailureError {
-                    Map<String, String>  params = new HashMap<>();
-                    params.put("Content-Type", "application/json");
-                    return params;
-                }
-            };
-            volleyHelper.add(postInspectionDataRequest);
         }
 
         return START_STICKY;
