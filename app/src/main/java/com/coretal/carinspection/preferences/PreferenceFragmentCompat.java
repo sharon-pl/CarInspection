@@ -1,11 +1,11 @@
 package com.coretal.carinspection.preferences;
 
-import android.support.v4.app.DialogFragment;
-import android.support.v7.preference.Preference;
+import androidx.fragment.app.DialogFragment;
+import androidx.preference.Preference;
 
 import com.jaredrummler.android.colorpicker.ColorPreference;
 
-public abstract class PreferenceFragmentCompat extends android.support.v7.preference.PreferenceFragmentCompat {
+public abstract class PreferenceFragmentCompat extends androidx.preference.PreferenceFragmentCompat {
 
     private static final String DIALOG_FRAGMENT_TAG = "android.support.v7.preference.PreferenceFragment.DIALOG";
 

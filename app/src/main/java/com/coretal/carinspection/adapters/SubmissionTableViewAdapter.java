@@ -1,28 +1,20 @@
 package com.coretal.carinspection.adapters;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.coretal.carinspection.R;
-import com.coretal.carinspection.models.Submission;
 import com.evrencoskun.tableview.ITableView;
 import com.evrencoskun.tableview.adapter.AbstractTableAdapter;
 import com.evrencoskun.tableview.adapter.recyclerview.holder.AbstractSorterViewHolder;
 import com.evrencoskun.tableview.adapter.recyclerview.holder.AbstractViewHolder;
-import com.evrencoskun.tableview.filter.IFilterableModel;
-import com.evrencoskun.tableview.sort.ISortableModel;
-import com.evrencoskun.tableview.sort.SortState;
-
-import java.util.List;
 
 public class SubmissionTableViewAdapter
         extends AbstractTableAdapter<

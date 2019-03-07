@@ -1,17 +1,15 @@
 package com.coretal.carinspection.fragments;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.DialogFragment;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.helper.ItemTouchHelper;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,7 +20,6 @@ import com.coretal.carinspection.adapters.DateAndPictureRecyclerViewAdapter;
 import com.coretal.carinspection.dialogs.DateAndPictureDialog;
 import com.coretal.carinspection.models.DateAndPicture;
 import com.coretal.carinspection.utils.AlertHelper;
-import com.coretal.carinspection.utils.DrawableHelper;
 import com.coretal.carinspection.utils.MyPreference;
 
 import org.json.JSONArray;

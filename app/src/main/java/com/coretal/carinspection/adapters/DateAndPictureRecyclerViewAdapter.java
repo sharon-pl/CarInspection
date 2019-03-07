@@ -2,25 +2,20 @@ package com.coretal.carinspection.adapters;
 
 import android.app.Activity;
 import android.graphics.Color;
-import android.support.v4.app.DialogFragment;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+import androidx.fragment.app.DialogFragment;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.coretal.carinspection.MyApp;
 import com.coretal.carinspection.R;
 import com.coretal.carinspection.dialogs.PhotoViewDialog;
-import com.coretal.carinspection.dialogs.VPlateDialog;
-import com.coretal.carinspection.dummy.DummyContent.DummyItem;
-import com.coretal.carinspection.fragments.VehicleDetailFragment;
 import com.coretal.carinspection.models.DateAndPicture;
 import com.coretal.carinspection.utils.Contents;
 import com.coretal.carinspection.utils.MyPreference;

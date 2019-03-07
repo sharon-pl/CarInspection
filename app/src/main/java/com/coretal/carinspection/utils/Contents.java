@@ -1,26 +1,18 @@
 package com.coretal.carinspection.utils;
 
-import android.Manifest;
 import android.content.Context;
-import android.content.pm.PackageManager;
 import android.os.Environment;
-import android.support.v4.app.ActivityCompat;
-import android.telephony.TelephonyManager;
-import android.widget.ArrayAdapter;
 
 import com.coretal.carinspection.MyApp;
-import com.coretal.carinspection.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 /**
  * Created by Kangtle_R on 1/26/2018.

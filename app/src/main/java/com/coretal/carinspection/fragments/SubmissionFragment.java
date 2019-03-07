@@ -3,8 +3,8 @@ package com.coretal.carinspection.fragments;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.text.method.ScrollingMovementMethod;
+import androidx.fragment.app.Fragment;
+
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,10 +14,6 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.error.VolleyError;
-import com.android.volley.request.JsonObjectRequest;
 import com.coretal.carinspection.R;
 import com.coretal.carinspection.adapters.SubmissionTableViewAdapter;
 import com.coretal.carinspection.db.DBHelper;
@@ -26,14 +22,8 @@ import com.coretal.carinspection.utils.AlertHelper;
 import com.coretal.carinspection.utils.Contents;
 import com.coretal.carinspection.utils.DateHelper;
 import com.coretal.carinspection.utils.DrawableHelper;
-import com.coretal.carinspection.utils.FileHelper;
-import com.coretal.carinspection.utils.MyHelper;
 import com.coretal.carinspection.utils.MyPreference;
-import com.coretal.carinspection.utils.VolleyHelper;
-import com.creativityapps.gmailbackgroundlibrary.BackgroundMail;
 import com.evrencoskun.tableview.TableView;
-
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
