@@ -122,6 +122,8 @@ public class VehicleDetailFragment extends Fragment implements VPlateDialog.Call
         inspectionValidUntilDateEdit = view.findViewById(R.id.edit_inspect_valid_until_date);
         submitButton = view.findViewById(R.id.btn_submit);
 
+        inspectorSpinner.setEnabled(false);
+
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), R.layout.spinner_item, myPreference.get_conf_months());;
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         monthSpinner.setAdapter(adapter);
