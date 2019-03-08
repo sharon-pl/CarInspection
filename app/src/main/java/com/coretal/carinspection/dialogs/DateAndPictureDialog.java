@@ -71,7 +71,7 @@ public class DateAndPictureDialog extends DialogFragment implements SelectPictur
     private Spinner typeSpinner;
     private DateEditText dateEditText;
 
-    private String newPictureID;
+    private String newPictureID = "";
 
     private DBHelper dbHelper;
 
@@ -134,7 +134,7 @@ public class DateAndPictureDialog extends DialogFragment implements SelectPictur
                 if (editingItem != null) {
                     editingItem.dateStr = dateStr;
                     editingItem.type = type;
-                    if(newPictureID != null) {
+                    if(!newPictureID.isEmpty()) {
                         editingItem.setPictureId(newPictureID);
                         dbHelper.setFileType(dbHelper.getLastInsertFileId(), type);
                     }
@@ -288,7 +288,7 @@ public class DateAndPictureDialog extends DialogFragment implements SelectPictur
             }
             dbHelper.newFile(newPictureID, fileLocation);
         }else{
-            newPictureID = null;
+            newPictureID = "";
         }
     }
 

@@ -23,9 +23,9 @@ public class DateAndPicture {
     public Date date;
     public String dateStr;
 
-    public String pictureId;
+    public String pictureId = "";
     public String oldPictureId = "";
-    public String pictureURL;
+    public String pictureURL = "";
     public String type;
 
     public String status;
@@ -58,7 +58,7 @@ public class DateAndPicture {
             this.pictureId = pictureId;
         }
 
-        if(this.pictureId != null) {
+        if(!this.pictureId.isEmpty()) {
             boolean isNewPicture = this.pictureId.split("_").length == 4;
             if (isNewPicture) {
                 this.pictureURL = Contents.EXTERNAL_PICTURES_DIR_PATH + "/" + this.pictureId + ".jpg";
