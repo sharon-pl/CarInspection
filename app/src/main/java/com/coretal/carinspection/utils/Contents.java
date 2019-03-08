@@ -3,6 +3,7 @@ package com.coretal.carinspection.utils;
 import android.content.Context;
 import android.os.Environment;
 
+import com.coretal.carinspection.BuildConfig;
 import com.coretal.carinspection.MyApp;
 
 import org.json.JSONArray;
@@ -20,8 +21,10 @@ import java.util.Map;
 
 public class Contents {
     public static boolean IS_STARTED_INSPECTION = false;
-    public static String API_ROOT = "http://24.30.63.116:8080/Peled_v6/restful";
-//    public static String API_ROOT = "http://peled.co/Peled_v6/restful";
+    public static String API_ROOT =
+            BuildConfig.DEBUG ?
+                    "http://24.30.63.116:8080/Peled_v6/restful" :
+                    "http://peled.co/Peled_v6/restful";
     public static String API_GET_VEHICLE_DATA = API_ROOT + "/vehicle/getVehicleData/%s/%s"; //phone_number/v_plate
     public static String API_GET_INSPECTORS = API_ROOT + "/inspector/getInspectors/%s";//phone_number
     public static String API_GET_DRIVERS = API_ROOT + "/driver/getDriversData/%s/%s";//phone_number/v_plate
