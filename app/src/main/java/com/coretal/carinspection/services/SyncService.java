@@ -60,7 +60,7 @@ public class SyncService extends Service {
         List<Submission> submissions = dbHelper.getSubmissionsToSubmit();
         for (final Submission submission : submissions) {
             if (submission.numTry >= myPreference.get_conf_service_max_retry()){
-                Log.d("Kangtle", "Submission num try is already reached to CONF_SERVICE_MAX_RETRY. skip the submission " + submission.vehiclePlate);
+                Log.d("Kangtle", "Submission num try is already reached to CONF_SERVICE_MAX_RETRY. vehiclePlate: " + submission.vehiclePlate);
                 continue;
             }
             Log.d("Kangtle", "started to submit submissions vPlate " + submission.vehiclePlate);
