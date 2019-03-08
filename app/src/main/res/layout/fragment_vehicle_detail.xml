@@ -274,7 +274,8 @@
                     android:background="@color/lightGray"
                     android:paddingStart="4dp"
                     android:paddingEnd="4dp"
-                    />
+                    android:inputType="number"
+                    android:digits="0123456789"/>
             </LinearLayout>
 
             <LinearLayout
