@@ -112,8 +112,14 @@ public class DateAndPictureFragment extends Fragment implements DateAndPictureDi
                         synchronized(adapter){
                             int index = viewHolder.getAdapterPosition();
                             DateAndPicture item = dateAndPictures.remove(index);
-                            item.status = DateAndPicture.STATUS_DELETED;
-                            deletedItems.add(item);
+                            if (!item.status.equals(DateAndPicture.STATUS_NEW)){
+                                if (item.status.equals(DateAndPicture.STATUS_CHANGED)){
+                                    item.pictureId = item.oldPictureId;
+                                    item.oldPictureId = "";
+                                }
+                                item.status = DateAndPicture.STATUS_DELETED;
+                                deletedItems.add(item);
+                            }
                             adapter.notifyItemRemoved(index);
                             adapter.notifyItemRangeChanged(index, dateAndPictures.size());
                         }
@@ -159,9 +165,9 @@ public class DateAndPictureFragment extends Fragment implements DateAndPictureDi
     }
 
     @Override
-    public void onDoneDateAndPictureDialog(DateAndPicture item) {
+    public void onDoneDateAndPictureDialog(DateAndPicture item, boolean isNew) {
         Log.d("Kangtle", "on done date and picture dialog");
-        if(item.status.equals(DateAndPicture.STATUS_NEW))
+        if(isNew)
             dateAndPictures.add(item);
         adapter.notifyDataSetChanged();
     }

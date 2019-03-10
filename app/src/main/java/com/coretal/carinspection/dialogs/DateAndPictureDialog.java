@@ -59,7 +59,7 @@ public class DateAndPictureDialog extends DialogFragment implements SelectPictur
     private MyPreference myPref;
 
     public interface Callback{
-        public void onDoneDateAndPictureDialog(DateAndPicture item);
+        public void onDoneDateAndPictureDialog(DateAndPicture item, boolean isNew);
     }
 
     private static final int REQUEST_CAMERA_PERMISSION = 0;
@@ -138,12 +138,14 @@ public class DateAndPictureDialog extends DialogFragment implements SelectPictur
                         editingItem.setPictureId(newPictureID);
                         dbHelper.setFileType(dbHelper.getLastInsertFileId(), type);
                     }
-                    editingItem.status = DateAndPicture.STATUS_CHANGED;
-                    callback.onDoneDateAndPictureDialog(editingItem);
+                    if (!editingItem.status.equals(DateAndPicture.STATUS_NEW)){
+                        editingItem.status = DateAndPicture.STATUS_CHANGED;
+                    }
+                    callback.onDoneDateAndPictureDialog(editingItem, false);
                 }else{
                     String status = DateAndPicture.STATUS_NEW;
                     DateAndPicture item = new DateAndPicture(dateStr, newPictureID, type, status);
-                    callback.onDoneDateAndPictureDialog(item);
+                    callback.onDoneDateAndPictureDialog(item, true);
                 }
                 alertDialog.dismiss();
             }
