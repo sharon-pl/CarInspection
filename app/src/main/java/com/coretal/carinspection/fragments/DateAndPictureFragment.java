@@ -161,7 +161,7 @@ public class DateAndPictureFragment extends Fragment implements DateAndPictureDi
     @Override
     public void onDoneDateAndPictureDialog(DateAndPicture item) {
         Log.d("Kangtle", "on done date and picture dialog");
-        if(item.status == DateAndPicture.STATUS_NEW)
+        if(item.status.equals(DateAndPicture.STATUS_NEW))
             dateAndPictures.add(item);
         adapter.notifyDataSetChanged();
     }
@@ -184,7 +184,7 @@ public class DateAndPictureFragment extends Fragment implements DateAndPictureDi
         }
 
         for (DateAndPicture item : deletedItems) {
-            if(item.status == DateAndPicture.STATUS_NEW) continue;
+            if(item.status.equals(DateAndPicture.STATUS_NEW)) continue;
             try {
                 jsonArray.put(item.getJSONObject());
             } catch (JSONException e) {
