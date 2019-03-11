@@ -242,6 +242,11 @@ public class DBHelper extends SQLiteOpenHelper {
         db.update(TABLE_SUBMISSION_FILE, updateValues, "id=" + fileID, null);
     }
 
+    public void removeFile(String pictureId){
+        SQLiteDatabase db = this.getReadableDatabase();
+        db.delete(TABLE_SUBMISSION_FILE, String.format("%s='%s'", TABLE_SUBMISSION_FILE_PICTURE_ID, pictureId), null);
+    }
+
     public void resetNumtry(){
         SQLiteDatabase db = this.getReadableDatabase();
         ContentValues updateValues = new ContentValues();

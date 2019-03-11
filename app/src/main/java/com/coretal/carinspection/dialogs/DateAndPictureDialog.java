@@ -135,6 +135,7 @@ public class DateAndPictureDialog extends DialogFragment implements SelectPictur
                     editingItem.dateStr = dateStr;
                     editingItem.type = type;
                     if(!newPictureID.isEmpty()) {
+                        if (!editingItem.pictureId.isEmpty()) dbHelper.removeFile(editingItem.pictureId);
                         editingItem.setPictureId(newPictureID);
                         dbHelper.setFileType(dbHelper.getLastInsertFileId(), type);
                     }
