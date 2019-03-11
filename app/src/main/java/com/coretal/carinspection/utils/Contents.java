@@ -41,6 +41,7 @@ public class Contents {
     public static String API_GET_CONFIG_FILE_TYPES_EMUM = API_ROOT + "/configuration/getPictureAndData/%s";//phone number
     public static String API_SUBMIT_PICTURE = API_ROOT + "/submitPicture/fileupload";
     public static String API_SUBMIT_INSPECTION = API_ROOT + "/submitInspection";
+    public static String API_SERVICE_STATUS = API_ROOT + "/serviceStatus";
 
     public static String EXTERNAL_JSON_DIR = "Json";
     public static String EXTERNAL_JSON_DIR_PATH;
@@ -328,8 +329,8 @@ public class Contents {
         API_GET_PICTURE_BY_ID = API_ROOT + "/image/getPictureById/%s/%s";//phone_number/picture id
         API_GET_CONFIG = API_ROOT + "/configuration/getConfigurationFile/%s";//phone number
         API_GET_CONFIG_FILE_TYPES_EMUM = API_ROOT + "/configuration/getPictureAndData/%s";//phone number
-
         API_SUBMIT_PICTURE = API_ROOT + "/submitPicture/fileupload";
         API_SUBMIT_INSPECTION = API_ROOT + "/submitInspection";
+        API_SERVICE_STATUS = API_ROOT + "/serviceStatus";
     }
 }

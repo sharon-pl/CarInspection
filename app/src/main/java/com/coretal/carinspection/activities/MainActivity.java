@@ -26,6 +26,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -47,6 +48,9 @@ import com.coretal.carinspection.utils.VolleyHelper;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
 import org.json.JSONObject;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity implements API_PhoneNumberDialog.Callback {
 
@@ -76,6 +80,12 @@ public class MainActivity extends AppCompatActivity implements API_PhoneNumberDi
     };
     private ProgressDialog progressDialog;
     private ConnectivityReceiver connectivityReceiver;
+
+    private Timer timer;
+    private TimerTask timerTask;
+    private final Handler timerHandler = new Handler();
+
+    private VolleyHelper volleyHelper;
 
     private void selectFragment(MenuItem item) {
         gotoFragment(item.getItemId());
@@ -160,6 +170,7 @@ public class MainActivity extends AppCompatActivity implements API_PhoneNumberDi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        volleyHelper = new VolleyHelper(this);
         myPreference = new MyPreference(this);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -174,6 +185,8 @@ public class MainActivity extends AppCompatActivity implements API_PhoneNumberDi
 
         Menu menu = navigation.getMenu();
         selectFragment(menu.getItem(0));
+
+        startConnectivityTimer();
 
         connectivityImageView = findViewById(R.id.connectivityImageView);
 //        registerConnectivityAction();
@@ -315,8 +328,6 @@ public class MainActivity extends AppCompatActivity implements API_PhoneNumberDi
                     }
                 }
         );
-
-        VolleyHelper volleyHelper = new VolleyHelper(this);
         volleyHelper.add(getRequest);
     }
 
@@ -324,6 +335,37 @@ public class MainActivity extends AppCompatActivity implements API_PhoneNumberDi
     protected void onStop() {
         super.onStop();
         progressDialog.dismiss();
+    }
+
+    public void startConnectivityTimer() {
+        timer = new Timer();
+        timerTask = new TimerTask() {
+            public void run() {
+                timerHandler.post(new Runnable() {
+                    public void run() {
+                        JsonObjectRequest getRequest = new JsonObjectRequest(
+                                Request.Method.GET,
+                                Contents.API_SERVICE_STATUS,
+                                null,
+                                new Response.Listener<JSONObject>() {
+                                    @Override
+                                    public void onResponse(JSONObject response) {
+                                        connectivityImageView.setImageResource(R.drawable.ic_green_circle);
+                                    }
+                                },
+                                new Response.ErrorListener() {
+                                    @Override
+                                    public void onErrorResponse(VolleyError error) {
+                                        connectivityImageView.setImageResource(R.drawable.ic_red_circle);
+                                    }
+                                }
+                        );
+                        volleyHelper.add(getRequest);
+                    }
+                });
+            }
+        };
+        timer.schedule(timerTask, 5000, 10000); //
     }
 
     private class ConnectivityReceiver extends BroadcastReceiver {
