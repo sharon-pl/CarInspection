@@ -129,6 +129,24 @@ public class MyPreference {
         return months;
     }
 
+    public String[] get_conf_truck_mandatory_documents(){
+        String documentsString = configSP.getString(Contents.Config.CONF_TRUCK_MANDATORY_DOCUMENTS, "");
+        String[] documents = documentsString.split(",");
+        return documents;
+    }
+
+    public String[] get_conf_driver_mandatory_documents(){
+        String documentsString = configSP.getString(Contents.Config.CONF_DRIVER_MANDATORY_DOCUMENTS, "");
+        String[] documents = documentsString.split(",");
+        return documents;
+    }
+
+    public String[] get_conf_trailer_mandatory_documents(){
+        String documentsString = configSP.getString(Contents.Config.CONF_TRAILER_MANDATORY_DOCUMENTS, "");
+        String[] documents = documentsString.split(",");
+        return documents;
+    }
+
     private Map<String, ?> getAllConfigs(){
         return configSP.getAll();
     }

@@ -288,6 +288,10 @@ public class Contents {
         public static final String CONF_APP_SCHEMA_COLOR_UNCHECK = "CONF_APP_SCHEMA_COLOR_C";
         public static final String CONF_APP_SCHEMA_COLOR_BACKGROUND = "CONF_APP_SCHEMA_COLOR_D";
 
+        public static final String CONF_TRUCK_MANDATORY_DOCUMENTS = "CONF_TRUCK_MANDATORY_DOCUMENTS";
+        public static final String CONF_TRAILER_MANDATORY_DOCUMENTS = "CONF_TRAILER_MANDATORY_DOCUMENTS";
+        public static final String CONF_DRIVER_MANDATORY_DOCUMENTS = "CONF_DRIVER_MANDATORY_DOCUMENTS";
+
         public static String FILE_NAME = "config.bkp";
         public static String FILE_PATH;
     }
