@@ -63,8 +63,10 @@
     <string name="homas_date">תוקף חומס</string>
     <string name="manof_date">תוקף מנוף</string>
     <string name="is_kavua">נהג קבוע ברכב</string>
-    <string name="enter_root_url_of_api">Enter root url of API</string>
-    <string name="api_root">API Root</string>
-    <string name="inspect_valid_until">Inspect valid until</string>
-    <string name="vehicle_make">Vehicle Make</string>
+    <string name="enter_root_url_of_api">הזן כתובת אתר של שורש API</string>
+    <string name="api_root">שורש API</string>
+    <string name="inspect_valid_until">בדוק עד תוקף</string>
+    <string name="vehicle_make">להפוך את הרכב</string>
+    <string name="alert">התראה</string>
+    <string name="are_you_sure_you_want_to_cancel">אתה בטוח שאתה רוצה לבטל?</string>
 </resources>

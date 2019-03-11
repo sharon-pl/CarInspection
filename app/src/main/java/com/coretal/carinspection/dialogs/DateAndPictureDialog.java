@@ -155,7 +155,7 @@ public class DateAndPictureDialog extends DialogFragment implements SelectPictur
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertHelper.question(getContext(), "Alert", "Are you sure you want to cancel?", "Yes", "No", new DialogInterface.OnClickListener() {
+                AlertHelper.question(getContext(), getString(R.string.alert), getString(R.string.are_you_sure_you_want_to_cancel), "Yes", "No", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();

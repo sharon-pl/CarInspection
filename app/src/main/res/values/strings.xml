@@ -67,4 +67,6 @@
     <string name="api_root">API Root</string>
     <string name="inspect_valid_until">Inspect valid until</string>
     <string name="vehicle_make">Vehicle Make</string>
+    <string name="alert">Alert</string>
+    <string name="are_you_sure_you_want_to_cancel">Are you sure you want to cancel?</string>
 </resources>
