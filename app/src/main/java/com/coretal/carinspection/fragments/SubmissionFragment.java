@@ -23,10 +23,12 @@ import com.coretal.carinspection.utils.Contents;
 import com.coretal.carinspection.utils.DateHelper;
 import com.coretal.carinspection.utils.DrawableHelper;
 import com.coretal.carinspection.utils.MyPreference;
+import com.creativityapps.gmailbackgroundlibrary.BackgroundMail;
 import com.evrencoskun.tableview.TableView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -57,7 +59,8 @@ public class SubmissionFragment extends Fragment {
         tableView.setAdapter(mTableViewAdapter);
 
         actionSpinner = view.findViewById(R.id.action_spinner);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), R.layout.spinner_item, new String[]{"Reset"});
+        String[] actions = {"Reset", "Clear", "Send"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), R.layout.spinner_item, actions);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         actionSpinner.setAdapter(adapter);
 
@@ -84,10 +87,16 @@ public class SubmissionFragment extends Fragment {
                             case 0: //Reset
                                 Log.d("Kangtle", "Reset num try");
                                 dbHelper.resetNumtry();
-                                List<Submission> submissions = dbHelper.getAllSubmissions();
-                                List<List<SubmissionTableViewAdapter.Cell>> cellList = getCellListForAllSubmissions(submissions); // getCellList();
-                                mTableViewAdapter.setCellItems(cellList);
-                                mTableViewAdapter.notifyDataSetChanged();
+                                reloadSubmissions();
+                                break;
+                            case 1:
+                                Log.d("Kangtle", "Clear submissions");
+                                sendSubmissionsByEmail();
+                                dbHelper.clearSubmissions();
+                                reloadSubmissions();
+                                break;
+                            case 2: //Email
+                                sendSubmissionsByEmail();
                                 break;
                             default:
                                 Log.d("Kangtle", "no action");
@@ -104,6 +113,51 @@ public class SubmissionFragment extends Fragment {
         DrawableHelper.setColor(headerlabel.getBackground(), myPref.getColorButton());
 
         return view;
+    }
+
+    private void reloadSubmissions(){
+        List<Submission> submissions = dbHelper.getAllSubmissions();
+        List<List<SubmissionTableViewAdapter.Cell>> cellList = getCellListForAllSubmissions(submissions); // getCellList();
+        List<SubmissionTableViewAdapter.RowHeader> rowHeaders = createRowHeaderList(submissions.size());
+        mTableViewAdapter.setRowHeaderItems(rowHeaders);
+        mTableViewAdapter.setCellItems(cellList);
+        mTableViewAdapter.notifyDataSetChanged();
+    }
+
+    private void sendSubmissionsByEmail(){
+        Log.d("Kangtle", "Send by email");
+        String[] monthList = myPref.get_conf_months();
+        StringBuilder emailBody = new StringBuilder("Id\tVehicle\tMonth\tDate\tType\tStatus\tError Detail\tNum Try\tNotes\tStarted At\tEnded At\n");
+        List<Submission> subs = dbHelper.getAllSubmissions();
+        for (Submission sub: subs) {
+            emailBody.append(String.format(Locale.US, "%d\t%s\t%s\t%s\t%s\t%s\t%s\t%d\t%s\t%s\t%s\n",
+                    sub.id, sub.vehiclePlate, monthList[sub.month], DateHelper.dateToString(sub.date),
+                    sub.type, sub.status, sub.errorDetail, sub.numTry, sub.notes,
+                    DateHelper.datetimeToString(sub.startedAt),
+                    DateHelper.datetimeToString(sub.endedAt)
+            ));
+        }
+
+        BackgroundMail.newBuilder(getContext())
+                .withUsername(myPref.get_conf_email_user())
+                .withPassword(myPref.get_conf_email_password())
+                .withMailto(myPref.get_conf_email_target_email())
+                .withType(BackgroundMail.TYPE_PLAIN)
+                .withSubject(myPref.get_conf_email_subject())
+                .withBody(emailBody.toString())
+                .withOnSuccessCallback(new BackgroundMail.OnSuccessCallback() {
+                    @Override
+                    public void onSuccess() {
+                        Log.d("Kangtle", "successfully send email");
+                    }
+                })
+                .withOnFailCallback(new BackgroundMail.OnFailCallback() {
+                    @Override
+                    public void onFail() {
+                        Log.d("Kangtle", "failed to send email");
+                    }
+                })
+                .send();
     }
 
     private List<List<SubmissionTableViewAdapter.Cell>> getCellListForAllSubmissions(List<Submission> submissions) {

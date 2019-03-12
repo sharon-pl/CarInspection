@@ -294,4 +294,8 @@ public class DBHelper extends SQLiteOpenHelper {
         return pictureId;
     }
 
+    public void clearSubmissions() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        db.delete(TABLE_SUBMISSION, String.format("%s!='%s'", TABLE_SUBMISSION_STATUS, Submission.STATUS_DRAFT), null);
+    }
 }
