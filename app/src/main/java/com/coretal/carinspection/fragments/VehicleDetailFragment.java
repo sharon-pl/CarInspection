@@ -48,6 +48,7 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
@@ -647,14 +648,15 @@ public class VehicleDetailFragment extends Fragment implements VPlateDialog.Call
     private boolean checkMissingOrExpiredDocuments(JSONArray documentArray, String[] mandatoryTypes, String documentCategory, String translatedCategory){
         Map<String, String> fileTypes = Contents.JsonFileTypesEnum.getTypesByCategory(documentCategory);
         Date curDate = new Date();
-        ArrayList<String> allTypes = new ArrayList<>();
+        ArrayList<String> existingTypes = new ArrayList<>();
         for (int i=0; i < documentArray.length(); i++) {
             try {
                 JSONObject documentObject = documentArray.getJSONObject(i);
                 String dateStr = documentObject.optString(Contents.JsonDateAndPictures.DATE);
                 Date date = DateHelper.stringToDate(dateStr);
                 String type = documentObject.optString(Contents.JsonDateAndPictures.TYPE);
-                allTypes.add(type);
+                if (!Arrays.asList(mandatoryTypes).contains(type)) continue;
+                existingTypes.add(type);
                 if (date.before(curDate)){
                     Toast.makeText(getContext(), String.format("%s %s %s", getString(R.string.expired_document), translatedCategory, fileTypes.get(type)), Toast.LENGTH_SHORT).show();
                     return false;
@@ -664,7 +666,7 @@ public class VehicleDetailFragment extends Fragment implements VPlateDialog.Call
             }
         }
         for (String mandatoryType : mandatoryTypes) {
-            if (!allTypes.contains(mandatoryType)) {
+            if (!existingTypes.contains(mandatoryType)) {
                 Toast.makeText(getContext(), String.format("%s %s %s", getString(R.string.missing_document), translatedCategory, fileTypes.get(mandatoryType)), Toast.LENGTH_SHORT).show();
                 return false;
             }
