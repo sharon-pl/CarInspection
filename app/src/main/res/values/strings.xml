@@ -69,4 +69,9 @@
     <string name="vehicle_make">Vehicle Make</string>
     <string name="alert">Alert</string>
     <string name="are_you_sure_you_want_to_cancel">Are you sure you want to cancel?</string>
+    <string name="expired_document">Expired document:</string>
+    <string name="missing_document">Missing document:</string>
+    <string name="vehicle">Vehicle</string>
+    <string name="driver">Driver</string>
+    <string name="trailer">Trailer</string>
 </resources>

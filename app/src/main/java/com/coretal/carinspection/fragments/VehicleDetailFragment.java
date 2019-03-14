@@ -616,40 +616,36 @@ public class VehicleDetailFragment extends Fragment implements VPlateDialog.Call
         if (dateAndPicturesJson == null){
             Toast.makeText(getContext(), "Truck documents are missing.", Toast.LENGTH_SHORT).show();
             return false;
-        }
-        if (driverDataJson == null){
-            Toast.makeText(getContext(), "Driver documents are missing.", Toast.LENGTH_SHORT).show();
-            return false;
-        }
-        if (trailerDataJson == null){
-            Toast.makeText(getContext(), "Trailer documents are missing.", Toast.LENGTH_SHORT).show();
-            return false;
-        }
+        }else{
+            JSONArray truckDocumentArray = dateAndPicturesJson.optJSONArray(Contents.JsonDateAndPictures.DATES_AND_PICTURES);
+            String[] truckMandatoryTypes = myPreference.get_conf_truck_mandatory_documents();
 
-        JSONArray truckDocumentArray = dateAndPicturesJson.optJSONArray(Contents.JsonDateAndPictures.DATES_AND_PICTURES);
-        JSONArray driverDocumentArray = driverDataJson.optJSONArray(Contents.JsonDateAndPictures.DATES_AND_PICTURES);
-        JSONArray trailerDocumentArray = trailerDataJson.optJSONArray(Contents.JsonDateAndPictures.DATES_AND_PICTURES);
-
-        String[] truckMandatoryTypes = myPreference.get_conf_truck_mandatory_documents();
-        String[] driverMandatoryTypes = myPreference.get_conf_driver_mandatory_documents();
-        String[] trailerMandatoryTypes = myPreference.get_conf_trailer_mandatory_documents();
-
-        if (!checkMissingOrExpiredDocuments(truckDocumentArray, truckMandatoryTypes, "Truck")){
-            return false;
+            if (!checkMissingOrExpiredDocuments(truckDocumentArray, truckMandatoryTypes, "VEHICLE", getString(R.string.vehicle))){
+                return false;
+            }
         }
 
-        if (!checkMissingOrExpiredDocuments(driverDocumentArray, driverMandatoryTypes, "Driver")){
-            return false;
+        if (driverDataJson != null){
+            JSONArray driverDocumentArray = driverDataJson.optJSONArray(Contents.JsonDateAndPictures.DATES_AND_PICTURES);
+            String[] driverMandatoryTypes = myPreference.get_conf_driver_mandatory_documents();
+            if (!checkMissingOrExpiredDocuments(driverDocumentArray, driverMandatoryTypes, "DRIVER", getString(R.string.driver))){
+                return false;
+            }
         }
 
-        if (!checkMissingOrExpiredDocuments(trailerDocumentArray, trailerMandatoryTypes, "Trailer")){
-            return false;
+        if (trailerDataJson != null){
+            JSONArray trailerDocumentArray = trailerDataJson.optJSONArray(Contents.JsonDateAndPictures.DATES_AND_PICTURES);
+            String[] trailerMandatoryTypes = myPreference.get_conf_trailer_mandatory_documents();
+            if (!checkMissingOrExpiredDocuments(trailerDocumentArray, trailerMandatoryTypes, "TRAILER", getString(R.string.trailer))){
+                return false;
+            }
         }
 
         return true;
     }
 
-    private boolean checkMissingOrExpiredDocuments(JSONArray documentArray, String[] mandatoryTypes, String documentCategory){
+    private boolean checkMissingOrExpiredDocuments(JSONArray documentArray, String[] mandatoryTypes, String documentCategory, String translatedCategory){
+        Map<String, String> fileTypes = Contents.JsonFileTypesEnum.getTypesByCategory(documentCategory);
         Date curDate = new Date();
         ArrayList<String> allTypes = new ArrayList<>();
         for (int i=0; i < documentArray.length(); i++) {
@@ -660,7 +656,7 @@ public class VehicleDetailFragment extends Fragment implements VPlateDialog.Call
                 String type = documentObject.optString(Contents.JsonDateAndPictures.TYPE);
                 allTypes.add(type);
                 if (date.before(curDate)){
-                    Toast.makeText(getContext(), String.format("%s document %s is expired", documentCategory, type), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), String.format("%s %s %s", getString(R.string.expired_document), translatedCategory, fileTypes.get(type)), Toast.LENGTH_SHORT).show();
                     return false;
                 }
             } catch (JSONException e) {
@@ -669,7 +665,7 @@ public class VehicleDetailFragment extends Fragment implements VPlateDialog.Call
         }
         for (String mandatoryType : mandatoryTypes) {
             if (!allTypes.contains(mandatoryType)) {
-                Toast.makeText(getContext(), String.format("%s mandatory document %s is missing", documentCategory, mandatoryType), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), String.format("%s %s %s", getString(R.string.missing_document), translatedCategory, fileTypes.get(mandatoryType)), Toast.LENGTH_SHORT).show();
                 return false;
             }
         }

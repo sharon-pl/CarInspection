@@ -69,4 +69,9 @@
     <string name="vehicle_make">להפוך את הרכב</string>
     <string name="alert">התראה</string>
     <string name="are_you_sure_you_want_to_cancel">אתה בטוח שאתה רוצה לבטל?</string>
+    <string name="expired_document">Expired document:</string>
+    <string name="missing_document">Missing document:</string>
+    <string name="vehicle">Vehicle</string>
+    <string name="driver">Driver</string>
+    <string name="trailer">Trailer</string>
 </resources>
