@@ -550,8 +550,8 @@ public class VehicleDetailFragment extends Fragment implements VPlateDialog.Call
             String subtype = vehicleDataJson.getString(Contents.JsonVehicleData.SUBTYPE);
             String details = vehicleDataJson.getString(Contents.JsonVehicleData.DETAILS);
             String odometer = vehicleDataJson.getString(Contents.JsonVehicleData.CURRENTODOMETER);
-            driverID = vehicleDataJson.getString(Contents.JsonVehicleData.DRIVERID);
-            driverName = vehicleDataJson.getString(Contents.JsonVehicleData.DRIVERNAME);
+            driverID = vehicleDataJson.optString(Contents.JsonVehicleData.DRIVERID);
+            driverName = vehicleDataJson.optString(Contents.JsonVehicleData.DRIVERNAME);
 
             vehicleMakeLabel.setText(vehicleMake);
             vehicleTypeLabel.setText(type);

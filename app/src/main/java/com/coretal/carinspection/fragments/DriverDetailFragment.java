@@ -222,7 +222,10 @@ public class DriverDetailFragment extends Fragment implements AdapterView.OnItem
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         if (dateAndPictures == null){
-            if (dateAndPictureFragment != null) fragmentTransaction.remove(dateAndPictureFragment);
+            if (dateAndPictureFragment != null) {
+                fragmentTransaction.remove(dateAndPictureFragment);
+                dateAndPictureFragment = null;
+            }
         }else{
             dateAndPictureFragment = DateAndPictureFragment.newInstance(Contents.JsonFileTypesEnum.CATEGORIE_DRIVER, dateAndPictures.toString());
             fragmentTransaction.replace(R.id.driver_fragment_container, dateAndPictureFragment);
@@ -265,7 +268,7 @@ public class DriverDetailFragment extends Fragment implements AdapterView.OnItem
             VolleyHelper volleyHelper = new VolleyHelper(getContext());
             volleyHelper.add(getDriverDataRequest);
         }else{
-            FileHelper.writeStringToFile("", Contents.JsonVehicleDriverData.FILE_PATH);
+            FileHelper.deleteFile(Contents.JsonVehicleDriverData.FILE_PATH);
             setValuesFromFile();
         }
     }

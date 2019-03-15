@@ -164,7 +164,10 @@ public class TrailerDetailFragment extends Fragment implements AdapterView.OnIte
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         if (dateAndPictures == null){
-            if (dateAndPictureFragment != null) fragmentTransaction.remove(dateAndPictureFragment);
+            if (dateAndPictureFragment != null) {
+                fragmentTransaction.remove(dateAndPictureFragment);
+                dateAndPictureFragment = null;
+            }
         }else{
             dateAndPictureFragment = DateAndPictureFragment.newInstance(Contents.JsonFileTypesEnum.CATEGORIE_TRAILER, dateAndPictures.toString());
             fragmentTransaction.replace(R.id.trailer_fagment_container, dateAndPictureFragment);
@@ -208,7 +211,7 @@ public class TrailerDetailFragment extends Fragment implements AdapterView.OnIte
             volleyHelper.add(getTrailerDataRequest);
 
         }else{
-            FileHelper.writeStringToFile("", Contents.JsonVehicleTrailerData.FILE_PATH);
+            FileHelper.deleteFile(Contents.JsonVehicleTrailerData.FILE_PATH);
             setValuesFromFile();
         }
     }
