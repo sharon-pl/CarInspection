@@ -37,6 +37,7 @@ public class VolleyHelper {
     }
 
     public void add(Request request){
+        request.setShouldCache(false);
         requestQueue.add(request);
         count++;
     }
