@@ -59,7 +59,7 @@
     </PreferenceCategory>
     <PreferenceCategory
         android:title="Web service"
-        android:key="category_inspector">
+        android:key="category_web_service">
         <com.coretal.carinspection.preferences.MyEditTextPreference
             android:key="WS_CONFIG_URL"
             android:title="WS_CONFIG_URL"
