@@ -77,4 +77,5 @@
     <string name="required_date_field">Required the date field</string>
     <string name="required_location_field">Required the location field</string>
     <string name="required_odometer_field">Required the odometer field</string>
+    <string name="enter_another_vehicle_number">There is a submission for the vehicle number to do submit Please enter another one.</string>
 </resources>
