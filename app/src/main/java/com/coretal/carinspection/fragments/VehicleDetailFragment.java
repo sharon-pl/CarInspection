@@ -570,9 +570,9 @@ public class VehicleDetailFragment extends Fragment implements VPlateDialog.Call
         String inspectValidUntilDate = inspectionValidUntilDateEdit.getText().toString();
         String odometer = odometerEdit.getText().toString();
         String location = locationEdit.getText().toString();
-        int selectedInspectorIndex = inspectorSpinner.getSelectedItemPosition();
-        String inspectorID = inspectorIDs.get(selectedInspectorIndex);
-        String inspectorName = inspectorNames.get(selectedInspectorIndex);
+
+        String inspectorID = myPreference.get_conf_inspector_id();
+        String inspectorName = myPreference.get_conf_inspector_name();
 
         JSONObject vehicleDataJson = JsonHelper.readJsonFromFile(Contents.JsonVehicleData.FILE_PATH);
         if (vehicleDataJson == null) vehicleDataJson = new JSONObject();
@@ -593,17 +593,17 @@ public class VehicleDetailFragment extends Fragment implements VPlateDialog.Call
 
     private boolean checkFields(){
         if (inspectionDateEdit.getText().toString().isEmpty()){
-            Toast.makeText(getContext(), "Required the date field", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), getString(R.string.required_date_field), Toast.LENGTH_SHORT).show();
             return false;
         }
 
         if (locationEdit.getText().toString().isEmpty()){
-            Toast.makeText(getContext(), "Required the location field", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), getString(R.string.required_location_field), Toast.LENGTH_SHORT).show();
             return false;
         }
 
         if (odometerEdit.getText().toString().isEmpty()){
-            Toast.makeText(getContext(), "Required the odometer field", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), getString(R.string.required_odometer_field), Toast.LENGTH_SHORT).show();
             return false;
         }
 
@@ -655,7 +655,9 @@ public class VehicleDetailFragment extends Fragment implements VPlateDialog.Call
                 String dateStr = documentObject.optString(Contents.JsonDateAndPictures.DATE);
                 Date date = DateHelper.stringToDate(dateStr);
                 String type = documentObject.optString(Contents.JsonDateAndPictures.TYPE);
-                if (!Arrays.asList(mandatoryTypes).contains(type)) continue;
+                String status = documentObject.optString(Contents.JsonDateAndPictures.STATUS);
+                if (status.equals(DateAndPicture.STATUS_DELETED) || !Arrays.asList(mandatoryTypes).contains(type)) continue;
+
                 existingTypes.add(type);
                 if (date.before(curDate)){
                     Toast.makeText(getContext(), String.format("%s %s %s", getString(R.string.expired_document), translatedCategory, fileTypes.get(type)), Toast.LENGTH_SHORT).show();

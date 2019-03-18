@@ -35,6 +35,7 @@ import com.coretal.carinspection.db.DBHelper;
 import com.coretal.carinspection.models.DateAndPicture;
 import com.coretal.carinspection.utils.AlertHelper;
 import com.coretal.carinspection.utils.Contents;
+import com.coretal.carinspection.utils.DateHelper;
 import com.coretal.carinspection.utils.DrawableHelper;
 import com.coretal.carinspection.utils.FileHelper;
 import com.coretal.carinspection.utils.ImageFilePath;
@@ -133,6 +134,7 @@ public class DateAndPictureDialog extends DialogFragment implements SelectPictur
                 String type = fileTypeKeys.get(typeSpinner.getSelectedItemPosition());
                 if (editingItem != null) {
                     editingItem.dateStr = dateStr;
+                    editingItem.date = DateHelper.stringToDate(dateStr);
                     editingItem.type = type;
                     if(!newPictureID.isEmpty()) {
                         if (!editingItem.pictureId.isEmpty()) dbHelper.removeFile(editingItem.pictureId);
