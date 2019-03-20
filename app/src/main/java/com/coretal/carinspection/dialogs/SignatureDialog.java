@@ -7,9 +7,9 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.DialogFragment;
-import android.telecom.Call;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +19,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.coretal.carinspection.R;
 import com.coretal.carinspection.db.DBHelper;
 import com.coretal.carinspection.models.Submission;
@@ -28,7 +27,6 @@ import com.coretal.carinspection.utils.Contents;
 import com.coretal.carinspection.utils.DrawableHelper;
 import com.coretal.carinspection.utils.FileHelper;
 import com.coretal.carinspection.utils.MyPreference;
-import com.github.chrisbanes.photoview.PhotoView;
 import com.github.gcacace.signaturepad.views.SignaturePad;
 
 /**

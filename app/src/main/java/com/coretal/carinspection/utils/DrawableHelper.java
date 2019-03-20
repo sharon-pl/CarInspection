@@ -4,7 +4,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.ShapeDrawable;
-import android.support.v4.content.ContextCompat;
 
 public class DrawableHelper {
     public static void setColor(Drawable drawable, int color) {

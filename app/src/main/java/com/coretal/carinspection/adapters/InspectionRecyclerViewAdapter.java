@@ -2,16 +2,12 @@ package com.coretal.carinspection.adapters;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.LayerDrawable;
-import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.support.v4.widget.CompoundButtonCompat;
-import android.support.v7.widget.RecyclerView;
+import androidx.core.widget.CompoundButtonCompat;
+import androidx.recyclerview.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

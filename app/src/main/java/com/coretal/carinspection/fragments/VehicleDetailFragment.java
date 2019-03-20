@@ -4,9 +4,9 @@ package com.coretal.carinspection.fragments;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.os.Environment;
-import android.support.v4.app.DialogFragment;
-import android.support.v4.app.Fragment;
+
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,6 +30,7 @@ import com.coretal.carinspection.controls.DateEditText;
 import com.coretal.carinspection.db.DBHelper;
 import com.coretal.carinspection.dialogs.SignatureDialog;
 import com.coretal.carinspection.dialogs.VPlateDialog;
+import com.coretal.carinspection.models.DateAndPicture;
 import com.coretal.carinspection.models.Submission;
 import com.coretal.carinspection.utils.AlertHelper;
 import com.coretal.carinspection.utils.Contents;
@@ -41,12 +42,13 @@ import com.coretal.carinspection.utils.MyHelper;
 import com.coretal.carinspection.utils.MyPreference;
 import com.coretal.carinspection.utils.VolleyHelper;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
@@ -124,6 +126,8 @@ public class VehicleDetailFragment extends Fragment implements VPlateDialog.Call
         inspectionValidUntilDateEdit = view.findViewById(R.id.edit_inspect_valid_until_date);
         submitButton = view.findViewById(R.id.btn_submit);
 
+        inspectorSpinner.setEnabled(false);
+
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), R.layout.spinner_item, myPreference.get_conf_months());;
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         monthSpinner.setAdapter(adapter);
@@ -188,7 +192,7 @@ public class VehicleDetailFragment extends Fragment implements VPlateDialog.Call
             @Override
             public void onClick(View v) {
                 if(Contents.IS_STARTED_INSPECTION) {
-                    if (checkFields()) {
+                    if (checkFields() && checkDocuments()) {
                         saveValuesToFile();
 
                         String inspectorName = (String) inspectorSpinner.getSelectedItem();
@@ -546,8 +550,8 @@ public class VehicleDetailFragment extends Fragment implements VPlateDialog.Call
             String subtype = vehicleDataJson.getString(Contents.JsonVehicleData.SUBTYPE);
             String details = vehicleDataJson.getString(Contents.JsonVehicleData.DETAILS);
             String odometer = vehicleDataJson.getString(Contents.JsonVehicleData.CURRENTODOMETER);
-            driverID = vehicleDataJson.getString(Contents.JsonVehicleData.DRIVERID);
-            driverName = vehicleDataJson.getString(Contents.JsonVehicleData.DRIVERNAME);
+            driverID = vehicleDataJson.optString(Contents.JsonVehicleData.DRIVERID);
+            driverName = vehicleDataJson.optString(Contents.JsonVehicleData.DRIVERNAME);
 
             vehicleMakeLabel.setText(vehicleMake);
             vehicleTypeLabel.setText(type);
@@ -566,9 +570,9 @@ public class VehicleDetailFragment extends Fragment implements VPlateDialog.Call
         String inspectValidUntilDate = inspectionValidUntilDateEdit.getText().toString();
         String odometer = odometerEdit.getText().toString();
         String location = locationEdit.getText().toString();
-        int selectedInspectorIndex = inspectorSpinner.getSelectedItemPosition();
-        String inspectorID = inspectorIDs.get(selectedInspectorIndex);
-        String inspectorName = inspectorNames.get(selectedInspectorIndex);
+
+        String inspectorID = myPreference.get_conf_inspector_id();
+        String inspectorName = myPreference.get_conf_inspector_name();
 
         JSONObject vehicleDataJson = JsonHelper.readJsonFromFile(Contents.JsonVehicleData.FILE_PATH);
         if (vehicleDataJson == null) vehicleDataJson = new JSONObject();
@@ -589,18 +593,85 @@ public class VehicleDetailFragment extends Fragment implements VPlateDialog.Call
 
     private boolean checkFields(){
         if (inspectionDateEdit.getText().toString().isEmpty()){
-            Toast.makeText(getContext(), "Required the date field", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), getString(R.string.required_date_field), Toast.LENGTH_SHORT).show();
             return false;
         }
 
         if (locationEdit.getText().toString().isEmpty()){
-            Toast.makeText(getContext(), "Required the location field", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), getString(R.string.required_location_field), Toast.LENGTH_SHORT).show();
             return false;
         }
 
         if (odometerEdit.getText().toString().isEmpty()){
-            Toast.makeText(getContext(), "Required the odometer field", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), getString(R.string.required_odometer_field), Toast.LENGTH_SHORT).show();
             return false;
+        }
+
+        return true;
+    }
+
+    private boolean checkDocuments(){
+        JSONObject dateAndPicturesJson = JsonHelper.readJsonFromFile(Contents.JsonDateAndPictures.FILE_PATH);
+        JSONObject driverDataJson = JsonHelper.readJsonFromFile(Contents.JsonVehicleDriverData.FILE_PATH);
+        JSONObject trailerDataJson = JsonHelper.readJsonFromFile(Contents.JsonVehicleTrailerData.FILE_PATH);
+        if (dateAndPicturesJson == null){
+            Toast.makeText(getContext(), "Truck documents are missing.", Toast.LENGTH_SHORT).show();
+            return false;
+        }else{
+            JSONArray truckDocumentArray = dateAndPicturesJson.optJSONArray(Contents.JsonDateAndPictures.DATES_AND_PICTURES);
+            String[] truckMandatoryTypes = myPreference.get_conf_truck_mandatory_documents();
+
+            if (!checkMissingOrExpiredDocuments(truckDocumentArray, truckMandatoryTypes, "VEHICLE", getString(R.string.vehicle))){
+                return false;
+            }
+        }
+
+        if (driverDataJson != null){
+            JSONArray driverDocumentArray = driverDataJson.optJSONArray(Contents.JsonDateAndPictures.DATES_AND_PICTURES);
+            String[] driverMandatoryTypes = myPreference.get_conf_driver_mandatory_documents();
+            if (!checkMissingOrExpiredDocuments(driverDocumentArray, driverMandatoryTypes, "DRIVER", getString(R.string.driver))){
+                return false;
+            }
+        }
+
+        if (trailerDataJson != null){
+            JSONArray trailerDocumentArray = trailerDataJson.optJSONArray(Contents.JsonDateAndPictures.DATES_AND_PICTURES);
+            String[] trailerMandatoryTypes = myPreference.get_conf_trailer_mandatory_documents();
+            if (!checkMissingOrExpiredDocuments(trailerDocumentArray, trailerMandatoryTypes, "TRAILER", getString(R.string.trailer))){
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private boolean checkMissingOrExpiredDocuments(JSONArray documentArray, String[] mandatoryTypes, String documentCategory, String translatedCategory){
+        Map<String, String> fileTypes = Contents.JsonFileTypesEnum.getTypesByCategory(documentCategory);
+        Date curDate = new Date();
+        ArrayList<String> existingTypes = new ArrayList<>();
+        for (int i=0; i < documentArray.length(); i++) {
+            try {
+                JSONObject documentObject = documentArray.getJSONObject(i);
+                String dateStr = documentObject.optString(Contents.JsonDateAndPictures.DATE);
+                Date date = DateHelper.stringToDate(dateStr);
+                String type = documentObject.optString(Contents.JsonDateAndPictures.TYPE);
+                String status = documentObject.optString(Contents.JsonDateAndPictures.STATUS);
+                if (status.equals(DateAndPicture.STATUS_DELETED) || !Arrays.asList(mandatoryTypes).contains(type)) continue;
+
+                existingTypes.add(type);
+                if (date.before(curDate)){
+                    Toast.makeText(getContext(), String.format("%s %s %s", getString(R.string.expired_document), translatedCategory, fileTypes.get(type)), Toast.LENGTH_SHORT).show();
+                    return false;
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        for (String mandatoryType : mandatoryTypes) {
+            if (!existingTypes.contains(mandatoryType)) {
+                Toast.makeText(getContext(), String.format("%s %s %s", getString(R.string.missing_document), translatedCategory, fileTypes.get(mandatoryType)), Toast.LENGTH_SHORT).show();
+                return false;
+            }
         }
 
         return true;

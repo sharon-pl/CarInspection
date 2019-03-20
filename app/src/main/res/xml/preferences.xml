@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <PreferenceCategory
         android:title="App Configuration"
@@ -59,7 +59,7 @@
     </PreferenceCategory>
     <PreferenceCategory
         android:title="Web service"
-        android:key="category_inspector">
+        android:key="category_web_service">
         <com.coretal.carinspection.preferences.MyEditTextPreference
             android:key="WS_CONFIG_URL"
             android:title="WS_CONFIG_URL"
@@ -140,4 +140,4 @@
             app:valueAsSummary="true"
             style="@style/Preference.DialogPreference.NumberPickerPreference"/>
     </PreferenceCategory>
-</PreferenceScreen>
+</androidx.preference.PreferenceScreen>

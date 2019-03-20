@@ -3,9 +3,9 @@ package com.coretal.carinspection.fragments;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,7 +30,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -165,7 +164,10 @@ public class TrailerDetailFragment extends Fragment implements AdapterView.OnIte
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         if (dateAndPictures == null){
-            if (dateAndPictureFragment != null) fragmentTransaction.remove(dateAndPictureFragment);
+            if (dateAndPictureFragment != null) {
+                fragmentTransaction.remove(dateAndPictureFragment);
+                dateAndPictureFragment = null;
+            }
         }else{
             dateAndPictureFragment = DateAndPictureFragment.newInstance(Contents.JsonFileTypesEnum.CATEGORIE_TRAILER, dateAndPictures.toString());
             fragmentTransaction.replace(R.id.trailer_fagment_container, dateAndPictureFragment);
@@ -209,7 +211,7 @@ public class TrailerDetailFragment extends Fragment implements AdapterView.OnIte
             volleyHelper.add(getTrailerDataRequest);
 
         }else{
-            FileHelper.writeStringToFile("", Contents.JsonVehicleTrailerData.FILE_PATH);
+            FileHelper.deleteFile(Contents.JsonVehicleTrailerData.FILE_PATH);
             setValuesFromFile();
         }
     }

@@ -13,12 +13,11 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
-import android.support.annotation.NonNull;
-import android.support.v4.app.DialogFragment;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.content.FileProvider;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.DialogFragment;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -36,6 +35,7 @@ import com.coretal.carinspection.db.DBHelper;
 import com.coretal.carinspection.models.DateAndPicture;
 import com.coretal.carinspection.utils.AlertHelper;
 import com.coretal.carinspection.utils.Contents;
+import com.coretal.carinspection.utils.DateHelper;
 import com.coretal.carinspection.utils.DrawableHelper;
 import com.coretal.carinspection.utils.FileHelper;
 import com.coretal.carinspection.utils.ImageFilePath;
@@ -44,13 +44,8 @@ import com.coretal.carinspection.utils.MyPreference;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Array;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.Date;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -65,7 +60,7 @@ public class DateAndPictureDialog extends DialogFragment implements SelectPictur
     private MyPreference myPref;
 
     public interface Callback{
-        public void onDoneDateAndPictureDialog(DateAndPicture item);
+        public void onDoneDateAndPictureDialog(DateAndPicture item, boolean isNew);
     }
 
     private static final int REQUEST_CAMERA_PERMISSION = 0;
@@ -77,7 +72,7 @@ public class DateAndPictureDialog extends DialogFragment implements SelectPictur
     private Spinner typeSpinner;
     private DateEditText dateEditText;
 
-    private String newPictureID;
+    private String newPictureID = "";
 
     private DBHelper dbHelper;
 
@@ -139,17 +134,21 @@ public class DateAndPictureDialog extends DialogFragment implements SelectPictur
                 String type = fileTypeKeys.get(typeSpinner.getSelectedItemPosition());
                 if (editingItem != null) {
                     editingItem.dateStr = dateStr;
+                    editingItem.date = DateHelper.stringToDate(dateStr);
                     editingItem.type = type;
-                    if(newPictureID != null) {
+                    if(!newPictureID.isEmpty()) {
+                        if (!editingItem.pictureId.isEmpty()) dbHelper.removeFile(editingItem.pictureId);
                         editingItem.setPictureId(newPictureID);
                         dbHelper.setFileType(dbHelper.getLastInsertFileId(), type);
                     }
-                    editingItem.status = DateAndPicture.STATUS_CHANGED;
-                    callback.onDoneDateAndPictureDialog(editingItem);
+                    if (!editingItem.status.equals(DateAndPicture.STATUS_NEW)){
+                        editingItem.status = DateAndPicture.STATUS_CHANGED;
+                    }
+                    callback.onDoneDateAndPictureDialog(editingItem, false);
                 }else{
                     String status = DateAndPicture.STATUS_NEW;
                     DateAndPicture item = new DateAndPicture(dateStr, newPictureID, type, status);
-                    callback.onDoneDateAndPictureDialog(item);
+                    callback.onDoneDateAndPictureDialog(item, true);
                 }
                 alertDialog.dismiss();
             }
@@ -158,7 +157,7 @@ public class DateAndPictureDialog extends DialogFragment implements SelectPictur
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertHelper.question(getContext(), "Alert", "Are you sure you want to cancel?", "Yes", "No", new DialogInterface.OnClickListener() {
+                AlertHelper.question(getContext(), getString(R.string.alert), getString(R.string.are_you_sure_you_want_to_cancel), "Yes", "No", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
@@ -294,7 +293,7 @@ public class DateAndPictureDialog extends DialogFragment implements SelectPictur
             }
             dbHelper.newFile(newPictureID, fileLocation);
         }else{
-            newPictureID = null;
+            newPictureID = "";
         }
     }
 

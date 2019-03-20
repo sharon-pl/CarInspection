@@ -1,17 +1,15 @@
 package com.coretal.carinspection.fragments;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.DialogFragment;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.helper.ItemTouchHelper;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,7 +20,6 @@ import com.coretal.carinspection.adapters.DateAndPictureRecyclerViewAdapter;
 import com.coretal.carinspection.dialogs.DateAndPictureDialog;
 import com.coretal.carinspection.models.DateAndPicture;
 import com.coretal.carinspection.utils.AlertHelper;
-import com.coretal.carinspection.utils.DrawableHelper;
 import com.coretal.carinspection.utils.MyPreference;
 
 import org.json.JSONArray;
@@ -115,8 +112,14 @@ public class DateAndPictureFragment extends Fragment implements DateAndPictureDi
                         synchronized(adapter){
                             int index = viewHolder.getAdapterPosition();
                             DateAndPicture item = dateAndPictures.remove(index);
-                            item.status = DateAndPicture.STATUS_DELETED;
-                            deletedItems.add(item);
+                            if (!item.status.equals(DateAndPicture.STATUS_NEW)){
+                                if (item.status.equals(DateAndPicture.STATUS_CHANGED)){
+                                    item.pictureId = item.oldPictureId;
+                                    item.oldPictureId = "";
+                                }
+                                item.status = DateAndPicture.STATUS_DELETED;
+                                deletedItems.add(item);
+                            }
                             adapter.notifyItemRemoved(index);
                             adapter.notifyItemRangeChanged(index, dateAndPictures.size());
                         }
@@ -162,9 +165,9 @@ public class DateAndPictureFragment extends Fragment implements DateAndPictureDi
     }
 
     @Override
-    public void onDoneDateAndPictureDialog(DateAndPicture item) {
+    public void onDoneDateAndPictureDialog(DateAndPicture item, boolean isNew) {
         Log.d("Kangtle", "on done date and picture dialog");
-        if(item.status == DateAndPicture.STATUS_NEW)
+        if(isNew)
             dateAndPictures.add(item);
         adapter.notifyDataSetChanged();
     }
@@ -187,7 +190,7 @@ public class DateAndPictureFragment extends Fragment implements DateAndPictureDi
         }
 
         for (DateAndPicture item : deletedItems) {
-            if(item.status == DateAndPicture.STATUS_NEW) continue;
+            if(item.status.equals(DateAndPicture.STATUS_NEW)) continue;
             try {
                 jsonArray.put(item.getJSONObject());
             } catch (JSONException e) {

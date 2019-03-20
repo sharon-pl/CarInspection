@@ -23,9 +23,9 @@ public class DateAndPicture {
     public Date date;
     public String dateStr;
 
-    public String pictureId;
+    public String pictureId = "";
     public String oldPictureId = "";
-    public String pictureURL;
+    public String pictureURL = "";
     public String type;
 
     public String status;
@@ -49,16 +49,20 @@ public class DateAndPicture {
     }
 
     public void setPictureId(String pictureId) {
-        String[] pictureIds = pictureId.split("#");
-        if(pictureIds.length > 1){
+        if (pictureId.contains("#")){
+            String[] pictureIds = pictureId.split("#");
             this.oldPictureId = pictureIds[0];
             this.pictureId = pictureIds[1];
         }else{
-            this.oldPictureId = this.pictureId;
-            this.pictureId = pictureId;
+            if (this.status.equals(STATUS_NEW)){
+                this.pictureId = pictureId;
+            }else{
+                if (this.oldPictureId.isEmpty()) this.oldPictureId = this.pictureId;
+                this.pictureId = pictureId;
+            }
         }
 
-        if(this.pictureId != null) {
+        if(!this.pictureId.isEmpty()) {
             boolean isNewPicture = this.pictureId.split("_").length == 4;
             if (isNewPicture) {
                 this.pictureURL = Contents.EXTERNAL_PICTURES_DIR_PATH + "/" + this.pictureId + ".jpg";

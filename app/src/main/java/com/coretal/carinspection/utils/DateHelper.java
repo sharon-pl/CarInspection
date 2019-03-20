@@ -2,6 +2,7 @@ package com.coretal.carinspection.utils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -44,5 +45,13 @@ public class DateHelper {
         if (date == null) return "";
         SimpleDateFormat dateFormat = new SimpleDateFormat(format, Locale.US);
         return dateFormat.format(date);
+    }
+
+    public static Date addDays(Date date, int days)
+    {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        cal.add(Calendar.DATE, days); //minus number would decrement the days
+        return cal.getTime();
     }
 }

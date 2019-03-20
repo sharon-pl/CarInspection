@@ -63,4 +63,19 @@
     <string name="homas_date">תוקף חומס</string>
     <string name="manof_date">תוקף מנוף</string>
     <string name="is_kavua">נהג קבוע ברכב</string>
+    <string name="enter_root_url_of_api">כתובת של השרת</string>
+    <string name="api_root">כתובת ה API</string>
+    <string name="inspect_valid_until">בדיקה בתוקף עד</string>
+    <string name="vehicle_make">יצרן</string>
+    <string name="alert">אזהרה</string>
+    <string name="are_you_sure_you_want_to_cancel">בטוח שאתה רוצה לבטל?</string>
+    <string name="expired_document">מסמכים פגי תוקף:</string>
+    <string name="missing_document">מסמכים חסרים:</string>
+    <string name="vehicle">רכב</string>
+    <string name="driver">נהג</string>
+    <string name="trailer">נגרר</string>
+    <string name="required_date_field">תאריך בדיקה חסר</string>
+    <string name="required_location_field">מיקום הבדיקה חסר</string>
+    <string name="required_odometer_field">מד אוץ חסר</string>
+    <string name="enter_another_vehicle_number">קיימת כבר בדיקה עבור רכב זה, יש להמתין 24 שעות. ניתן להזין מס רכב אחר</string>
 </resources>

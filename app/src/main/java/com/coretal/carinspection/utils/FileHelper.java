@@ -139,4 +139,9 @@ public class FileHelper {
 
         fileOrDirectory.delete();
     }
+
+    public static void deleteFile(String filePath) {
+        File file = new File(filePath);
+        file.delete();
+    }
 }

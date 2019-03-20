@@ -2,7 +2,7 @@ package com.coretal.carinspection.fragments;
 
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import androidx.fragment.app.Fragment;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,9 +13,6 @@ import android.widget.TextView;
 import com.coretal.carinspection.R;
 import com.coretal.carinspection.utils.Contents;
 import com.coretal.carinspection.utils.FileHelper;
-import com.coretal.carinspection.utils.JsonHelper;
-
-import org.json.JSONObject;
 
 /**
  * A simple {@link Fragment} subclass.

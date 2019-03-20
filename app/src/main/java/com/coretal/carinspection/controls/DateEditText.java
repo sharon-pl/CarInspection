@@ -5,19 +5,15 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.DatePicker;
-import android.widget.EditText;
 
 import com.coretal.carinspection.R;
 import com.coretal.carinspection.utils.Contents;
 import com.coretal.carinspection.utils.DateHelper;
-import com.coretal.carinspection.utils.MyHelper;
 import com.squareup.timessquare.CalendarPickerView;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -25,7 +21,7 @@ import java.util.Date;
  * Created by Kangtle_R on 1/23/2018.
  */
 
-public class DateEditText extends android.support.v7.widget.AppCompatEditText {
+public class DateEditText extends androidx.appcompat.widget.AppCompatEditText {
     private CalendarPickerView calendarPickerView;
     private DatePickerDialog datePickerDialog;
     public DateEditText(final Context context, AttributeSet attrs) {

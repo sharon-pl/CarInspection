@@ -13,6 +13,7 @@ import com.android.volley.error.VolleyError;
 import com.android.volley.request.JsonObjectRequest;
 import com.android.volley.request.SimpleMultiPartRequest;
 import com.coretal.carinspection.db.DBHelper;
+import com.coretal.carinspection.models.DateAndPicture;
 import com.coretal.carinspection.models.Submission;
 import com.coretal.carinspection.models.SubmissionFile;
 import com.coretal.carinspection.utils.Contents;
@@ -60,7 +61,7 @@ public class SyncService extends Service {
         List<Submission> submissions = dbHelper.getSubmissionsToSubmit();
         for (final Submission submission : submissions) {
             if (submission.numTry >= myPreference.get_conf_service_max_retry()){
-                Log.d("Kangtle", "Submission num try is greater than CONF_SERVICE_MAX_RETRY " + submission.vehiclePlate);
+                Log.d("Kangtle", "Submission num try is already reached to CONF_SERVICE_MAX_RETRY. vehiclePlate: " + submission.vehiclePlate);
                 continue;
             }
             Log.d("Kangtle", "started to submit submissions vPlate " + submission.vehiclePlate);
@@ -170,7 +171,18 @@ public class SyncService extends Service {
         JSONObject trailerDataJson = JsonHelper.readJsonFromFile(jsonDir + "/" + Contents.JsonVehicleTrailerData.FILE_NAME);
 
         JSONArray dateAndPicturesArray = null;
-        if(dateAndPicturesJson != null) dateAndPicturesArray = dateAndPicturesJson.optJSONArray(Contents.JsonDateAndPictures.DATES_AND_PICTURES);
+        if(dateAndPicturesJson != null){
+            dateAndPicturesArray = dateAndPicturesJson.optJSONArray(Contents.JsonDateAndPictures.DATES_AND_PICTURES);
+            fixDateAndPictureStatus(dateAndPicturesArray);
+        }
+
+        if(driverDataJson != null){
+            fixDateAndPictureStatus(driverDataJson.optJSONArray(Contents.JsonDateAndPictures.DATES_AND_PICTURES));
+        }
+
+        if(trailerDataJson != null){
+            fixDateAndPictureStatus(trailerDataJson.optJSONArray(Contents.JsonDateAndPictures.DATES_AND_PICTURES));
+        }
 
         JSONObject submitData = new JSONObject();
 
@@ -203,6 +215,20 @@ public class SyncService extends Service {
             e.printStackTrace();
         }
         return null;
+    }
+
+    private void fixDateAndPictureStatus(JSONArray dateAndPictureArray){
+        if (dateAndPictureArray == null) return;
+        for (int i=0; i < dateAndPictureArray.length(); i++) {
+            try {
+                JSONObject jsonObject = dateAndPictureArray.getJSONObject(i);
+                if (!jsonObject.has(Contents.JsonDateAndPictures.STATUS)){
+                    jsonObject.putOpt(Contents.JsonDateAndPictures.STATUS, DateAndPicture.STATUS_NO_CHANED);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     private void enterTask(){

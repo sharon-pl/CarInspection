@@ -3,9 +3,9 @@ package com.coretal.carinspection.fragments;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,7 +24,6 @@ import com.android.volley.request.JsonObjectRequest;
 import com.coretal.carinspection.R;
 import com.coretal.carinspection.controls.DateEditText;
 import com.coretal.carinspection.utils.Contents;
-import com.coretal.carinspection.utils.DrawableHelper;
 import com.coretal.carinspection.utils.FileHelper;
 import com.coretal.carinspection.utils.JsonHelper;
 import com.coretal.carinspection.utils.MyPreference;
@@ -223,7 +222,10 @@ public class DriverDetailFragment extends Fragment implements AdapterView.OnItem
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         if (dateAndPictures == null){
-            if (dateAndPictureFragment != null) fragmentTransaction.remove(dateAndPictureFragment);
+            if (dateAndPictureFragment != null) {
+                fragmentTransaction.remove(dateAndPictureFragment);
+                dateAndPictureFragment = null;
+            }
         }else{
             dateAndPictureFragment = DateAndPictureFragment.newInstance(Contents.JsonFileTypesEnum.CATEGORIE_DRIVER, dateAndPictures.toString());
             fragmentTransaction.replace(R.id.driver_fragment_container, dateAndPictureFragment);
@@ -266,7 +268,7 @@ public class DriverDetailFragment extends Fragment implements AdapterView.OnItem
             VolleyHelper volleyHelper = new VolleyHelper(getContext());
             volleyHelper.add(getDriverDataRequest);
         }else{
-            FileHelper.writeStringToFile("", Contents.JsonVehicleDriverData.FILE_PATH);
+            FileHelper.deleteFile(Contents.JsonVehicleDriverData.FILE_PATH);
             setValuesFromFile();
         }
     }

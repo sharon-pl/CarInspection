@@ -66,4 +66,16 @@
     <string name="enter_root_url_of_api">Enter root url of API</string>
     <string name="api_root">API Root</string>
     <string name="inspect_valid_until">Inspect valid until</string>
+    <string name="vehicle_make">Vehicle Make</string>
+    <string name="alert">Alert</string>
+    <string name="are_you_sure_you_want_to_cancel">Are you sure you want to cancel?</string>
+    <string name="expired_document">Expired document:</string>
+    <string name="missing_document">Missing document:</string>
+    <string name="vehicle">Vehicle</string>
+    <string name="driver">Driver</string>
+    <string name="trailer">Trailer</string>
+    <string name="required_date_field">Required the date field</string>
+    <string name="required_location_field">Required the location field</string>
+    <string name="required_odometer_field">Required the odometer field</string>
+    <string name="enter_another_vehicle_number">There is a submission for the vehicle number to do submit Please enter another one.</string>
 </resources>

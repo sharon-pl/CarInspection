@@ -109,7 +109,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public boolean checkUnsubmittedSubmission(String vehicleNumber){
         SQLiteDatabase db = this.getReadableDatabase();
-        String strGetAll = String.format("select * from %s where %s=%s and (%s='%s' or %s='%s')",
+        String strGetAll = String.format("select * from %s where %s='%s' and (%s='%s' or %s='%s')",
                                         TABLE_SUBMISSION,
                                         TABLE_SUBMISSION_VEHICLE_PLATE, vehicleNumber,
                                         TABLE_SUBMISSION_STATUS, Submission.STATUS_READY_TO_SUBMIT,
@@ -242,6 +242,11 @@ public class DBHelper extends SQLiteOpenHelper {
         db.update(TABLE_SUBMISSION_FILE, updateValues, "id=" + fileID, null);
     }
 
+    public void removeFile(String pictureId){
+        SQLiteDatabase db = this.getReadableDatabase();
+        db.delete(TABLE_SUBMISSION_FILE, String.format("%s='%s'", TABLE_SUBMISSION_FILE_PICTURE_ID, pictureId), null);
+    }
+
     public void resetNumtry(){
         SQLiteDatabase db = this.getReadableDatabase();
         ContentValues updateValues = new ContentValues();
@@ -289,4 +294,8 @@ public class DBHelper extends SQLiteOpenHelper {
         return pictureId;
     }
 
+    public void clearSubmissions() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        db.delete(TABLE_SUBMISSION, String.format("%s!='%s'", TABLE_SUBMISSION_STATUS, Submission.STATUS_DRAFT), null);
+    }
 }

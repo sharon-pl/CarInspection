@@ -1,26 +1,19 @@
 package com.coretal.carinspection.utils;
 
-import android.Manifest;
 import android.content.Context;
-import android.content.pm.PackageManager;
 import android.os.Environment;
-import android.support.v4.app.ActivityCompat;
-import android.telephony.TelephonyManager;
-import android.widget.ArrayAdapter;
 
+import com.coretal.carinspection.BuildConfig;
 import com.coretal.carinspection.MyApp;
-import com.coretal.carinspection.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 /**
  * Created by Kangtle_R on 1/26/2018.
@@ -28,8 +21,10 @@ import java.util.UUID;
 
 public class Contents {
     public static boolean IS_STARTED_INSPECTION = false;
-    public static String API_ROOT = "http://24.30.63.116:8080/Peled_v6/restful";
-//    public static String API_ROOT = "http://peled.co/Peled_v6/restful";
+    public static String API_ROOT =
+            BuildConfig.DEBUG ?
+                    "http://24.30.63.116:8080/Peled_v6/restful" :
+                    "http://peled.co/Peled_v6/restful";
     public static String API_GET_VEHICLE_DATA = API_ROOT + "/vehicle/getVehicleData/%s/%s"; //phone_number/v_plate
     public static String API_GET_INSPECTORS = API_ROOT + "/inspector/getInspectors/%s";//phone_number
     public static String API_GET_DRIVERS = API_ROOT + "/driver/getDriversData/%s/%s";//phone_number/v_plate
@@ -46,6 +41,7 @@ public class Contents {
     public static String API_GET_CONFIG_FILE_TYPES_EMUM = API_ROOT + "/configuration/getPictureAndData/%s";//phone number
     public static String API_SUBMIT_PICTURE = API_ROOT + "/submitPicture/fileupload";
     public static String API_SUBMIT_INSPECTION = API_ROOT + "/submitInspection";
+    public static String API_SERVICE_STATUS = API_ROOT + "/serviceStatus";
 
     public static String EXTERNAL_JSON_DIR = "Json";
     public static String EXTERNAL_JSON_DIR_PATH;
@@ -292,6 +288,10 @@ public class Contents {
         public static final String CONF_APP_SCHEMA_COLOR_UNCHECK = "CONF_APP_SCHEMA_COLOR_C";
         public static final String CONF_APP_SCHEMA_COLOR_BACKGROUND = "CONF_APP_SCHEMA_COLOR_D";
 
+        public static final String CONF_TRUCK_MANDATORY_DOCUMENTS = "CONF_TRUCK_MANDATORY_DOCUMENTS";
+        public static final String CONF_TRAILER_MANDATORY_DOCUMENTS = "CONF_TRAILER_MANDATORY_DOCUMENTS";
+        public static final String CONF_DRIVER_MANDATORY_DOCUMENTS = "CONF_DRIVER_MANDATORY_DOCUMENTS";
+
         public static String FILE_NAME = "config.bkp";
         public static String FILE_PATH;
     }
@@ -333,8 +333,8 @@ public class Contents {
         API_GET_PICTURE_BY_ID = API_ROOT + "/image/getPictureById/%s/%s";//phone_number/picture id
         API_GET_CONFIG = API_ROOT + "/configuration/getConfigurationFile/%s";//phone number
         API_GET_CONFIG_FILE_TYPES_EMUM = API_ROOT + "/configuration/getPictureAndData/%s";//phone number
-
         API_SUBMIT_PICTURE = API_ROOT + "/submitPicture/fileupload";
         API_SUBMIT_INSPECTION = API_ROOT + "/submitInspection";
+        API_SERVICE_STATUS = API_ROOT + "/serviceStatus";
     }
 }
