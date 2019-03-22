@@ -127,7 +127,7 @@ public class ConfigFragment extends Fragment {
                                             @Override
                                             public void onResponse(JSONObject response) {
                                                 progressDialog.hide();
-                                                myPreference.restoreFromJSONObject(response);
+                                                myPreference.restoreFromJSONObject(response, null);
                                                 setConfigPreFragment();
                                                 Log.d("Kangtle", "overrode config file");
                                             }
