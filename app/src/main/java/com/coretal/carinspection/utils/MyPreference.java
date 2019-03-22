@@ -14,6 +14,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.lang.reflect.Type;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -131,20 +132,17 @@ public class MyPreference {
 
     public String[] get_conf_truck_mandatory_documents(){
         String documentsString = configSP.getString(Contents.Config.CONF_TRUCK_MANDATORY_DOCUMENTS, "");
-        String[] documents = documentsString.split(",");
-        return documents;
+        return (documentsString.isEmpty()) ? new String[0] : documentsString.split(",");
     }
 
     public String[] get_conf_driver_mandatory_documents(){
         String documentsString = configSP.getString(Contents.Config.CONF_DRIVER_MANDATORY_DOCUMENTS, "");
-        String[] documents = documentsString.split(",");
-        return documents;
+        return (documentsString.isEmpty()) ? new String[0] : documentsString.split(",");
     }
 
     public String[] get_conf_trailer_mandatory_documents(){
         String documentsString = configSP.getString(Contents.Config.CONF_TRAILER_MANDATORY_DOCUMENTS, "");
-        String[] documents = documentsString.split(",");
-        return documents;
+        return (documentsString.isEmpty()) ? new String[0] : documentsString.split(",");
     }
 
     private Map<String, ?> getAllConfigs(){
@@ -197,9 +195,9 @@ public class MyPreference {
         FileHelper.writeStringToFile(getAllToString(), Contents.Config.FILE_PATH);
     }
 
-    public void restoreFromJSONObject(JSONObject jsonObject){
+    public void restoreFromJSONObject(JSONObject jsonObject, String[] onlyRequiredFields){
         try {
-            Iterator<String> keys = jsonObject.keys();
+            Iterator<String> keys = (onlyRequiredFields == null) ? jsonObject.keys() : Arrays.asList(onlyRequiredFields).iterator();
 
             while( keys.hasNext() ) {
                 String key = keys.next();
@@ -231,10 +229,19 @@ public class MyPreference {
         }
     }
 
+    public void resetOnlyRequiredFields(JSONObject response) {
+        String[] requiredFields = {
+            Contents.Config.CONF_TRUCK_MANDATORY_DOCUMENTS,
+            Contents.Config.CONF_DRIVER_MANDATORY_DOCUMENTS,
+            Contents.Config.CONF_TRAILER_MANDATORY_DOCUMENTS
+        };
+        restoreFromJSONObject(response, requiredFields);
+    }
+
     public void restore(){
         String savedString = FileHelper.readStringFromFile(Contents.Config.FILE_PATH);
         try {
-            restoreFromJSONObject(new JSONObject(savedString));
+            restoreFromJSONObject(new JSONObject(savedString), null);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -243,5 +250,4 @@ public class MyPreference {
     public void reset(){
 
     }
-
 }

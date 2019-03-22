@@ -26,7 +26,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -226,7 +225,9 @@ public class MainActivity extends AppCompatActivity implements API_PhoneNumberDi
         }else{
             Contents.configAPIs(this);
             Contents.PHONE_NUMBER = phoneNumber;
-            if(!myPreference.isGettedConfig()){
+            if(myPreference.isGettedConfig()){
+                resetConfigOnlyRequiredFields();
+            }else{
                 getConfigFile();
             }
         }
@@ -309,7 +310,7 @@ public class MainActivity extends AppCompatActivity implements API_PhoneNumberDi
                         }else{
                             Log.d("Kangtle", "Getted config file successfully");
                             progressDialog.hide();
-                            myPreference.restoreFromJSONObject(response);
+                            myPreference.restoreFromJSONObject(response, null);
                         }
                     }
                 },
@@ -325,6 +326,31 @@ public class MainActivity extends AppCompatActivity implements API_PhoneNumberDi
                                 getAPI_PhoneNumberWithDialog();
                             }
                         });
+                    }
+                }
+        );
+        volleyHelper.add(getRequest);
+    }
+
+    private void resetConfigOnlyRequiredFields() {
+        Log.d("Kangtle", "reset config file for only required field");
+        JsonObjectRequest getRequest = new JsonObjectRequest(
+                Request.Method.GET,
+                String.format(Contents.API_GET_CONFIG, Contents.PHONE_NUMBER),
+                null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        if (!response.has("error")){
+                            Log.d("Kangtle", "Getted config file successfully");
+                            myPreference.resetOnlyRequiredFields(response);
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d("Kangtle", "Can't get config file.");
                     }
                 }
         );

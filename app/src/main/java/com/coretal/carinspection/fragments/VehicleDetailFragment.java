@@ -255,8 +255,6 @@ public class VehicleDetailFragment extends Fragment implements VPlateDialog.Call
             progressDialog.setMessage("Please wait...\nGetting the vehicle details");
             progressDialog.show();
 
-//            Contents.configAPIs(getContext());
-
             successAllRequests = true;
 
             JsonObjectRequest getVehicleDataRequest = new JsonObjectRequest(
