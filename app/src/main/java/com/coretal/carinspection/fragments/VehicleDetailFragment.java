@@ -230,10 +230,11 @@ public class VehicleDetailFragment extends Fragment implements VPlateDialog.Call
 
     @Override
     public void onSubmitVPlateDialog(String vPlate) {
+        Log.d("Kangtle", "Start vehidle number: " + vPlate);
+
         this.vPlate = vPlate;
         Contents.CURRENT_VEHICLE_NUMBER = vPlate;
         Contents.setVehicleNumber(vPlate);
-//        Contents.APP_HASH = myPreference.getAppHash();
 
         Submission submission = dbHelper.getDraftSubmission();
         vPlateLabel.setText(vPlate);
@@ -575,6 +576,7 @@ public class VehicleDetailFragment extends Fragment implements VPlateDialog.Call
         JSONObject vehicleDataJson = JsonHelper.readJsonFromFile(Contents.JsonVehicleData.FILE_PATH);
         if (vehicleDataJson == null) vehicleDataJson = new JSONObject();
         try {
+            vehicleDataJson.put(Contents.JsonVehicleData.VEHICLE_PLATE, this.vPlate);
             vehicleDataJson.put(Contents.JsonVehicleData.INSPECTION_ID, inspectorID);
             vehicleDataJson.put(Contents.JsonVehicleData.INSPECTION_NAME, inspectorName);
             vehicleDataJson.put(Contents.JsonVehicleData.INSPECTION_MONTH, selectedMonth);

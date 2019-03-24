@@ -53,6 +53,7 @@ public class Contents {
     public static String DEFAULT_DATE_FORMAT = "dd/MM/yyyy";
 
     public static class JsonVehicleData {
+        public static String VEHICLE_PLATE = "vehiclePlate";
         public static String TYPE = "vehicleType";
         public static String SUBTYPE = "vehicleSubType";
         public static String DETAILS = "vehicleDetails";
