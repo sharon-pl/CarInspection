@@ -22,7 +22,7 @@ import java.util.Date;
  */
 
 public class DateEditText extends androidx.appcompat.widget.AppCompatEditText {
-    private CalendarPickerView calendarPickerView;
+
     private DatePickerDialog datePickerDialog;
     public DateEditText(final Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -51,53 +51,6 @@ public class DateEditText extends androidx.appcompat.widget.AppCompatEditText {
                 datePickerDialog.show();
             }
         });
-    }
-
-
-    private void showCalendarInDialog(Context context) {
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
-
-        calendarPickerView = (CalendarPickerView) (inflater.inflate(R.layout.dialog_calendar, null, false));
-        final AlertDialog theDialog = new AlertDialog.Builder(context).create();
-        theDialog.setTitle("Calendar");
-        theDialog.setView(calendarPickerView);
-        theDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK", new DialogInterface.OnClickListener() {
-            @Override public void onClick(DialogInterface dialog, int i) {
-                dialog.dismiss();
-                String formatString = DateHelper.dateToString(calendarPickerView.getSelectedDate());
-                DateEditText.this.setText(formatString);
-            }
-        });
-
-        theDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
-
-        theDialog.setOnShowListener(new DialogInterface.OnShowListener() {
-            @Override
-            public void onShow(DialogInterface dialog) {
-                calendarPickerView.fixDialogDimens();
-            }
-        });
-
-        calendarPickerView.setOnDateSelectedListener(new CalendarPickerView.OnDateSelectedListener() {
-            @Override
-            public void onDateSelected(Date date) {
-                theDialog.dismiss();
-
-                String formatString = DateHelper.dateToString(calendarPickerView.getSelectedDate(), Contents.DEFAULT_DATE_FORMAT);
-                DateEditText.this.setText(formatString);
-            }
-
-            @Override
-            public void onDateUnselected(Date date) {
-
-            }
-        });
-        theDialog.show();
     }
 
     public void setDate(Date date){
