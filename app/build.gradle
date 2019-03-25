@@ -11,16 +11,29 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
     }
+    signingConfigs {
+        config {
+            keyAlias 'android'
+            keyPassword 'rootroot'
+            storeFile file('../android.jks')
+            storePassword 'rootroot'
+        }
+    }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
         }
+    }
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
     }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'androidx.appcompat:appcompat:1.1.0-alpha02'
     implementation 'com.google.android.material:material:1.1.0-alpha04'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
@@ -29,23 +42,22 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.1.0-alpha02'
     implementation 'androidx.preference:preference:1.1.0-alpha03'
     implementation 'androidx.legacy:legacy-preference-v14:1.0.0'
-
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'
-
     implementation 'com.github.ittianyu:BottomNavigationViewEx:1.2.4'
     implementation 'q.rorbin:badgeview:1.1.0'
     implementation 'com.thoughtbot:expandablerecyclerview:1.3'
     implementation 'com.github.gcacace:signature-pad:1.2.1'
     implementation 'com.squareup:android-times-square:1.6.5@aar'
     implementation 'dev.dworks.libs:volleyplus:+'
-    implementation ("com.github.bumptech.glide:glide:4.5.0") {
+    implementation('com.github.bumptech.glide:glide:4.5.0') {
         exclude group: "com.android.support"
     }
     annotationProcessor 'com.github.bumptech.glide:compiler:4.5.0'
     implementation 'com.github.chrisbanes:PhotoView:2.1.3'
-    implementation 'com.evrencoskun.library:tableview:0.8.6' // it is happening above errors
+    implementation 'com.evrencoskun.library:tableview:0.8.6'
+    // it is happening above errors
     implementation 'com.google.code.gson:gson:2.8.2'
     implementation 'com.github.yesidlazaro:GmailBackground:1.2.0'
     implementation 'com.github.h6ah4i:ColorPicker:develop-SNAPSHOT'
