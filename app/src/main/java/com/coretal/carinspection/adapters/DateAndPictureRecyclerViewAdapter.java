@@ -56,7 +56,7 @@ public class DateAndPictureRecyclerViewAdapter extends RecyclerView.Adapter<Date
         holder.mItem = mValues.get(position);
         String type = mValues.get(position).type;
         holder.typeEdit.setText(fileTypes.get(type));
-        holder.dateEdit.setText(mValues.get(position).dateStr);
+        holder.dateEdit.setText(Contents.DATE_PREFIX + mValues.get(position).dateStr);
         Date currentDate = Calendar.getInstance().getTime();
 
         Calendar calendar = Calendar.getInstance();

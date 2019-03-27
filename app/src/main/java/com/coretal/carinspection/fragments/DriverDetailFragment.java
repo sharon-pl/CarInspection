@@ -129,10 +129,10 @@ public class DriverDetailFragment extends Fragment implements AdapterView.OnItem
             driverID = driverIDs.get(driverSpinner.getSelectedItemPosition());
 
             String driverName = driverNames.get(driverSpinner.getSelectedItemPosition());
-            licenceDateStr = licenceDateEdit.getText().toString();
-            hatzharatnahagDateStr = hatzharatnahagDateEdit.getText().toString();
-            homasDateStr = homasDateEdit.getText().toString();
-            manofDateStr = manofDateEdit.getText().toString();
+            licenceDateStr = licenceDateEdit.getDateString();
+            hatzharatnahagDateStr = hatzharatnahagDateEdit.getDateString();
+            homasDateStr = homasDateEdit.getDateString();
+            manofDateStr = manofDateEdit.getDateString();
             isKavua = isKavuaSwitch.isChecked();
             remarks = driverRemarksEdit.getText().toString();
 
@@ -211,10 +211,10 @@ public class DriverDetailFragment extends Fragment implements AdapterView.OnItem
         });
 
         driverLicenceNumberLabel.setText(licence);
-        licenceDateEdit.setText(licenceDateStr);
-        hatzharatnahagDateEdit.setText(hatzharatnahagDateStr);
-        homasDateEdit.setText(homasDateStr);
-        manofDateEdit.setText(manofDateStr);
+        licenceDateEdit.setDateString(licenceDateStr);
+        hatzharatnahagDateEdit.setDateString(hatzharatnahagDateStr);
+        homasDateEdit.setDateString(homasDateStr);
+        manofDateEdit.setDateString(manofDateStr);
         isKavuaSwitch.setChecked(isKavua);
         driverAddressLabel.setText(address);
         driverRemarksEdit.setText(remarks);
@@ -282,5 +282,11 @@ public class DriverDetailFragment extends Fragment implements AdapterView.OnItem
     public void onPause() {
         super.onPause();
         saveValuesToFile();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        progressDialog.dismiss();
     }
 }

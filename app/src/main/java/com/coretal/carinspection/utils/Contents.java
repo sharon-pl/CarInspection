@@ -46,11 +46,11 @@ public class Contents {
     public static String EXTERNAL_JSON_DIR = "Json";
     public static String EXTERNAL_JSON_DIR_PATH;
     public static String EXTERNAL_PICTURES_DIR_PATH;
-//    public static String APP_HASH;
     public static String PHONE_NUMBER;
     public static String CURRENT_VEHICLE_NUMBER;
 
     public static String DEFAULT_DATE_FORMAT = "dd/MM/yyyy";
+    public static String DATE_PREFIX = "#";
 
     public static class JsonVehicleData {
         public static String VEHICLE_PLATE = "vehiclePlate";

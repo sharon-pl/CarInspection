@@ -226,4 +226,10 @@ public class TrailerDetailFragment extends Fragment implements AdapterView.OnIte
         super.onPause();
         saveValuesToFile();
     }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        progressDialog.dismiss();
+    }
 }

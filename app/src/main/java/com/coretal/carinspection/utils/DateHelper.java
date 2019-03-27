@@ -1,7 +1,10 @@
 package com.coretal.carinspection.utils;
 
+import android.util.Log;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
@@ -54,4 +57,50 @@ public class DateHelper {
         cal.add(Calendar.DATE, days); //minus number would decrement the days
         return cal.getTime();
     }
+
+    public static void testDateFormat()
+    {
+        Log.d("Kangtle", "===================================");
+        SimpleDateFormat dateFormat1 = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
+        SimpleDateFormat dateFormat2 = new SimpleDateFormat("dd==MM==yyyy", Locale.US);
+        SimpleDateFormat dateFormat3 = new SimpleDateFormat("yyyy@MM@dd", Locale.US);
+        SimpleDateFormat dateFormat4 = new SimpleDateFormat("yyyy/dd/MM", Locale.US);
+
+        Date curDate = new Date();
+        String dateStr = "21/03/2019";
+        String wrongDateStr = "2019/23/03";
+        String u = Character.toString((char)0x0020);
+
+        Log.d("Kangtle", dateStr);
+        Log.d("Kangtle", wrongDateStr);
+
+        Log.d("Kangtle", " " + dateStr);
+        Log.d("Kangtle", " " + wrongDateStr);
+
+        Log.d("Kangtle", " " + dateStr + " ");
+        Log.d("Kangtle", " " + wrongDateStr + " ");
+
+        Log.d("Kangtle", u + dateStr);
+        Log.d("Kangtle", u + wrongDateStr);
+
+        Log.d("Kangtle", u + dateStr + u);
+        Log.d("Kangtle", u + wrongDateStr + u);
+
+        Log.d("Kangtle", "C " + dateStr);
+        Log.d("Kangtle", "W " + wrongDateStr);
+
+        Log.d("Kangtle", dateFormat1.format(curDate));
+        Log.d("Kangtle", dateFormat2.format(curDate));
+        Log.d("Kangtle", dateFormat3.format(curDate));
+        Log.d("Kangtle", dateFormat4.format(curDate));
+        try {
+            Log.d("Kangtle", dateFormat1.parse(dateStr).toString());
+            Log.d("Kangtle", dateFormat1.parse(wrongDateStr).toString());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        Log.d("Kangtle", "===================================");
+    }
+
 }

@@ -118,7 +118,7 @@ public class DateAndPictureDialog extends DialogFragment implements SelectPictur
 
         if(editingItem != null){
             typeSpinner.setSelection(fileTypeKeys.indexOf(editingItem.type));
-            dateEditText.setText(editingItem.dateStr);
+            dateEditText.setDateString(editingItem.dateStr);
             RequestOptions requestOptions = new RequestOptions();
             requestOptions.placeholder(R.drawable.ic_camera_48);
             Glide.with(getActivity())

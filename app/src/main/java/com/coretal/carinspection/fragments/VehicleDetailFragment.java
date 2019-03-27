@@ -106,6 +106,8 @@ public class VehicleDetailFragment extends Fragment implements VPlateDialog.Call
         inspectorIDs = new ArrayList<>();
         inspectorNames = new ArrayList<>();
 
+        DateHelper.testDateFormat();
+
         dbHelper = new DBHelper(getContext());
         volleyHelper = new VolleyHelper(getContext(), this);
         myPreference = new MyPreference(getContext());
@@ -565,8 +567,8 @@ public class VehicleDetailFragment extends Fragment implements VPlateDialog.Call
     private void saveValuesToFile() {
         String[] months = getResources().getStringArray(R.array.months);
         String selectedMonth = months[monthSpinner.getSelectedItemPosition()];
-        String inspectDate = inspectionDateEdit.getText().toString();
-        String inspectValidUntilDate = inspectionValidUntilDateEdit.getText().toString();
+        String inspectDate = inspectionDateEdit.getDateString();
+        String inspectValidUntilDate = inspectionValidUntilDateEdit.getDateString();
         String odometer = odometerEdit.getText().toString();
         String location = locationEdit.getText().toString();
 

@@ -24,6 +24,7 @@ import java.util.Date;
 public class DateEditText extends androidx.appcompat.widget.AppCompatEditText {
 
     private DatePickerDialog datePickerDialog;
+
     public DateEditText(final Context context, AttributeSet attrs) {
         super(context, attrs);
         this.setKeyListener(null);
@@ -36,15 +37,14 @@ public class DateEditText extends androidx.appcompat.widget.AppCompatEditText {
                 calendar.set(Calendar.YEAR, year);
                 calendar.set(Calendar.MONTH, month);
                 calendar.set(Calendar.DATE, dayOfMonth);
-                String formatString = DateHelper.dateToString(calendar.getTime());
-                DateEditText.this.setText(formatString);
+                DateEditText.this.setDate(calendar.getTime());
             }
         }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DATE));
 
         this.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Date date = DateHelper.stringToDate(DateEditText.this.getText().toString());
+                Date date = DateEditText.this.getDate();
                 final Calendar calendar = Calendar.getInstance();
                 calendar.setTime(date);
                 datePickerDialog.updateDate( calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DATE));
@@ -55,6 +55,19 @@ public class DateEditText extends androidx.appcompat.widget.AppCompatEditText {
 
     public void setDate(Date date){
         String dateStr = DateHelper.dateToString(date);
-        this.setText(dateStr);
+        this.setDateString(dateStr);
+    }
+
+    public Date getDate(){
+        String dateStr = this.getDateString();
+        return DateHelper.stringToDate(dateStr);
+    }
+
+    public void setDateString(String dateString) {
+        this.setText(Contents.DATE_PREFIX + dateString);
+    }
+
+    public String getDateString() {
+        return this.getText().toString().replace(Contents.DATE_PREFIX, "");
     }
 }
