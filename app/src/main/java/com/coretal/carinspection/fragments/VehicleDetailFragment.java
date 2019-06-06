@@ -621,26 +621,26 @@ public class VehicleDetailFragment extends Fragment implements VPlateDialog.Call
             JSONArray truckDocumentArray = dateAndPicturesJson.optJSONArray(Contents.JsonDateAndPictures.DATES_AND_PICTURES);
             String[] truckMandatoryTypes = myPreference.get_conf_truck_mandatory_documents();
 
-            if (!checkMissingOrExpiredDocuments(truckDocumentArray, truckMandatoryTypes, "VEHICLE", getString(R.string.vehicle))){
-                return false;
-            }
+//            if (!checkMissingOrExpiredDocuments(truckDocumentArray, truckMandatoryTypes, "VEHICLE", getString(R.string.vehicle))){
+//                return false;
+//            }
         }
 
-        if (driverDataJson != null){
-            JSONArray driverDocumentArray = driverDataJson.optJSONArray(Contents.JsonDateAndPictures.DATES_AND_PICTURES);
-            String[] driverMandatoryTypes = myPreference.get_conf_driver_mandatory_documents();
-            if (!checkMissingOrExpiredDocuments(driverDocumentArray, driverMandatoryTypes, "DRIVER", getString(R.string.driver))){
-                return false;
-            }
-        }
-
-        if (trailerDataJson != null){
-            JSONArray trailerDocumentArray = trailerDataJson.optJSONArray(Contents.JsonDateAndPictures.DATES_AND_PICTURES);
-            String[] trailerMandatoryTypes = myPreference.get_conf_trailer_mandatory_documents();
-            if (!checkMissingOrExpiredDocuments(trailerDocumentArray, trailerMandatoryTypes, "TRAILER", getString(R.string.trailer))){
-                return false;
-            }
-        }
+//        if (driverDataJson != null){
+//            JSONArray driverDocumentArray = driverDataJson.optJSONArray(Contents.JsonDateAndPictures.DATES_AND_PICTURES);
+//            String[] driverMandatoryTypes = myPreference.get_conf_driver_mandatory_documents();
+//            if (!checkMissingOrExpiredDocuments(driverDocumentArray, driverMandatoryTypes, "DRIVER", getString(R.string.driver))){
+//                return false;
+//            }
+//        }
+//
+//        if (trailerDataJson != null){
+//            JSONArray trailerDocumentArray = trailerDataJson.optJSONArray(Contents.JsonDateAndPictures.DATES_AND_PICTURES);
+//            String[] trailerMandatoryTypes = myPreference.get_conf_trailer_mandatory_documents();
+//            if (!checkMissingOrExpiredDocuments(trailerDocumentArray, trailerMandatoryTypes, "TRAILER", getString(R.string.trailer))){
+//                return false;
+//            }
+//        }
 
         return true;
     }
